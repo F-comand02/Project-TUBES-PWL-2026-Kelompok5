@@ -128,11 +128,11 @@ Repositori ini berisi implementasi sistem informasi berbasis web yang dikembangk
 ## 👥 Tim Pengembang
 | NIM | Nama | Role | GitHub |
 | :--- | :--- | :--- | :--- |
-| **--------** | Farel Yamotaro Hia| ------ | [@username](https://github.com/username) |
-| **--------** | Nabil| -------- | [@username](https://github.com/username) |
-| **--------** | Cinta| ---- | [@username](https://github.com/username) |
-| **--------** | Raja| ------ | [@username](https://github.com/username) |
-| **--------** | Jihan| ----- | [@username](https://github.com/username) |
+| **251402069** | Farel Yamotaro Hia| ------ | [@username]() |
+| **251402134**| Nabil Akbar Soufyan| --------| [@NAS](https://github.com/DemonAITYX) |
+| **251402090** | Cinta Pardame Sihaloho| ---- | [@CintaPardame](https://github.com/CintaPardame) |
+| **251402107** | M. Rajadinata| ------ | [@rajadinata512-ops](https://github.com/rajadinata512-ops)) |
+| **251402098** | Jihan Fadhilah| ----- | [@Jihan](https://github.com/jfadhilah) |
 
 ## 📄 Lisensi
 Distribusi di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.

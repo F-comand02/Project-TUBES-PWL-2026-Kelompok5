@@ -128,7 +128,7 @@ Repositori ini berisi implementasi sistem informasi berbasis web yang dikembangk
 ## 👥 Tim Pengembang
 | NIM | Nama | Role | GitHub |
 | :--- | :--- | :--- | :--- |
-| **251402069** | Farel Yamotaro Hia| ------ | [@username]() |
+| **251402069** | Farel Yamotaro Hia| ------ | [@F-comand02](https://github.com/F-comand02) |
 | **251402134**| Nabil Akbar Soufyan| --------| [@NAS](https://github.com/DemonAITYX) |
 | **251402090** | Cinta Pardame Sihaloho| ---- | [@CintaPardame](https://github.com/CintaPardame) |
 | **251402107** | M. Rajadinata| ------ | [@rajadinata512-ops](https://github.com/rajadinata512-ops)) |

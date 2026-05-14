@@ -19,10 +19,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'role_id',
+    'shelter_id',
+    'name',
+    'email',
+    'phone',
+    'address',
+    'password',
+    'two_factor_code',
+    'two_factor_expires_at',
+    'two_factor_enabled',
+ ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -35,15 +42,38 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'two_factor_expires_at' => 'datetime',
+        'two_factor_enabled' => 'boolean',
+    ];
+
+    public function role()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(Role::class);
+    }
+
+    public function generateTwoFactorCode()
+    {
+        $this->two_factor_code = rand(100000, 999999);
+        $this->two_factor_expires_at = now()->addMinutes(10);
+        $this->save();
+    }
+
+    public function verifyTwoFactorCode($code)
+    {
+        return $this->two_factor_code == $code && $this->two_factor_expires_at > now();
+    }
+
+    public function resetTwoFactorCode()
+    {
+        $this->two_factor_code = null;
+        $this->two_factor_expires_at = null;
+        $this->save();
     }
 }

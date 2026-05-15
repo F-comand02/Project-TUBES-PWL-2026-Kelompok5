@@ -1,76 +1,64 @@
 <x-guest-layout>
 
-    <div class="min-h-screen grid lg:grid-cols-2">
+    <div class="min-h-screen lg:grid lg:grid-cols-2">
 
-        <!-- Left -->
-        <div class="hidden lg:flex bg-gradient-to-br from-blue-600 to-blue-800 relative overflow-hidden">
+        <!-- LEFT -->
+    <div class="hidden lg:flex relative overflow-hidden min-h-screen">
 
-            <div class="absolute inset-0 bg-black/10"></div>
+    <!-- Background Image -->
+    <img
+        src="{{ asset('images/Register/Register.jpg') }}"
+        alt="Register Background"
+        class="absolute inset-0 w-full h-full object-cover">
 
-            <div class="relative z-10 flex flex-col justify-center px-20 text-white">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-[2px]"></div>
 
-                <h1 class="text-6xl font-extrabold leading-tight">
-                    Join WaterRelief
-                </h1>
+    <!-- Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-700/70 to-cyan-500/40"></div>
 
-                <p class="mt-6 text-xl text-blue-100 leading-relaxed max-w-lg">
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col justify-center px-20 text-white">
 
-                    Become part of a humanitarian platform
-                    dedicated to disaster response,
-                    clean water access, and community support.
+        <p class="uppercase tracking-[6px] text-blue-100 font-bold text-sm">
+            WaterRelief Platform
+        </p>
 
-                </p>
+        <h1 class="text-7xl font-extrabold leading-tight mt-6">
+            Join WaterRelief
+        </h1>
 
-                <div class="mt-10 grid grid-cols-2 gap-4">
+        <p class="mt-8 text-2xl text-blue-100 leading-relaxed max-w-xl">
 
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl">
+            Jadilah bagian dari platform kemanusiaan
+            untuk membantu distribusi bantuan,
+            pengelolaan shelter, dan respons banjir
+            secara cepat dan efisien.
 
-                        <h2 class="text-4xl font-bold">
-                            28+
-                        </h2>
+        </p>
 
-                        <p class="mt-2 text-blue-100">
-                            Active Shelters
-                        </p>
+    </div>
 
-                    </div>
+    </div>
+        <!-- RIGHT -->
+        <div class="flex min-h-screen items-center justify-center bg-gray-50 px-6 py-10">
 
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl">
-
-                        <h2 class="text-4xl font-bold">
-                            680+
-                        </h2>
-
-                        <p class="mt-2 text-blue-100">
-                            Volunteers
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Right -->
-        <div class="flex items-center justify-center bg-gray-50 px-6 py-12">
-
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-xl">
 
                 <!-- Logo -->
                 <div class="text-center mb-10">
 
-                    <div class="w-20 h-20 bg-blue-600 rounded-3xl mx-auto flex items-center justify-center text-white text-4xl shadow-lg">
-                        💧
-                    </div>
+                    <img
+                        src="{{ asset('images/Logo.png') }}"
+                        alt="Logo"
+                        class="w-24 h-24 mx-auto object-contain">
 
-                    <h1 class="mt-6 text-4xl font-extrabold text-slate-900">
+                    <h1 class="mt-6 text-5xl font-extrabold text-slate-900">
                         WaterRelief
                     </h1>
 
-                    <p class="mt-2 text-gray-500">
-                        Create your account
+                    <p class="mt-3 text-gray-500 text-lg">
+                        Beri komplainmu, bantu sesama
                     </p>
 
                 </div>
@@ -78,17 +66,18 @@
                 <!-- Card -->
                 <div class="bg-white rounded-[2rem] shadow-xl p-10 border border-gray-100">
 
-                    <h2 class="text-3xl font-bold text-slate-900">
+                    <h2 class="text-4xl font-black text-slate-900">
                         Register
                     </h2>
 
-                    <p class="text-gray-500 mt-2">
-                        Start helping communities today
+                    <p class="text-gray-500 mt-3 text-lg">
+                        Ayo mulai perjalananmu dengan WaterRelief
                     </p>
 
-                    <form method="POST"
+                    <form
+                        method="POST"
                         action="{{ route('register') }}"
-                        class="mt-8">
+                        class="mt-10">
 
                         @csrf
 
@@ -142,18 +131,12 @@
                                     Select Role
                                 </option>
 
-                                <option value="2"
-                                    {{ old('role_id') == 2 ? 'selected' : '' }}>
-
+                                <option value="2" {{ old('role_id') == 2 ? 'selected' : '' }}>
                                     Citizen
-
                                 </option>
 
-                                <option value="3"
-                                    {{ old('role_id') == 3 ? 'selected' : '' }}>
-
+                                <option value="3" {{ old('role_id') == 3 ? 'selected' : '' }}>
                                     Volunteer
-
                                 </option>
 
                             </select>
@@ -163,34 +146,62 @@
                         </div>
 
                         <!-- Password -->
-                        <div class="mt-6">
+                        <div class="mt-6" x-data="{ show: false }">
 
                             <x-input-label for="password" :value="__('Password')" />
 
-                            <x-text-input
+                            <div class="relative">
+
+                                <x-text-input
                                 id="password"
-                                class="block mt-2 w-full rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                type="password"
+                                class="block mt-2 w-full rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 pe-16"
+                                x-bind:type="show ? 'text' : 'password'"
                                 name="password"
-                                required />
+                                required
+                                autocomplete="new-password" />
+
+                                <button
+                                    type="button"
+                                    @click="show = !show"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-600">
+
+                                    <span x-text="show ? 'Hide' : 'Show'"></span>
+
+                                </button>
+
+                            </div>
 
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                         </div>
 
                         <!-- Confirm Password -->
-                        <div class="mt-6">
+                        <div class="mt-6" x-data="{ show: false }">
 
-                            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                            <x-input-label
+                                for="password_confirmation"
+                                :value="__('Confirm Password')" />
 
-                            <x-text-input
-                                id="password_confirmation"
-                                class="block mt-2 w-full rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                type="password"
-                                name="password_confirmation"
-                                required />
+                            <div class="relative">
 
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                <x-text-input
+                                    id="password_confirmation"
+                                    class="block mt-2 w-full rounded-2xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 pe-16"
+                                    x-bind:type="show ? 'text' : 'password'"
+                                    name="password_confirmation"
+                                    required
+                                    autocomplete="new-password" />
+
+                                <button
+                                    type="button"
+                                    @click="show = !show"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-blue-600">
+
+                                    <span x-text="show ? 'Hide' : 'Show'"></span>
+
+                                </button>
+
+                            </div>
 
                         </div>
 
@@ -198,23 +209,25 @@
                         <div class="mt-8 space-y-4">
 
                             <x-primary-button
-                                class="w-full justify-center py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-base font-semibold">
+                                class="w-full justify-center py-4 rounded-2xl bg-blue-600 hover:bg-gray-700 text-base font-semibold">
 
                                 Register
 
                             </x-primary-button>
 
-                            <a href="{{ route('login') }}"
+                            <a
+                                href="{{ route('login') }}"
                                 class="block text-center py-4 rounded-2xl border border-gray-300 hover:bg-gray-50 font-semibold text-gray-700 transition">
 
                                 Already have an account?
 
                             </a>
 
-                            <a href="{{ url('/') }}"
+                            <a
+                                href="{{ url('/') }}"
                                 class="block text-center text-gray-500 hover:text-gray-700 text-sm">
 
-                                ← Back to Home
+                                Back to Home
 
                             </a>
 

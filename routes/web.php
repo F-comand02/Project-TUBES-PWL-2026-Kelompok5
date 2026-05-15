@@ -36,7 +36,7 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
 Route::middleware(['auth', 'role:citizen'])->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('Citizen.dashboard');
     })->name('dashboard');
 
 });

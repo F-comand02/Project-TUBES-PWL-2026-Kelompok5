@@ -50,3 +50,5 @@ Route::middleware(['auth'])->group(function () {
         ->name('profile.update');
 
 });
+
+

@@ -90,6 +90,18 @@
                     href="{{ route('dashboard') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 3h7.5v7.5h-7.5V3Zm9 0h7.5v4.5h-7.5V3Zm0 6h7.5v12h-7.5V9Zm-9 3h7.5v9h-7.5v-9Z"/>
+
+                    </svg>
                     Dashboard
 
                 </a>
@@ -100,6 +112,18 @@
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7.5 8.25h9m-9 3h5.25M6.75 3h10.5A2.25 2.25 0 0 1 19.5 5.25v13.5A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75V5.25A2.25 2.25 0 0 1 6.75 3Z"/>
+
+                    </svg>
                     My Complaints
 
                 </a>
@@ -110,6 +134,18 @@
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m2.25 12 8.954-8.955a1.125 1.125 0 0 1 1.592 0L21.75 12M4.5 9.75V19.5A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5V9.75"/>
+
+                    </svg>
                     Shelter Information
 
                 </a>
@@ -120,6 +156,18 @@
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 7.5V6a2.25 2.25 0 0 0-2.25-2.25h-13.5A2.25 2.25 0 0 0 3 6v1.5m18 0v10.5A2.25 2.25 0 0 1 18.75 20.25h-13.5A2.25 2.25 0 0 1 3 18V7.5m18 0h-18"/>
+
+                    </svg>
                     Relief Information
 
                 </a>
@@ -130,6 +178,18 @@
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 6.75c0 7.456 6.044 13.5 13.5 13.5h2.25A2.25 2.25 0 0 0 20.25 18v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.293a.75.75 0 0 1-.982.205 11.035 11.035 0 0 1-5.457-5.457.75.75 0 0 1 .205-.982l1.293-.97c.37-.278.54-.75.417-1.173L7.463 4.602A1.125 1.125 0 0 0 6.372 3.75H5A2.25 2.25 0 0 0 2.75 6v.75Z"/>
+
+                    </svg>
                     Emergency Contacts
 
                 </a>
@@ -139,7 +199,19 @@
                     x-show="'profile'.includes(search.toLowerCase()) || search === ''"
                     href="{{ route('profile.edit') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275"/>
+
+                    </svg>
                     Profile
 
                 </a>
@@ -150,6 +222,18 @@
                     href="{{ route('settings.index') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
 
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
+
+                    <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 12a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5-3v3l2 2"/>
+
+                    </svg>
                     Settings
 
                 </a>

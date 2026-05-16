@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ $title ?? 'Dashboard' }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+</head>
+
+<body
+    x-data="{
+    sidebarOpen: false,
+    openNotif: false,
+    search: ''
+}"
+ class="bg-[#f4f7fb] font-sans antialiased">
+
+    <div class="flex min-h-screen">
+
+        <!-- SIDEBAR -->
+        <aside
+            :class="sidebarOpen
+                ? 'translate-x-0'
+                : '-translate-x-full lg:translate-x-0 lg:w-0 overflow-hidden'"
+            class="w-72 max-w-[85%] bg-white border-r border-gray-200 fixed lg:relative z-50 min-h-screen transition-all duration-300 flex flex-col shadow-2xl lg:shadow-none">
+
+            <!-- LOGO -->
+            <div class="px-8 py-8 border-b border-gray-100">
+
+               <div class="flex items-start gap-4 pr-16">
+
+                    <img
+                        src="{{ asset('images/Logo.png') }}"
+                        class="w-14 h-14 object-contain"
+                        alt="Logo">
+
+                    <div>
+
+                       <h1 class="text-2xl md:text-3xl font-medium text-slate-900 leading-tight">
+                            WaterRelief
+                        </h1>
+
+                        <p class="text-sm text-gray-500 leading-relaxed">
+                            Beri Komplainmu, Bantu Sesama
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CLOSE BUTTON MOBILE -->
+            <button
+           @click="
+                sidebarOpen = false;
+                openNotif = false;
+            "
+            class="absolute top-1 right-1 lg:hidden z-50 w-10 h-10 rounded-xl bg-transparent hover:bg-red-100 flex items-center justify-center transition">
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-6 h-6 text-gray-600 hover:text-red-500">
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12" />
+
+            </svg>
+
+        </button>
+
+            <!-- MENU -->
+            <nav class="flex-1 px-5 py-8 space-y-3 overflow-y-auto">
+
+                <!-- DASHBOARD -->
+                <a
+                    x-show="'dashboard'.includes(search.toLowerCase()) || search === ''"
+                    href="{{ route('dashboard') }}"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Dashboard
+
+                </a>
+
+                <!-- COMPLAINTS -->
+                <a
+                    x-show="'complaints'.includes(search.toLowerCase()) || search === ''"
+                    href="#"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    My Complaints
+
+                </a>
+
+                <!-- SHELTER -->
+                <a
+                    x-show="'shelter'.includes(search.toLowerCase()) || search === ''"
+                    href="#"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Shelter Information
+
+                </a>
+
+                <!-- RELIEF -->
+                <a
+                    x-show="'relief'.includes(search.toLowerCase()) || search === ''"
+                    href="#"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Relief Information
+
+                </a>
+
+                <!-- EMERGENCY -->
+                <a
+                    x-show="'emergency'.includes(search.toLowerCase()) || search === ''"
+                    href="#"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Emergency Contacts
+
+                </a>
+
+                <!-- PROFILE -->
+                <a
+                    x-show="'profile'.includes(search.toLowerCase()) || search === ''"
+                    href="{{ route('profile.edit') }}"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Profile
+
+                </a>
+
+                <!-- SETTINGS -->
+                <a
+                    x-show="'settings'.includes(search.toLowerCase()) || search === ''"
+                    href="{{ route('settings.index') }}"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-cyan-300 transition">
+
+                    Settings
+
+                </a>
+
+            </nav>
+
+            
+
+            <!-- LOGOUT -->
+            <div class="p-5 border-t border-gray-100">
+
+                <form method="POST" action="{{ route('logout') }}">
+
+                    @csrf
+
+                    <button
+                        class="w-full py-4 rounded-2xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition">
+
+                        Logout
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </aside>
+
+        <!-- OVERLAY MOBILE -->
+        <div
+            x-show="sidebarOpen"
+            @click="sidebarOpen = false"
+            class="fixed inset-0 bg-black/40 z-40 lg:hidden"
+            x-transition.opacity>
+
+        </div>
+
+        <!-- MAIN -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+
+            <!-- TOPBAR -->
+            <div
+               class="bg-white border-b border-gray-200 px-4 md:px-8 py-4 md:py-5 flex items-center justify-between gap-3">
+
+                <!-- LEFT -->
+                <div class="flex items-center gap-3 md:gap-5 min-w-0">
+
+                    <!-- MENU BUTTON -->
+                    <button
+                       @click="
+                            sidebarOpen = !sidebarOpen;
+                            openNotif = false;
+                        "
+                        class="text-gray-500 hover:text-slate-900 transition text-3xl">
+
+                        ☰
+
+                    </button>
+
+                    <!-- TITLE -->
+                    <div>
+
+                        <h1 class="text-lg md:text-2xl font-bold text-slate-900 truncate">
+                            Dashboard
+                        </h1>
+
+                        <p class="text-gray-500 text-xs md:text-sm mt-1 truncate">
+                            Selamat Datang, {{ Auth::user()->name }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+               <div class="flex items-center gap-2 md:gap-5">
+
+                    <!-- SEARCH -->
+                    <div class="hidden lg:block">
+
+                        <input
+                            type="text"
+                            x-model="search"
+                            placeholder="Search menu..."
+                            class="w-72 xl:w-80 rounded-2xl border-gray-200 bg-gray-50 focus:border-blue-500 focus:ring-blue-500 text-sm">
+
+                    </div>
+
+                    <!-- NOTIFICATION -->
+                    <div
+                        class="relative">
+
+                        <!-- BUTTON -->
+                        <button
+                            @click="
+                                openNotif = !openNotif;
+                                sidebarOpen = false;
+                            "
+                           class="relative w-10 h-10 md:w-11 md:h-11 rounded-2xl hover:bg-gray-100 flex items-center justify-center transition text-xl">
+
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.8"
+                            stroke="currentColor"
+                            class="w-6 h-6 text-gray-600">
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M14.857 17.082a23.848 23.848 0 0 1 5.454 1.31A8.967 8.967 0 0 1 18 9.75v-.7V9a6 6 0 1 0-12 0v.05c0 .236 0 .472-.002.708A8.967 8.967 0 0 1 3.69 18.392a23.847 23.847 0 0 1 5.454-1.31m5.714 0a24.255 24.255 0 0 0-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+
+                            </svg>
+
+                            <span
+                                class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full"></span>
+
+                        </button>
+
+                        <!-- DROPDOWN -->
+                        <div
+                            x-show="openNotif"
+                            @click.outside="openNotif = false"
+                            x-transition
+                           class="absolute right-0 mt-4 w-[90vw] sm:w-80 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-50">
+
+                            <!-- HEADER -->
+                            <div class="px-6 py-5 border-b border-gray-100">
+
+                                <h1 class="text-lg font-bold text-slate-900">
+                                    Notifications
+                                </h1>
+
+                            </div>
+
+                            <!-- ITEMS -->
+                            <div class="max-h-96 overflow-y-auto">
+
+                                <!-- ITEM -->
+                                <div
+                                    class="px-6 py-5 hover:bg-gray-50 transition border-b border-gray-100">
+
+                                    <div class="flex items-start gap-4">
+
+                                        <div
+                                            class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-xl">
+
+                                            📢
+
+                                        </div>
+
+                                        <div>
+
+                                            <h2 class="font-semibold text-slate-900">
+                                                New Complaint Update
+                                            </h2>
+
+                                            <p class="text-sm text-gray-500 mt-1">
+                                                Your complaint has been reviewed.
+                                            </p>
+
+                                            <p class="text-xs text-gray-400 mt-2">
+                                                2 minutes ago
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- ITEM -->
+                                <div
+                                    class="px-6 py-5 hover:bg-gray-50 transition border-b border-gray-100">
+
+                                    <div class="flex items-start gap-4">
+
+                                        <div
+                                            class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-xl">
+
+                                            🏠
+
+                                        </div>
+
+                                        <div>
+
+                                            <h2 class="font-semibold text-slate-900">
+                                                Shelter Available
+                                            </h2>
+
+                                            <p class="text-sm text-gray-500 mt-1">
+                                                New shelter opened near your area.
+                                            </p>
+
+                                            <p class="text-xs text-gray-400 mt-2">
+                                                1 hour ago
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- ITEM -->
+                                <div
+                                    class="px-6 py-5 hover:bg-gray-50 transition">
+
+                                    <div class="flex items-start gap-4">
+
+                                        <div
+                                            class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center text-xl">
+
+                                            🚨
+
+                                        </div>
+
+                                        <div>
+
+                                            <h2 class="font-semibold text-slate-900">
+                                                Emergency Alert
+                                            </h2>
+
+                                            <p class="text-sm text-gray-500 mt-1">
+                                                Flood warning issued in your district.
+                                            </p>
+
+                                            <p class="text-xs text-gray-400 mt-2">
+                                                Yesterday
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- FOOTER -->
+                            <div class="px-6 py-4 border-t border-gray-100">
+
+                                <button
+                                    class="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
+
+                                    View All Notifications
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PROFILE -->
+                    <div class="flex items-center gap-3">
+
+                        <a
+                            href="{{ route('profile.edit') }}"
+                           class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-blue-600 text-white flex items-center justify-center font-bold text-lg hover:scale-105 transition">
+
+                            @if(Auth::user()->profile_photo)
+
+                                <img
+                                    src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
+                                    class="w-full h-full object-cover">
+
+                            @else
+
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+
+                            @endif
+
+                        </a>
+
+                       <div class="hidden sm:block">
+
+                            <h2 class="font-semibold text-slate-900">
+                                {{ Auth::user()->name }}
+                            </h2>
+
+                            <p class="text-xs text-gray-500">
+                                Citizen
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-32">
+
+                {{ $slot }}
+
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

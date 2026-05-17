@@ -1,4 +1,7 @@
-<x-layouts.dashboard title="Volunteer Dashboard">
+<x-layouts.dashboard
+    title="Volunteer Dashboard"
+    color="green"
+    role="volunteer">
 
     <div class="space-y-8">
 

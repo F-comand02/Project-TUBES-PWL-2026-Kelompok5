@@ -1,15 +1,19 @@
-<x-layouts.dashboard title="Settings">
+<x-layouts.dashboard
+    title="Settings"
+    color="{{ strtolower((string)(Auth::user()?->role?->role_name)) === 'volunteer' ? 'green' : 'blue' }}"
+    role="{{ strtolower((string)(Auth::user()?->role?->role_name)) === 'volunteer' ? 'volunteer' : 'citizen' }}">
+
 
     <div class="space-y-8">
 
         <!-- HEADER -->
         <div>
 
-            <h1 class="text-4xl font-medium text-slate-900">
-                Settings
+            <h1 class="text-4xl font-medium text-slate-900 px-4">
+                Pengaturan Akun
             </h1>
 
-            <p class="text-gray-500 mt-2">
+            <p class="text-gray-500 mt-2 px-4">
                 Silahkan kelola pengaturan akun dan preferensi notifikasi Anda di sini.
             </p>
 
@@ -23,7 +27,7 @@
                 <div>
 
                     <h2 class="text-2xl font-medium text-slate-900">
-                        Security Settings
+                        Keamanan Akun
                     </h2>
 
                     <p class="text-gray-500 mt-2">
@@ -35,7 +39,7 @@
                 <div
                     class="px-4 py-2 rounded-full bg-green-100 text-green-700 font-semibold">
 
-                    Protected
+                    Aman
 
                 </div>
 
@@ -48,7 +52,7 @@
                     class="border border-gray-100 rounded-3xl p-6 hover:shadow-lg transition">
 
                     <h3 class="mt-5 text-xl font-bold text-slate-900">
-                        Change Password
+                        Ubah Kata Sandi
                     </h3>
 
                     <p class="mt-2 text-gray-500">
@@ -59,7 +63,7 @@
                         href="{{ route('password.request') }}"
                         class="inline-block mt-6 px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
 
-                        Change Password
+                        Ubah Kata Sandi
 
                     </a>
 
@@ -88,7 +92,7 @@
                                 type="submit"
                                 class="mt-6 px-5 py-3 rounded-2xl bg-red-500 hover:bg-red-600 text-white font-semibold transition">
 
-                                Disable 2FA
+                                Nonaktifkan 2FA
 
                             </button>
 
@@ -104,7 +108,7 @@
                                 type="submit"
                                 class="mt-6 px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition">
 
-                                Enable 2FA
+                                Aktifkan 2FA
 
                             </button>
 

@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/settings', function () {
-    return view('citizen.settings');
+    return view('settings.index');
 })->name('settings.index');
 
 

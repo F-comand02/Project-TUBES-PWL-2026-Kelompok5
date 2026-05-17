@@ -9,7 +9,12 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        return view('citizen.profile');
+        $user = Auth::user();
+
+        // role_name is the canonical string used across the app (middleware, redirects)
+        $roleName = $user?->role?->role_name;
+
+        return view('profile.edit', compact('roleName'));
     }
 
     public function update(Request $request)
@@ -23,6 +28,12 @@ class ProfileController extends Controller
             'address' => 'nullable|string|max:255',
             'date_of_birth' => 'nullable|date',
             'gender' => 'nullable|in:Male,Female',
+
+            // volunteer
+            'skills' => 'nullable|string|max:255',
+            'organization' => 'nullable|string|max:255',
+            'experience' => 'nullable|string|max:255',
+            'availability' => 'nullable|string|max:255',
         ]);
 
         $user = Auth::user();
@@ -34,6 +45,10 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->date_of_birth = $request->date_of_birth;
         $user->gender = $request->gender;
+        $user->skills = $request->skills;
+        $user->organization = $request->organization;
+        $user->experience = $request->experience;
+        $user->availability = $request->availability;
 
         if ($request->hasFile('profile_photo')) {
 

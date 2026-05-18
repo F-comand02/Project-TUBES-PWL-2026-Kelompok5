@@ -122,7 +122,7 @@
 
             <!-- COMPLAINTS -->
             <a
-            href="#"
+            href="{{ route('complaints.index') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
             {{ request()->is('complaints')
@@ -307,6 +307,29 @@
                 </svg>
 
                     Dashboard
+
+                </a>
+
+                <!-- MANAGE COMPLAINTS -->
+                <a
+                    href="{{ route('volunteer.complaints') }}"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-green-100 transition">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.8"
+                        stroke="currentColor"
+                        class="w-5 h-5">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5A3.375 3.375 0 0 0 10.125 2.25H8.25m0 12h7.5m-7.5 3h4.5M3.75 5.25A2.25 2.25 0 0 1 6 3h4.5a2.25 2.25 0 0 1 1.591.659l5.25 5.25A2.25 2.25 0 0 1 18 10.5V18A2.25 2.25 0 0 1 15.75 20.25H6A2.25 2.25 0 0 1 3.75 18V5.25Z" />
+
+                    </svg>
+
+                    Manage Complaints
 
                 </a>
 
@@ -502,6 +525,8 @@
                     </a>
 
                 @endif
+
+                
 
             </nav>
 

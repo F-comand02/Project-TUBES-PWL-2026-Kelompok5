@@ -57,6 +57,11 @@ class User extends Authenticatable
         'two_factor_enabled' => 'boolean',
     ];
 
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);

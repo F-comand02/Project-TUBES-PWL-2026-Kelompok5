@@ -1,50 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<x-layouts.dashboard title="Citizen Dashboard" role="citizen">
 
-    <meta charset="UTF-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CARD 1 -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+            <div class="flex items-center justify-between">
 
-    <title>Dashboard</title>
+                <div>
 
-</head>
+                    <p class="text-gray-500 font-medium">
+                        My Complaints
+                    </p>
 
-<body class="bg-gray-100 font-sans antialiased">
+                    <h2 class="text-5xl font-black mt-3 text-slate-900">
+                        2
+                    </h2>
 
-    @include('layouts.navigation')
+                </div>
 
-    <div class="py-12">
+                <div
+                    class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-3xl">
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    📢
 
-            <div class="bg-white overflow-hidden shadow-xl rounded-2xl p-6">
+                </div>
 
-                <h1 class="text-3xl font-bold text-gray-800">
-                    Citizen Dashboard
-                </h1>
+            </div>
 
-                <p class="text-gray-500 mt-2">
-                    Welcome to WaterRelief System.
-                </p>
+        </div>
 
-                <div class="mt-6">
-                    <h2 class="text-xl font-semibold">Two-Factor Authentication</h2>
-                    @if(auth()->user()->two_factor_enabled)
-                        <p class="text-green-600">Enabled</p>
-                        <form method="POST" action="{{ route('two-factor.disable') }}">
-                            @csrf
-                            <button type="submit" class="mt-2 px-4 py-2 bg-red-500 text-white rounded">Disable 2FA</button>
-                        </form>
-                    @else
-                        <p class="text-red-600">Disabled</p>
-                        <form method="POST" action="{{ route('two-factor.enable') }}">
-                            @csrf
-                            <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Enable 2FA</button>
-                        </form>
-                    @endif
+        <!-- CARD 2 -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-gray-500 font-medium">
+                        Shelters Nearby
+                    </p>
+
+                    <h2 class="text-5xl font-black mt-3 text-slate-900">
+                        5
+                    </h2>
+
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-green-100 text-green-600 flex items-center justify-center text-3xl">
+
+                    🏠
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-gray-500 font-medium">
+                        Announcements
+                    </p>
+
+                    <h2 class="text-5xl font-black mt-3 text-slate-900">
+                        3
+                    </h2>
+
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-3xl">
+
+                    📣
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+
+            <div class="flex items-center justify-between">
+
+                <div>
+
+                    <p class="text-gray-500 font-medium">
+                        Emergency Contacts
+                    </p>
+
+                    <h2 class="text-5xl font-black mt-3 text-slate-900">
+                        3
+                    </h2>
+
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-3xl">
+
+                    🚨
+
                 </div>
 
             </div>
@@ -53,5 +116,4 @@
 
     </div>
 
-</body>
-</html>
+</x-layouts.dashboard>

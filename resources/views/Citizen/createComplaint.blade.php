@@ -1,4 +1,4 @@
-<x-layouts.dashboard title="Citizen Dashboard" role="citizen">
+<x-layouts.dashboard title="My Complaint" role="citizen">
 
     <section class="relative min-h-screen overflow-hidden">
 

@@ -1,5 +1,5 @@
 <x-layouts.dashboard
-    title="Volunteer Dashboard"
+    title="Dashboard"
     color="green"
     role="volunteer">
 
@@ -10,7 +10,7 @@
             class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg">
 
             <h1 class="text-3xl md:text-4xl font-black">
-                Volunteer Dashboard
+                Dashboard
             </h1>
 
             <p class="mt-3 text-green-100 text-lg">

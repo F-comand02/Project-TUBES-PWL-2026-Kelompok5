@@ -20,6 +20,38 @@
 
 </head>
 
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('menuSearch');
+    const menuItems = document.querySelectorAll('[data-menu]');
+
+    if(searchInput){
+
+        searchInput.addEventListener('keyup', function () {
+            const value = this.value.toLowerCase();
+            menuItems.forEach(item => {
+                const menuText = item.dataset.menu.toLowerCase();
+                if(menuText.includes(value)) {
+
+                    item.style.display = 'flex';
+
+                } else {
+
+                    item.style.display = 'none';
+
+                }
+
+            });
+
+        });
+
+    }
+
+});
+
+</script>
+
 <body
     x-data="{
     sidebarOpen: false,
@@ -35,7 +67,7 @@
             :class="sidebarOpen
                 ? 'translate-x-0'
                 : '-translate-x-full lg:translate-x-0 lg:w-0 overflow-hidden'"
-            class="w-72 max-w-[85%] bg-white border-r border-gray-200 fixed inset-y-0 left-0 lg:relative z-50 h-screen overflow-y-auto transition-all duration-300 flex flex-col shadow-2xl lg:shadow-none">
+            class="w-72 max-w-[85%] bg-white border-r border-gray-200 fixed inset-y-0 left-0 lg:relative z-50 min-h-screen transition-all duration-300 flex flex-col shadow-2xl lg:shadow-none"
 
             <!-- LOGO -->
             <div class="px-8 py-8 border-b border-gray-100">
@@ -63,7 +95,7 @@
 
             </div>
 
-            <!-- CLOSE BUTTON MOBILE -->
+            <!-- MENU TUTUP -->
             <button
            @click="
                 sidebarOpen = !sidebarOpen;
@@ -89,12 +121,13 @@
         </button>
 
             <!-- MENU -->
-            <nav class="flex-1 px-5 py-8 space-y-3 overflow-y-auto">
+            <nav class="flex-1 px-5 py-8 space-y-3">
                  
                 @if(strtolower($role) === 'citizen')
                 
-                <!-- DASHBOARD -->
+                <!-- DASBOR -->
             <a
+            data-menu="dasbor dashboard"
             href="{{ route('dashboard') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -116,13 +149,18 @@
 
                 </svg>
 
-                Dashboard
+                Dasbor
 
             </a>
 
-            <!-- COMPLAINTS -->
+            <!-- KOMPLAIN SAYA -->
             <a
+<<<<<<< HEAD
             href="#"
+=======
+            data-menu="komplain saya complaints"
+            href="{{ route('complaints.index') }}"
+>>>>>>> e970255 (Improve dashboard layout and menu search)
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
             {{ request()->is('complaints')
@@ -143,12 +181,13 @@
 
                 </svg>
 
-                My Complaints
+                Komplain Saya
 
             </a>
 
-            <!-- SHELTER -->
+            <!-- INFORMASI POSKO -->
             <a
+            data-menu="informasi posko"
             href="#"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -170,12 +209,13 @@
 
                 </svg>
 
-                Shelter Information
+                Informasi Posko
 
             </a>
 
-            <!-- RELIEF -->
+            <!-- Informasi Bantuan  -->
             <a
+            data-menu="informasi bantuan"
             href="#"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -197,12 +237,13 @@
 
                 </svg>
 
-                Relief Information
+                Informasi Bantuan
 
             </a>
 
-            <!-- EMERGENCY -->
+            <!-- KONTAK DARURAT -->
             <a
+            data-menu="kontak darurat"
             href="#"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -224,12 +265,13 @@
 
                 </svg>
 
-                Emergency Contacts
+                Kontak Darurat
 
             </a>
 
-            <!-- PROFILE -->
+            <!-- PROFIL -->
             <a
+            data-menu="profil"
             href="{{ route('profile.edit') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -251,12 +293,13 @@
 
                 </svg>
 
-                Profile
+                Profil
 
             </a>
 
-            <!-- SETTINGS -->
+            <!-- PENGATURAN -->
             <a
+            data-menu="pengaturan settings"
             href="{{ route('settings.index') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -278,13 +321,14 @@
 
                 </svg>
 
-                Settings
+                Pengaturan
 
                 </a>
 
                 @else
 
-                <a 
+                <a
+                data-menu="dasbor dashboard"
                 href="{{ route('volunteer.dashboard') }}"
                 class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -306,12 +350,42 @@
 
                 </svg>
 
-                    Dashboard
+                Dasbor
 
                 </a>
 
+<<<<<<< HEAD
                     <!-- MY MISSIONS -->
                     <a 
+=======
+                <!-- Mengatur Komplain -->
+                    <a
+                    data-menu=" Mengatur komplain complaints"
+                    href="{{ route('volunteer.complaints') }}"
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-green-100 transition">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.8"
+                        stroke="currentColor"
+                        class="w-5 h-5">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5A3.375 3.375 0 0 0 10.125 2.25H8.25m0 12h7.5m-7.5 3h4.5M3.75 5.25A2.25 2.25 0 0 1 6 3h4.5a2.25 2.25 0 0 1 1.591.659l5.25 5.25A2.25 2.25 0 0 1 18 10.5V18A2.25 2.25 0 0 1 15.75 20.25H6A2.25 2.25 0 0 1 3.75 18V5.25Z" />
+
+                    </svg>
+
+                    Mengatur Komplain
+
+                    </a>
+
+                    <!-- MISI SAYA -->
+                    <a
+                    data-menu="misi saya my missions"
+>>>>>>> e970255 (Improve dashboard layout and menu search)
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -321,24 +395,25 @@
                     }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-                class="w-5 h-5">
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
                     <path stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M7.5 8.25h9m-9 3h5.25M6.75 3h10.5A2.25 2.25 0 0 1 19.5 5.25v13.5A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75V5.25A2.25 2.25 0 0 1 6.75 3Z"/>
 
-                </svg>
+                    </svg>
 
-                        My Missions
+                    Misi Saya
 
                     </a>
 
-                    <!-- AVAILABLE MISSIONS -->
-                    <a 
+                    <!-- MISI TERSEDIA -->
+                    <a
+                    data-menu="misi tersedia available missions"
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -348,24 +423,25 @@
                     }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-                class="w-5 h-5">
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
                     <path stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M7.5 8.25h9m-9 3h5.25M6.75 3h10.5A2.25 2.25 0 0 1 19.5 5.25v13.5A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75V5.25A2.25 2.25 0 0 1 6.75 3Z"/>
 
-                </svg>
+                    </svg>
 
-                        Available Missions
+                    Misi Tersedia
 
                     </a>
 
-                    <!-- SHELTERS -->
-                    <a 
+                    <!-- POSKO -->
+                    <a
+                    data-menu="posko shelters"
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -375,25 +451,26 @@
                     }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-                class="w-5 h-5">
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
                     <path stroke-linecap="round"
                     stroke-linejoin="round"
                     d="m2.25 12 8.954-8.955a1.125 1.125 0 0 1 1.592 0L21.75 12M4.5 9.75V19.5A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5V9.75"/>
 
-                </svg>
+                    </svg>
 
 
-                        Shelters
+                    Posko
 
                     </a>
 
-                    <!-- RELIEF DISTRIBUTION -->
-                    <a 
+                    <!-- DISTRIBUSI BANTUAN -->
+                    <a
+                    data-menu="distribusi bantuan relief distribution"
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -409,19 +486,20 @@
                         stroke="currentColor"
                         class="w-5 h-5">
 
-                            <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M21 7.5V6a2.25 2.25 0 0 0-2.25-2.25h-13.5A2.25 2.25 0 0 0 3 6v1.5m18 0v10.5A2.25 2.25 0 0 1 18.75 20.25h-13.5A2.25 2.25 0 0 1 3 18V7.5m18 0h-18"/>
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 7.5V6a2.25 2.25 0 0 0-2.25-2.25h-13.5A2.25 2.25 0 0 0 3 6v1.5m18 0v10.5A2.25 2.25 0 0 1 18.75 20.25h-13.5A2.25 2.25 0 0 1 3 18V7.5m18 0h-18"/>
 
-                        </svg>
+                    </svg>
 
-                        Relief Distribution
+                    Distribusi Bantuan
 
                     </a>
 
-                    <!-- MY SCHEDULE -->
-                    <a 
+                    <!-- JADWAL SAYA -->
+                    <a
+                    data-menu="jadwal saya my schedule" 
                     href="#"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -431,25 +509,25 @@
                     }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.8"
-                        stroke="currentColor"
-                        class="w-5 h-5">
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
-                            <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25A2.25 2.25 0 0 1 18.75 21H5.25A2.25 2.25 0 0 1 3 18.75Zm0-10.5h18"/>
+                    <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6.75 3v2.25m10.5-2.25v2.25M3 18.75V7.5A2.25 2.25 0 0 1 5.25 5.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25A2.25 2.25 0 0 1 18.75 21H5.25A2.25 2.25 0 0 1 3 18.75Zm0-10.5h18"/>
 
-                        </svg>
-
-                        My Schedule
+                    </svg>
+                    Jadwal Saya
 
                     </a>
 
-                    <!-- PROFILE -->
-                    <a 
+                    <!-- PROFIL -->
+                    <a
+                    data-menu="profil profile"
                     href="{{ route('profile.edit') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -459,24 +537,24 @@
                     }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.8"
-                stroke="currentColor"
-                class="w-5 h-5">
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="w-5 h-5">
 
                     <path stroke-linecap="round"
                     stroke-linejoin="round"
                     d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275"/>
 
-                </svg>
-
-                        Profile
+                    </svg>
+                    Profil
 
                     </a>
 
-                    <!-- SETTINGS -->
-                    <a 
+                    <!-- PENGATURAN -->
+                    <a
+                    data-menu="pengaturan settings"
                     href="{{ route('settings.index') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
@@ -497,7 +575,7 @@
                         d="M4.5 12a7.5 7.5 0 1 1 15 0 7.5 7.5 0 0 1-15 0Zm7.5-3v3l2 2"/>
 
                     </svg>
-                    Settings
+                    Pengaturan
 
                     </a>
 
@@ -517,7 +595,7 @@
                     <button
                         class="w-full py-4 rounded-2xl bg-slate-900 text-white font-semibold hover:bg-slate-800 transition">
 
-                        Logout
+                        Keluar
 
                     </button>
 
@@ -563,12 +641,10 @@
                     <div>
 
                         <h1 class="text-lg md:text-2xl font-bold text-slate-900 truncate">
-                            Dashboard
-                        </h1>
 
-                        <p class="text-gray-500 text-xs md:text-sm mt-1 truncate">
-                            Selamat Datang, {{ Auth::user()->name }}
-                        </p>
+                            {{ $title ?? 'Dashboard' }}
+
+                        </h1>
 
                     </div>
 
@@ -581,9 +657,9 @@
                     <div class="hidden lg:block">
 
                         <input
-                            type="text"
-                            x-model="search"
-                            placeholder="Search menu..."
+                        type="text"
+                        id="menuSearch"
+                        placeholder="Search menu..."
                             class="w-72 xl:w-80 rounded-2xl border-gray-200 bg-gray-50
                             {{ $color == 'green'
                                 ? 'focus:border-green-500 focus:ring-green-500'
@@ -637,7 +713,7 @@
                                     <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-100">
 
                                         <h1 class="text-lg font-bold text-slate-900">
-                                            Notifications
+                                            Notifikasi Terbaru
                                         </h1>
 
                                     </div>

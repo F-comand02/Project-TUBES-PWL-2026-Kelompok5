@@ -53,7 +53,7 @@
                         alt="WaterRelief Logo"
                         class="w-20 h-20 object-contain rounded-2xl mx-auto">
 
-                    <h1 class="mt-6 text-5xl font-extrabold text-slate-900">
+                    <h1 class="mt-6 text-5xl font-medium text-slate-900">
                         WaterRelief
                     </h1>
 
@@ -66,7 +66,7 @@
                 <!-- Card -->
                 <div class="bg-white rounded-[2rem] shadow-xl p-10 border border-gray-100">
 
-                    <h2 class="text-3xl font-bold text-slate-900">
+                    <h2 class="text-3xl font-medium text-slate-900">
                         Reset Link
                     </h2>
 

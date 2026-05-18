@@ -36,7 +36,7 @@
 
                     <div>
 
-                        <h1 class="text-3xl font-black text-blue-600 tracking-tight leading-none">
+                        <h1 class="text-3xl font-medium text-slate-900 tracking-tight leading-none">
                             WaterRelief
                         </h1>
 
@@ -237,19 +237,19 @@
 
             <div class="max-w-[760px] px-8 lg:pl-20 pt-24">
 
-                <p class="uppercase tracking-[8px] text-blue-600 font-black text-sm mb-6">
-                    Welcome to WaterRelief
+                <p class="uppercase tracking-[2px] text-blue-600 font-black text-sm mb-4 px-2">
+                    Selamat Datang di WaterRelief
                 </p>
 
                 <h1
-                    class="text-[60px] md:text-[90px] leading-[90%] font-black tracking-tight text-slate-900 drop-shadow-sm">
+                    class="text-[60px] md:text-[90px] leading-[90%] font-medium tracking-tight text-slate-900 drop-shadow-sm">
 
                     Beri Komplain<br>
                     Bantu Sesama
 
                 </h1>
 
-                <p class="mt-8 text-[20px] md:text-[24px] leading-[40px] text-gray-600 max-w-2xl">
+                <p class="mt-8 text-[20px] md:text-[24px] leading-[40px] text-gray-600 max-w-2xl px-2">
 
                     WaterRelief membantu masyarakat mendapatkan akses ke air bersih,
                     tempat penampungan darurat, dukungan logistik, dan bantuan kemanusiaan
@@ -287,7 +287,7 @@
 
         <div class="text-center max-w-4xl mx-auto">
 
-            <p class="uppercase tracking-[6px] text-cyan-600 font-black text-sm">
+            <p class="uppercase tracking-[2px] text-blue-600 font-black text-sm">
                 Untuk Kemanusiaan
             </p>
 
@@ -308,7 +308,7 @@
             <div
                 class="bg-white rounded-[36px] p-12 shadow-lg border border-gray-100 hover:-translate-y-3 transition-all duration-300">
 
-                <h2 class="text-4xl font-black mt-10 text-slate-900">
+                <h2 class="text-4xl font-medium mt-10 text-slate-900">
                     Manajemen Logistik
                 </h2>
 
@@ -322,12 +322,12 @@
             <div
                 class="bg-white rounded-[36px] p-12 shadow-lg border border-gray-100 hover:-translate-y-3 transition-all duration-300">
 
-                <h2 class="text-4xl font-black mt-10 text-slate-900">
+                <h2 class="text-4xl font-medium mt-10 text-slate-900">
                     Monitoring Shelter
                 </h2>
 
                 <p class="text-gray-500 text-xl leading-10 mt-6">
-                    Memantau kapasitas shelter, kondisi pengungsi
+                    Memantau kapasitas shelter, kondisi pengungsi.
                 </p>
 
             </div>
@@ -335,7 +335,7 @@
             <div
                 class="bg-white rounded-[36px] p-12 shadow-lg border border-gray-100 hover:-translate-y-3 transition-all duration-300">
 
-                <h2 class="text-4xl font-black mt-10 text-slate-900">
+                <h2 class="text-4xl font-medium mt-10 text-slate-900">
                     Dukungan Komunitas
                 </h2>
 
@@ -361,7 +361,7 @@
 
             <div>
 
-                <p class="uppercase tracking-[6px] text-blue-400 font-black text-sm">
+                <p class="uppercase tracking-[4px] text-blue-600 font-black text-sm px-1">
                     Program Kami
                 </p>
 
@@ -388,7 +388,7 @@
 
                 <div class="p-10">
 
-                    <h2 class="text-3xl font-black">
+                    <h2 class="text-3xl font-medium">
                         Distribusi Logistik
                     </h2>
 
@@ -408,12 +408,12 @@
 
                 <div class="p-10">
 
-                    <h2 class="text-3xl font-black">
+                    <h2 class="text-3xl font-medium">
                         Bantuan Shelter
                     </h2>
 
                     <p class="text-gray-300 mt-5 text-lg leading-9">
-                        Membantu pengelolaan shelter pengungsian
+                        Membantu pengelolaan shelter (pengungsian)
                         agar masyarakat terdampak mendapatkan tempat tinggal yang aman.
                     </p>
 
@@ -428,7 +428,7 @@
 
                 <div class="p-10">
 
-                    <h2 class="text-3xl font-black">
+                    <h2 class="text-3xl font-medium">
                         Program Relawan
                     </h2>
 
@@ -456,7 +456,7 @@
 
         <div class="relative z-10 max-w-4xl">
 
-            <p class="uppercase tracking-[6px] text-blue-100 font-black text-sm">
+            <p class="uppercase tracking-[2px] text-blue-600 font-black text-sm">
                 Bergabung Bersama Kami
             </p>
 
@@ -465,7 +465,7 @@
             </h1>
 
             <p class="text-2xl leading-[45px] mt-8 text-blue-100">
-                Bersama WaterRelief, bantu masyarakat terdampak bencana
+                Bersama WaterRelief, bantu masyarakat terdampak banjir
                 melalui distribusi bantuan, pengelolaan shelter,
                 dan dukungan kemanusiaan secara langsung.
             </p>
@@ -509,12 +509,12 @@
 
                 <div>
 
-                    <h1 class="text-4xl font-black text-white leading-none">
+                    <h1 class="text-4xl font-medium text-white leading-none">
                         WaterRelief
                     </h1>
 
                     <p class="text-gray-400 text-sm mt-2">
-                        Bantu Sesama Saat Bencana
+                        Beri Komplainmu, Bantu Sesama
                     </p>
 
                 </div>
@@ -523,7 +523,7 @@
 
             <p class="text-gray-400 text-lg leading-10 mt-10 max-w-lg">
                 WaterRelief merupakan platform kemanusiaan yang membantu
-                masyarakat terdampak bencana melalui distribusi bantuan,
+                masyarakat terdampak banjir melalui distribusi bantuan,
                 pengelolaan shelter, koordinasi relawan,
                 dan dukungan logistik secara real-time.
             </p>
@@ -533,7 +533,7 @@
         <!-- Navigation -->
         <div class="lg:col-span-2">
 
-            <h2 class="text-2xl font-black mb-8">
+            <h2 class="text-2xl font-medium mb-8">
                 Navigasi
             </h2>
 
@@ -566,7 +566,7 @@
         <!-- Contact -->
         <div class="lg:col-span-2">
 
-            <h2 class="text-2xl font-black mb-8">
+            <h2 class="text-2xl font-medium mb-8">
                 Kontak
             </h2>
 
@@ -598,13 +598,13 @@
         <div
             class="lg:col-span-4">
 
-            <h2 class="text-2xl font-black mb-8">
+            <h2 class="text-2xl font-medium mb-8">
                 WaterRelief
             </h2>
 
             <p class="text-gray-400 text-lg leading-10 mt-10 max-w-lg">
                 Jadilah Bagian Dari Aksi Kemanusiaan
-                Bersama relawan lainnya, bantu masyarakat terdampak bencana
+                Bersama relawan lainnya, bantu masyarakat terdampak banjir
                 melalui distribusi bantuan, pengelolaan shelter,
                 dan dukungan kemanusiaan secara langsung.
             </p>

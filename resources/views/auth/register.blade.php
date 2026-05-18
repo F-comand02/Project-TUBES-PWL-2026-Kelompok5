@@ -53,12 +53,12 @@
                         alt="Logo"
                         class="w-24 h-24 mx-auto object-contain">
 
-                    <h1 class="mt-6 text-5xl font-extrabold text-slate-900">
+                    <h1 class="mt-6 text-5xl font-medium text-slate-900">
                         WaterRelief
                     </h1>
 
                     <p class="mt-3 text-gray-500 text-lg">
-                        Beri komplainmu, bantu sesama
+                        Beri Komplainmu, Bantu Sesama
                     </p>
 
                 </div>
@@ -66,7 +66,7 @@
                 <!-- Card -->
                 <div class="bg-white rounded-[2rem] shadow-xl p-10 border border-gray-100">
 
-                    <h2 class="text-4xl font-black text-slate-900">
+                    <h2 class="text-4xl font-medium text-slate-900">
                         Register
                     </h2>
 

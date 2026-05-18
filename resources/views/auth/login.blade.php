@@ -52,12 +52,12 @@
                         alt="WaterRelief Logo"
                         class="w-16 h-16 object-contain rounded-2xl mx-auto">
 
-                    <h1 class="mt-6 text-4xl font-extrabold text-slate-900">
+                    <h1 class="mt-6 text-4xl font-medium text-slate-900">
                         WaterRelief
                     </h1>
 
                     <p class="mt-2 text-gray-500">
-                        Beri komplainmu, bantu sesama
+                        Beri Komplainmu, Bantu Sesama
                     </p>
 
                 </div>
@@ -65,7 +65,7 @@
                 <!-- Card -->
                 <div class="bg-white rounded-[2rem] shadow-xl p-10 border border-gray-100">
 
-                    <h2 class="text-3xl font-bold text-slate-900">
+                    <h2 class="text-3xl font-medium text-slate-900">
                         Login
                     </h2>
 

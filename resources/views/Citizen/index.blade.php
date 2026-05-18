@@ -1,4 +1,4 @@
-<x-layouts.dashboard title="Citizen Dashboard" role="citizen">
+<x-layouts.dashboard title="My Complaints" role="citizen">
 
     <div class="p-4 sm:p-6 space-y-6">
 

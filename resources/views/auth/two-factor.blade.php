@@ -53,7 +53,7 @@
                         alt="Logo"
                         class="w-24 h-24 mx-auto object-contain">
 
-                    <h1 class="mt-6 text-5xl font-extrabold text-slate-900">
+                    <h1 class="mt-6 text-5xl font-medium text-slate-900">
                         WaterRelief
                     </h1>
 
@@ -66,7 +66,7 @@
                 <!-- Card -->
                 <div class="bg-white rounded-[2rem] shadow-xl p-10 border border-gray-100">
 
-                    <h2 class="text-4xl font-black text-slate-900">
+                    <h2 class="text-4xl font-medium text-slate-900">
                         Verify Code
                     </h2>
 
@@ -108,7 +108,7 @@
                                     required
                                     autofocus
                                     autocomplete="one-time-code"
-                                    placeholder="● ● ● ● ● ●"
+                                    placeholder=""
                                     class="w-full rounded-3xl border-2 border-gray-200 bg-gray-50/80
                                         focus:border-blue-500 focus:ring-4 focus:ring-blue-200
                                         text-center tracking-[18px] text-4xl font-black text-slate-900

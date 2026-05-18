@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ComplaintController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +33,11 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
         return view('volunteer.dashboard');
     })->name('volunteer.dashboard');
 
+    Route::delete(
+    '/volunteer/complaints/{complaint}',
+    [ComplaintController::class, 'destroyVolunteer']
+    )->name('volunteer.complaints.destroy');
+
 });
 
 Route::middleware(['auth', 'role:citizen'])->group(function () {
@@ -55,4 +62,30 @@ Route::get('/settings', function () {
     return view('settings.index');
 })->name('settings.index');
 
+Route::resource('complaints', ComplaintController::class)
+    ->middleware('auth');
 
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/complaints', [ComplaintController::class, 'index'])
+        ->name('complaints.index');
+});
+
+Route::get('/complaints', [ComplaintController::class, 'index'])
+    ->name('complaints.index');
+
+Route::get('/complaints/create', [ComplaintController::class, 'create'])
+    ->name('complaints.create');
+
+Route::delete('/complaints/{complaint}', [ComplaintController::class, 'destroy'])
+    ->name('complaints.destroy');
+
+Route::middleware(['auth', 'role:volunteer'])->group(function () {
+
+    Route::get('/volunteer/complaints', [ComplaintController::class, 'volunteerIndex'])
+            ->name('volunteer.complaints');
+
+    Route::patch('/volunteer/complaints/{complaint}', [ComplaintController::class, 'updateStatus'])
+            ->name('volunteer.complaints.update');
+
+});

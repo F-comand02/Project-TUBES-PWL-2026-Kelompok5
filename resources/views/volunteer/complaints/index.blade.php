@@ -6,7 +6,7 @@
 <div class="space-y-6">
 
     <div>
-        <h1 class="text-4xl font-black text-slate-900">
+        <h1 class="text-4xl font-medium text-slate-900">
             Manage Complaints
         </h1>
 

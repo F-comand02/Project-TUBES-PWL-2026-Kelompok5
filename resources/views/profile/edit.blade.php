@@ -19,7 +19,7 @@
 
             <div class="flex flex-col items-center text-center">
 
-                <!-- PHOTO -->
+                <!-- FOTO -->
                 <div class="relative">
 
                     @if(Auth::user()->profile_photo)
@@ -151,7 +151,7 @@
 
                     @csrf
 
-                    <!-- PHOTO -->
+                    <!-- FOTO -->
                     <div>
 
                         <label
@@ -202,7 +202,7 @@
 
                     </div>
 
-                    <!-- PHONE -->
+                    <!-- TELEPON -->
                     <div>
 
                         <label class="block text-sm font-semibold text-gray-700 mb-3">
@@ -221,7 +221,7 @@
 
                     </div>
 
-                    <!-- ADDRESS -->
+                    <!-- ALAMAT -->
                     <div>
 
                         <label class="block text-sm font-semibold text-gray-700 mb-3">

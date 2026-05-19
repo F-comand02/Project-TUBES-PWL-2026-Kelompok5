@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Complaint;
 use App\Models\ComplaintImage;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ComplaintStatusUpdated;
+use App\Notifications\NewComplaintSubmitted;
 
 class ComplaintController extends Controller
 {
@@ -36,6 +39,10 @@ class ComplaintController extends Controller
         ]);
 
         $complaint->status = $request->status;
+
+        $complaint->user->notify(
+            new ComplaintStatusUpdated($complaint)
+        );
 
         $complaint->save();
 
@@ -75,6 +82,20 @@ class ComplaintController extends Controller
         'status' => 'pending',
     ]);
 
+    $volunteers = User::whereHas('role', function ($query) {
+
+    $query->where('role_name', 'Volunteer');
+
+    })->get();
+
+    foreach ($volunteers as $volunteer) {
+
+        $volunteer->notify(
+            new NewComplaintSubmitted($complaint)
+        );
+
+    }
+
     if ($request->hasFile('image')) {
 
         $image = $request->file('image');
@@ -106,14 +127,6 @@ class ComplaintController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
     {
         //
     }

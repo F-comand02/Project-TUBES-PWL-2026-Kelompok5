@@ -688,9 +688,13 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </svg>
 
                                     <!-- RED DOT -->
+                                    @if(Auth::user()->unreadNotifications->count())
+
                                     <span
-                                        class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full">
+                                    class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full">
                                     </span>
+
+                                    @endif
 
                                 </button>
 
@@ -700,7 +704,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     x-cloak
                                     @click.outside="openNotif = false"
                                     x-transition
-                                    class="absolute right-0 mt-3 w-[85vw] max-w-[320px] sm:w-80 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden z-40">
+                                    class="absolute right-0 mt-3 w-[85vw] max-w-[320px] sm:w-80 bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col z-40">
 
                                     <!-- HEADER -->
                                     <div class="px-4 py-4 sm:px-6 sm:py-5 border-b border-gray-100">
@@ -712,124 +716,59 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
 
                                     <!-- ITEMS -->
-                                    <div class="max-h-80 overflow-y-auto">
+                                    <div class="max-h-[400px] overflow-y-auto">
 
-                                        <!-- ITEM -->
-                                        <div
-                                            class="px-4 py-4 sm:px-6 sm:py-5 hover:bg-gray-50 transition border-b border-gray-100">
+                                    @forelse(Auth::user()->unreadNotifications as $notification)
 
-                                            <div class="flex items-start gap-3 sm:gap-4">
+                                    <div
+                                        class="px-4 py-4 sm:px-6 sm:py-5 hover:bg-gray-50 transition border-b border-gray-100">
 
-                                                <div
-                                                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                        <div class="flex items-start gap-3 sm:gap-4">
 
-                                                    📢
+                                            <div
+                                                class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-lg sm:text-xl shrink-0">
 
-                                                </div>
+                                                🔔
 
-                                                <div class="min-w-0">
+                                            </div>
 
-                                                    <h2 class="font-semibold text-slate-900 text-sm sm:text-base">
-                                                        New Complaint Update
-                                                    </h2>
+                                            <div class="min-w-0">
 
-                                                    <p class="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
-                                                        Your complaint has been reviewed.
-                                                    </p>
+                                                <h2 class="font-semibold text-slate-900 text-sm sm:text-base">
 
-                                                    <p class="text-xs text-gray-400 mt-2">
-                                                        2 minutes ago
-                                                    </p>
+                                                    {{ $notification->data['title'] }}
 
-                                                </div>
+                                                </h2>
+
+                                                <p class="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
+
+                                                    {{ $notification->data['message'] }}
+
+                                                </p>
+
+                                                <p class="text-xs text-gray-400 mt-2">
+
+                                                    {{ $notification->created_at->diffForHumans() }}
+
+                                                </p>
 
                                             </div>
 
                                         </div>
 
-                                <!-- ITEM -->
-                                <div
-                                    class="px-4 py-4 sm:px-6 sm:py-5 hover:bg-gray-50 transition border-b border-gray-100">
+                                    </div>
 
-                                    <div class="flex items-start gap-3 sm:gap-4">
+                                    @empty
 
-                                        <div
-                                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-green-100 flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                    <div class="p-6 text-center text-gray-500">
 
-                                            🏠
-
-                                        </div>
-
-                                        <div class="min-w-0">
-
-                                            <h2 class="font-semibold text-slate-900 text-sm sm:text-base">
-                                                Shelter Available
-                                            </h2>
-
-                                            <p class="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
-                                                New shelter opened near your area.
-                                            </p>
-
-                                            <p class="text-xs text-gray-400 mt-2">
-                                                1 hour ago
-                                            </p>
-
-                                        </div>
+                                        No notifications yet
 
                                     </div>
 
-                                </div>
-
-                                <!-- ITEM -->
-                                <div
-                                    class="px-4 py-4 sm:px-6 sm:py-5 hover:bg-gray-50 transition">
-
-                                    <div class="flex items-start gap-3 sm:gap-4">
-
-                                        <div
-                                            class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-red-100 flex items-center justify-center text-lg sm:text-xl shrink-0">
-
-                                            🚨
-
-                                        </div>
-
-                                        <div class="min-w-0">
-
-                                            <h2 class="font-semibold text-slate-900 text-sm sm:text-base">
-                                                Emergency Alert
-                                            </h2>
-
-                                            <p class="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
-                                                Flood warning issued in your district.
-                                            </p>
-
-                                            <p class="text-xs text-gray-400 mt-2">
-                                                Yesterday
-                                            </p>
-
-                                        </div>
+                                    @endforelse
 
                                     </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- FOOTER -->
-                            <div class="px-4 py-4 sm:px-6 border-t border-gray-100">
-
-                                <button
-                                    class="w-full py-3 rounded-2xl text-white font-semibold transition text-sm sm:text-base
-                                    {{ $color == 'green'
-                                        ? 'bg-green-600 hover:bg-green-700'
-                                        : 'bg-blue-600 hover:bg-blue-700'
-                                    }}">
-
-                                    View All Notifications
-
-                                </button>
-
-                            </div>
 
                         </div>
 

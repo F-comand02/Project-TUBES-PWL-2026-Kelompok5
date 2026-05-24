@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplaintController;
-
+use App\Http\Controllers\LogisticController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -87,5 +87,7 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
 
     Route::patch('/volunteer/complaints/{complaint}', [ComplaintController::class, 'updateStatus'])
             ->name('volunteer.complaints.update');
+
+    Route::resource('logistics', LogisticController::class);
 
 });

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\LogisticController;
+use App\Http\Controllers\ShelterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -90,4 +91,5 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
 
     Route::resource('logistics', LogisticController::class);
 
+    Route::resource('shelters', ShelterController::class);
 });

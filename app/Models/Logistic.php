@@ -8,6 +8,7 @@ class Logistic extends Model
 {
     protected $fillable = [
     'category_id',
+    'shelter_id',
     'item_name',
     'stock',
     'minimum_stock',

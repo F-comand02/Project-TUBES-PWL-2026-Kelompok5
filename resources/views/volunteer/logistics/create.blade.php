@@ -1,6 +1,7 @@
-@extends('layouts.dashboard')
-
-@section('content')
+<x-layouts.dashboard
+    title="Create Logistic"
+    color="green"
+    role="volunteer">
 
 <div class="p-6">
 
@@ -10,29 +11,58 @@
 
     </h1>
 
-    <form action="{{ route('logistics.store') }}"
-          method="POST"
-          class="bg-white p-6 rounded-2xl shadow space-y-5">
+    @if(isset($selectedShelter))
 
-        @csrf
+        <div class="bg-blue-100 text-blue-700 p-3 rounded-xl mb-4">
 
-        <div>
-
-            <label>Item Name</label>
-
-            <input type="text"
-                   name="item_name"
-                   class="w-full border rounded-xl p-3">
+        Adding logistics for shelter ID:
+        {{ $selectedShelter }}
 
         </div>
 
+    @endif
+
+    <form
+        action="{{ route('logistics.store') }}"
+        method="POST"
+        class="bg-white p-6 rounded-2xl shadow space-y-5">
+
+        @csrf
+
+        <!-- ITEM NAME -->
         <div>
 
-            <label>Category</label>
+            <label class="block mb-2 font-semibold">
 
-            <select name="category_id"
-                    class="w-full border rounded-xl p-3">
+                Item Name
 
+            </label>
+
+            <input
+                type="text"
+                name="item_name"
+                class="w-full border rounded-xl p-3">
+
+        </div>
+
+        <!-- CATEGORY -->
+        <div>
+
+            <label class="block mb-2 font-semibold">
+
+                Category
+
+            </label>
+
+            <select
+            name="category_id"
+            class="w-full border border-gray-300 rounded-xl p-3 bg-white">
+
+            <option selected disabled>
+
+                Select Category
+
+            </option>
                 @foreach($categories as $category)
 
                     <option value="{{ $category->id }}">
@@ -45,12 +75,32 @@
 
             </select>
 
-            <label>Shelter</label>
-                    <select name="shelter_id">
+        </div>
+
+        <!-- SHELTER -->
+        <div>
+
+            <label class="block mb-2 font-semibold">
+
+                Shelter
+
+            </label>
+
+            <select
+                name="shelter_id"
+                class="w-full border border-gray-300 rounded-xl p-3 bg-white">
+
+                <option selected disabled>
+
+                    Select Shelter
+
+                </option>
 
                 @foreach($shelters as $shelter)
 
-                    <option value="{{ $shelter->id }}">
+                    <option
+                        value="{{ $shelter->id }}"
+                        {{ isset($selectedShelter) && $selectedShelter == $shelter->id ? 'selected' : '' }}>
 
                         {{ $shelter->shelter_name }}
 
@@ -59,48 +109,75 @@
                 @endforeach
 
             </select>
-            </div>
-
-        <div>
-
-            <label>Stock</label>
-
-            <input type="number"
-                   name="stock"
-                   class="w-full border rounded-xl p-3">
 
         </div>
 
+        <!-- STOCK -->
         <div>
 
-            <label>Minimum Stock</label>
+            <label class="block mb-2 font-semibold">
 
-            <input type="number"
-                   name="minimum_stock"
-                   class="w-full border rounded-xl p-3">
+                Stock
+
+            </label>
+
+            <input
+                type="number"
+                name="stock"
+                class="w-full border rounded-xl p-3">
 
         </div>
 
+        <!-- MINIMUM STOCK -->
         <div>
 
-            <label>Expired Date</label>
+            <label class="block mb-2 font-semibold">
 
-            <input type="date"
-                   name="expired_date"
-                   class="w-full border rounded-xl p-3">
+                Minimum Stock
+
+            </label>
+
+            <input
+                type="number"
+                name="minimum_stock"
+                class="w-full border rounded-xl p-3">
 
         </div>
 
+        <!-- EXPIRED DATE -->
         <div>
 
-            <label>Description</label>
+            <label class="block mb-2 font-semibold">
 
-            <textarea name="description"
-                      class="w-full border rounded-xl p-3"></textarea>
+                Expired Date
+
+            </label>
+
+            <input
+                type="date"
+                name="expired_date"
+                class="w-full border rounded-xl p-3">
 
         </div>
 
-        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl">
+        <!-- DESCRIPTION -->
+        <div>
+
+            <label class="block mb-2 font-semibold">
+
+                Description
+
+            </label>
+
+            <textarea
+                name="description"
+                class="w-full border rounded-xl p-3"></textarea>
+
+        </div>
+
+        <!-- BUTTON -->
+        <button
+            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl">
 
             Save Logistics
 
@@ -110,4 +187,4 @@
 
 </div>
 
-@endsection
+</x-layouts.dashboard>

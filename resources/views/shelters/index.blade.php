@@ -93,7 +93,9 @@
 
         @foreach($shelter->logistics as $logistic)
 
-        <div class="border rounded-xl p-4 mb-3">
+        <a href="{{ route('logistics.index') }}">
+
+        <div class="border rounded-xl p-4 mb-3 hover:bg-gray-50 cursor-pointer">
 
             <div class="flex justify-between items-center">
 
@@ -135,7 +137,9 @@
 
             </div>
 
-        @endforeach
+        </a>
+
+@endforeach
 
         @else
 

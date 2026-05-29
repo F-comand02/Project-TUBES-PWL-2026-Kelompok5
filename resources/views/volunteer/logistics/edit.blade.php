@@ -1,6 +1,7 @@
-@extends('layouts.dashboard')
-
-@section('content')
+<x-layouts.dashboard
+    title="Edit Logistic"
+    color="green"
+    role="volunteer">
 
 <div class="p-6">
 
@@ -98,8 +99,13 @@
 
         </button>
 
+        <a href="{{ route('logistics.index') }}"
+           class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-xl">
+            Back
+        </a>
+
     </form>
 
 </div>
 
-@endsection
+</x-layouts.dashboard>

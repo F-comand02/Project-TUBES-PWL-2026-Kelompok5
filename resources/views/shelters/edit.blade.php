@@ -106,6 +106,13 @@
 
         </button>
 
+        <div class="mb-4">
+            <a href="{{ route('shelters.index') }}"
+            class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+                Back
+            </a>
+        </div>
+
     </form>
 
 </div>

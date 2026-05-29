@@ -1,6 +1,7 @@
-@extends('layouts.dashboard')
-
-@section('content')
+<x-layouts.dashboard
+    title="Logistics Management"
+    color="green"
+    role="volunteer">
 
 <div class="p-6">
 
@@ -199,4 +200,4 @@
 
 </div>
 
-@endsection
+</x-layouts.dashboard>

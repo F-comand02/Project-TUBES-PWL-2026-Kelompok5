@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shelter;
 use App\Models\Logistic;
 use App\Models\LogisticsCategory;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class LogisticController extends Controller
             now()->addDays(7)
         )->count();
 
-        return view('logistics.index', compact(
+        return view('volunteer.logistics.index', compact(
             'logistics',
             'totalItems',
             'lowStock',
@@ -46,72 +47,89 @@ class LogisticController extends Controller
         ));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $categories = LogisticsCategory::all();
-        $shelters = Shelter::all();
+    $categories = LogisticsCategory::all();
 
-        return view(
-        'logistics.create',
-        compact('categories', 'shelters')
+    $shelters = Shelter::all();
+
+    $selectedShelter = $request->shelter;
+
+    return view(
+        'volunteer.logistics.create',
+        compact(
+            'categories',
+            'shelters',
+            'selectedShelter'
+        )
     );
     }
 
     public function store(Request $request)
     {
-        Logistic::create([
+    Logistic::create([
 
-            'category_id' => $request->category_id,
+        'category_id' => $request->category_id,
 
-            'item_name' => $request->item_name,
+        'shelter_id' => $request->shelter_id,
 
-            'stock' => $request->stock,
+        'item_name' => $request->item_name,
 
-            'minimum_stock' => $request->minimum_stock,
+        'stock' => $request->stock,
 
-            'expired_date' => $request->expired_date,
+        'minimum_stock' => $request->minimum_stock,
 
-            'description' => $request->description
+        'expired_date' => $request->expired_date,
 
-        ]);
+        'description' => $request->description
 
-        return redirect()
-            ->route('logistics.index')
-            ->with('success', 'Logistics added successfully');
+    ]);
+
+     return redirect()
+    ->route('logistics.index')
+    ->with('success', 'Logistics added successfully');
     }
 
     public function edit(Logistic $logistic)
     {
-        $categories = LogisticsCategory::all();
+    $categories = LogisticsCategory::all();
 
-        return view(
-            'logistics.edit',
-            compact('logistic', 'categories')
-        );
-    }
+    $shelters = Shelter::all();
+
+    return view(
+        'volunteer.logistics.edit',
+        compact(
+            'logistic',
+            'categories',
+            'shelters'
+        )
+    );
+}
 
     public function update(Request $request, Logistic $logistic)
-    {
-        $logistic->update([
+{
+    $logistic->update([
 
-            'category_id' => $request->category_id,
+        'category_id' => $request->category_id,
 
-            'item_name' => $request->item_name,
+        'shelter_id' => $request->shelter_id,
 
-            'stock' => $request->stock,
+        'item_name' => $request->item_name,
 
-            'minimum_stock' => $request->minimum_stock,
+        'stock' => $request->stock,
 
-            'expired_date' => $request->expired_date,
+        'minimum_stock' => $request->minimum_stock,
 
-            'description' => $request->description
+        'expired_date' => $request->expired_date,
 
-        ]);
+        'description' => $request->description
 
-        return redirect()
-            ->route('logistics.index')
-            ->with('success', 'Logistics updated successfully');
-    }
+    ]);
+
+    return redirect()
+        ->route('logistics.index')
+        ->with('success', 'Logistics updated successfully');
+}
 
     public function destroy(Logistic $logistic)
     {

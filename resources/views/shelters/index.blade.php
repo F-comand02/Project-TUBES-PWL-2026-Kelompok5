@@ -16,7 +16,7 @@
         <a href="{{ route('shelters.create') }}"
            class="bg-green-600 text-white px-5 py-3 rounded-xl">
 
-            + Add Shelter
+            Add Shelter
 
         </a>
 

@@ -5,22 +5,27 @@
 
 <div class="p-6">
 
-    <div class="flex justify-between items-center mb-6">
+<div class="flex justify-between items-center mb-6">
 
-        <h1 class="text-3xl font-bold text-slate-800">
+    <h1 class="text-3xl font-bold text-slate-800">
+        Logistics Management
+    </h1>
 
-            Logistics Management
+    <div class="flex gap-3">
 
-        </h1>
+        <a href="{{ route('shelters.index') }}"
+           class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-4 rounded-2xl">
+            Back
+        </a>
 
         <a href="{{ route('logistics.create') }}"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-semibold">
-
-            + Add Logistics
-
+           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-2xl">
+            Add Logistics
         </a>
 
     </div>
+
+</div>
 
     <form method="GET"
           action="{{ route('logistics.index') }}"

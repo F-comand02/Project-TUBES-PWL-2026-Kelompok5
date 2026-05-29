@@ -188,8 +188,8 @@ document.addEventListener('DOMContentLoaded', function () {
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
             {{ request()->is('shelters*')
-                ? 'bg-green-500 text-white shadow-lg'
-                : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
+                ? 'bg-cyan-500 text-white shadow-lg'
+                : 'text-gray-600 hover:bg-cyan-100 hover:text-cyan-700'
             }}">    
 
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -352,9 +352,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <!-- Mengatur Komplain -->
                     <a
-                    data-menu=" Mengatur komplain complaints"
+                    data-menu="Mengatur komplain complaints"
                     href="{{ route('volunteer.complaints') }}"
-                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-green-100 transition">
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
+
+                    {{ request()->routeIs('volunteer.complaints*')
+                        ? 'bg-green-500 text-white shadow-lg'
+                        : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
+                    }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -436,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     href="{{ route('shelters.index') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-                    {{ request()->is('volunteer/shelters')
+                    {{ request()->routeIs('shelters.*')
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
                     }}">

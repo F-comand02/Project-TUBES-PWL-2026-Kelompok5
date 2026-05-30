@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Shelter;
 use Illuminate\Http\Request;
+use App\Notifications\NewShelterCreated;
+use App\Models\User;
+use App\Notifications\ShelterCapacityNotif;
+use App\Notifications\ShelterNearlyFullNotif;
 
 class ShelterController extends Controller
 {
@@ -26,7 +30,7 @@ class ShelterController extends Controller
 
     public function store(Request $request)
     {
-        Shelter::create([
+        $shelter = Shelter::create([
 
             'shelter_name' => $request->shelter_name,
 
@@ -40,6 +44,20 @@ class ShelterController extends Controller
             'status' => $request->status
 
         ]);
+
+        $citizens = User::whereHas('role', function ($query) {
+
+            $query->where('role_name', 'citizen');
+
+        })->get();
+
+        foreach ($citizens as $citizen) {
+
+            $citizen->notify(
+                new NewShelterCreated($shelter)
+            );
+
+        }
 
         return redirect()
             ->route('shelters.index');
@@ -72,6 +90,35 @@ class ShelterController extends Controller
             'status' => $request->status
 
         ]);
+
+        $volunteers = User::whereHas('role', function ($query) {
+
+    $query->where('role_name', 'volunteer');
+
+})->get();
+
+if ($shelter->current_refugees >= $shelter->capacity) {
+
+    foreach ($volunteers as $volunteer) {
+
+        $volunteer->notify(
+            new ShelterCapacityNotif($shelter)
+        );
+
+    }
+
+}
+elseif ($shelter->current_refugees >= 35) {
+
+    foreach ($volunteers as $volunteer) {
+
+        $volunteer->notify(
+            new ShelterNearlyFullNotif($shelter)
+        );
+
+    }
+
+}
 
         return redirect()
             ->route('shelters.index');

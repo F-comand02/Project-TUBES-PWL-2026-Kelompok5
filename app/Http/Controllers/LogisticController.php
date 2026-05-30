@@ -6,6 +6,8 @@ use App\Models\Shelter;
 use App\Models\Logistic;
 use App\Models\LogisticsCategory;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Notifications\LowStockNotif;
 
 class LogisticController extends Controller
 {
@@ -67,27 +69,38 @@ class LogisticController extends Controller
 
     public function store(Request $request)
     {
-    Logistic::create([
+        $logistic = Logistic::create([
 
-        'category_id' => $request->category_id,
+            'category_id' => $request->category_id,
+            'shelter_id' => $request->shelter_id,
+            'item_name' => $request->item_name,
+            'stock' => $request->stock,
+            'minimum_stock' => $request->minimum_stock,
+            'expired_date' => $request->expired_date,
+            'description' => $request->description
 
-        'shelter_id' => $request->shelter_id,
+        ]);
 
-        'item_name' => $request->item_name,
+        if ($logistic->stock <= $logistic->minimum_stock) {
 
-        'stock' => $request->stock,
+            $volunteers = User::whereHas('role', function ($query) {
 
-        'minimum_stock' => $request->minimum_stock,
+                $query->where('role_name', 'volunteer');
 
-        'expired_date' => $request->expired_date,
+            })->get();
 
-        'description' => $request->description
+            foreach ($volunteers as $volunteer) {
 
-    ]);
+                $volunteer->notify(
+                    new LowStockNotif($logistic)
+                );
 
-     return redirect()
-    ->route('logistics.index')
-    ->with('success', 'Logistics added successfully');
+            }
+        }
+
+        return redirect()
+            ->route('logistics.index')
+            ->with('success', 'Logistics added successfully');
     }
 
     public function edit(Logistic $logistic)
@@ -125,6 +138,23 @@ class LogisticController extends Controller
         'description' => $request->description
 
     ]);
+
+    if ($logistic->stock <= $logistic->minimum_stock) {
+
+        $volunteers = User::whereHas('role', function ($query) {
+
+            $query->where('role_name', 'volunteer');
+
+        })->get();
+
+        foreach ($volunteers as $volunteer) {
+
+            $volunteer->notify(
+                new LowStockNotif($logistic)
+            );
+
+        }
+    }
 
     return redirect()
         ->route('logistics.index')

@@ -18,12 +18,17 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         // User::factory(10)->create();
 
-        User::create([
-            'role_id' => 1,
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('password'),
+        $this->call([
+            LogisticsCategorySeeder::class,
         ]);
+
+       User::firstOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('password')
+            ]
+        );
         
     }
 

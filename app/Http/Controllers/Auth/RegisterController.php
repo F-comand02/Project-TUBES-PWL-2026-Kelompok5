@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Mail\TwoFactorCodeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -29,21 +30,22 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'two_factor_enabled' => false,
+            'two_factor_enabled' => true,
         ]);
 
-        Auth::login($user);
+        // Generate OTP
+        $user->generateTwoFactorCode();
 
-        $role = $user->role?->role_name;
+        // Kirim OTP ke Email
+        Mail::to($user->email)
+            ->send(new TwoFactorCodeMail($user));
 
-        if ($role === 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
+        // Simpan email ke session
+        session([
+            'two_factor_email' => $user->email
+        ]);
 
-        if ($role === 'volunteer') {
-            return redirect()->route('volunteer.dashboard');
-        }
-
-        return redirect()->route('dashboard');
+        // Redirect ke halaman verifikasi OTP
+        return redirect()->route('two-factor.verify');
     }
 }

@@ -10,32 +10,29 @@ return new class extends Migration
     {
         Schema::create('logistics', function (Blueprint $table) {
 
-            $table->id();
+        $table->id();
 
-            $table->foreignId('category_id')
-                ->constrained('logistics_categories')
-                ->onDelete('cascade');
+        $table->foreignId('category_id')
+            ->constrained('logistics_categories')
+            ->onDelete('cascade');
 
-            $table->foreignId('shelter_id')
-                ->constrained('shelters')
-                ->onDelete('cascade');
+        $table->foreignId('shelter_id')
+            ->constrained('shelters')
+            ->onDelete('cascade');
 
-            $table->string('item_name', 100);
+        $table->string('item_name');
 
-            $table->integer('stock');
+        $table->integer('stock');
 
-            $table->integer('minimum_stock')
-                ->default(10);
+        $table->integer('minimum_stock')->default(10);
 
-            $table->date('expired_date')
-                ->nullable();
+        $table->date('expired_date')->nullable();
 
-            $table->text('description')
-                ->nullable();
+        $table->text('description')->nullable();
 
-            $table->timestamps();
+        $table->timestamps();
 
-        });
+    });
     }
 
     public function down(): void

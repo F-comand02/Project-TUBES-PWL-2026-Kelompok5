@@ -183,14 +183,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <!-- INFORMASI POSKO -->
             <a
-            data-menu="informasi posko"
+            data-menu="posko shelters"
             href="#"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-            {{ request()->is('shelter')
-                ? 'bg-cyan-400 text-white shadow-lg'
+            {{ request()->is('shelters*')
+                ? 'bg-cyan-500 text-white shadow-lg'
                 : 'text-gray-600 hover:bg-cyan-100 hover:text-cyan-700'
-            }}">
+            }}">    
 
                 <svg xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -352,9 +352,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <!-- Mengatur Komplain -->
                     <a
-                    data-menu=" Mengatur komplain complaints"
+                    data-menu="Mengatur komplain complaints"
                     href="{{ route('volunteer.complaints') }}"
-                    class="flex items-center gap-4 px-5 py-4 rounded-2xl text-gray-600 hover:bg-green-100 transition">
+                    class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
+
+                    {{ request()->routeIs('volunteer.complaints*')
+                        ? 'bg-green-500 text-white shadow-lg'
+                        : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
+                    }}">
 
                     <svg xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -433,10 +438,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <!-- POSKO -->
                     <a
                     data-menu="posko shelters"
-                    href="#"
+                    href="{{ route('shelters.index') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-                    {{ request()->is('volunteer/shelters')
+                    {{ request()->routeIs('shelters.*')
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
                     }}">

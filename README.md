@@ -69,10 +69,10 @@ Repositori ini berisi implementasi sistem informasi berbasis web yang dikembangk
 ---
 
 ## 📝 Deskripsi Proyek
-**[NAMA APLIKASI KAMU]** adalah platform yang dirancang untuk [jelaskan tujuan aplikasi, misal: mengelola sistem penyewaan alat outdoor]. Proyek ini menekankan pada arsitektur kode yang bersih, keamanan data, dan pengalaman pengguna yang responsif.
+**Waterrelief** adalah platform yang dirancang untuk mengelola layanan komplain posko terdampak banjir. Proyek ini menekankan pada arsitektur kode yang bersih, keamanan data, dan pengalaman pengguna yang responsif.
 
 ## ✨ Fitur Utama
-**NOT AVAILABLE**
+**Login, Komplain, Shelters, Donations**
 
 ## 🛠️ Stack Teknologi
 | Komponen | Teknologi |
@@ -128,11 +128,11 @@ Repositori ini berisi implementasi sistem informasi berbasis web yang dikembangk
 ## 👥 Tim Pengembang
 | NIM | Nama | Role | GitHub |
 | :--- | :--- | :--- | :--- |
-| **251402069** | Farel Yamotaro Hia| ------ | [@F-comand02](https://github.com/F-comand02) |
-| **251402134**| Nabil Akbar Soufyan| --------| [@NAS](https://github.com/DemonAITYX) |
-| **251402090** | Cinta Pardame Sihaloho| ---- | [@CintaPardame](https://github.com/CintaPardame) |
-| **251402107** | M. Rajadinata| ------ | [@rajadinata512-ops](https://github.com/rajadinata512-ops)) |
-| **251402098** | Jihan Fadhilah| ----- | [@Jihan](https://github.com/jfadhilah) |
+| **251402069** | Farel Yamotaro Hia| Ketua | [@F-comand02](https://github.com/F-comand02) |
+| **251402134**| Nabil Akbar Soufyan| Fullstack | [@NAS](https://github.com/DemonAITYX) |
+| **251402090** | Cinta Pardame Sihaloho| Fullstack | [@CintaPardame](https://github.com/CintaPardame) |
+| **251402107** | M. Rajadinata| Fullstack | [@rajadinata512-ops](https://github.com/rajadinata512-ops)) |
+| **251402098** | Jihan Fadhilah| Fullstack | [@Jihan](https://github.com/jfadhilah) |
 
 ## 📄 Lisensi
 Distribusi di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.

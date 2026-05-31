@@ -48,7 +48,7 @@
 
                 @if(
                     $shelter->current_refugees
-                    >
+                    >=
                     $shelter->capacity
                 )
 

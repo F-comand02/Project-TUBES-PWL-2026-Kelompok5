@@ -20,6 +20,30 @@
 
         <div>
 
+            <label>Shelter</label>
+
+            <select
+                name="shelter_id"
+                class="w-full border rounded-xl p-3">
+
+                @foreach($shelters as $shelter)
+
+                    <option
+                        value="{{ $shelter->id }}"
+                        {{ $logistic->shelter_id == $shelter->id ? 'selected' : '' }}>
+
+                        {{ $shelter->shelter_name }}
+
+                    </option>
+
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <div>
+
             <label>Item Name</label>
 
             <input type="text"

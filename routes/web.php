@@ -125,5 +125,14 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
             [ComplaintController::class, 'acceptMission']
         )->name('missions.accept');
 
+        Route::get(
+            '/volunteer/my-missions',
+            [ComplaintController::class, 'myMissions']
+        )->name('missions.mine');
+
+        Route::patch(
+            '/volunteer/missions/{complaint}/complete',
+            [ComplaintController::class, 'completeMission']
+        )->name('missions.complete');
     });
     

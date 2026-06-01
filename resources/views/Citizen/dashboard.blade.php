@@ -10,7 +10,7 @@
                 <div>
 
                     <p class="text-gray-500 font-medium">
-                        My Complaints
+                        Komplain Saya
                     </p>
 
                     <h2 class="text-5xl font-black mt-3 text-slate-900">
@@ -38,7 +38,7 @@
                 <div>
 
                     <p class="text-gray-500 font-medium">
-                        Shelters Nearby
+                        Posko Terdekat
                     </p>
 
                     <h2 class="text-5xl font-black mt-3 text-slate-900">
@@ -66,7 +66,7 @@
                 <div>
 
                     <p class="text-gray-500 font-medium">
-                        Announcements
+                        Pengumuman
                     </p>
 
                     <h2 class="text-5xl font-black mt-3 text-slate-900">
@@ -94,7 +94,7 @@
                 <div>
 
                     <p class="text-gray-500 font-medium">
-                        Emergency Contacts
+                        Kontak Darurat
                     </p>
 
                     <h2 class="text-5xl font-black mt-3 text-slate-900">

@@ -183,12 +183,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <!-- INFORMASI POSKO -->
             <a
-            data-menu="posko shelters"
-            href="#"
+            data-menu="posko shelters informasi"
+            href="{{ route('citizen.shelter-info') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-            {{ request()->is('shelters*')
-                ? 'bg-cyan-500 text-white shadow-lg'
+            {{ request()->routeIs('citizen.shelter-info') || request()->routeIs('citizen.donations.*')
+                ? 'bg-cyan-400 text-white shadow-lg'
                 : 'text-gray-600 hover:bg-cyan-100 hover:text-cyan-700'
             }}">    
 

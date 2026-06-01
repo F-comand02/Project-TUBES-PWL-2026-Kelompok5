@@ -9,6 +9,7 @@ use App\Models\ComplaintImage;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ComplaintStatusUpdated;
 use App\Notifications\NewComplaintSubmitted;
+use App\Models\Shelter;
 
 class ComplaintController extends Controller
 {
@@ -57,7 +58,12 @@ class ComplaintController extends Controller
      */
     public function create()
     {
-        return view('citizen.createComplaint');
+        $shelters = Shelter::all();
+
+        return view(
+            'Citizen.createComplaint',
+            compact('shelters')
+        );
     }
 
     /**
@@ -80,6 +86,7 @@ class ComplaintController extends Controller
         'urgency_level' => $request->urgency_level,
         'description' => $request->description,
         'status' => 'pending',
+        'shelter_id' => 'required|exists:shelters,id',
     ]);
 
     $volunteers = User::whereHas('role', function ($query) {
@@ -178,6 +185,42 @@ class ComplaintController extends Controller
             'success',
             'Complaint deleted successfully'
         );
+    }
+
+    public function availableMissions()
+    {
+        $complaints = Complaint::with([
+    'user',
+    'images',
+    'shelter'
+    ])
+    ->where('status', 'pending')
+    ->whereNull('assigned_volunteer_id')
+    ->latest()
+    ->get();
+
+            return view(
+                'volunteer.missions.available',
+                compact('complaints')
+            );
+    }
+
+    public function acceptMission(Complaint $complaint)
+    {
+        $complaint->update([
+
+            'assigned_volunteer_id' => Auth::id(),
+
+            'status' => 'in_progress'
+
+        ]);
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Mission accepted successfully.'
+            );
     }
 }
 

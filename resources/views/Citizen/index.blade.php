@@ -7,11 +7,11 @@
 
             <div>
                 <h1 class="text-3xl font-bold text-gray-800">
-                    My Complaints
+                    Komplain Saya
                 </h1>
 
                 <p class="text-gray-500 mt-1">
-                    Track and manage your submitted disaster complaints.
+                    Lacak dan kelola komplain bencana yang telah Anda kirim.
                 </p>
             </div>
 
@@ -21,7 +21,7 @@
                 <a href="{{ route('complaints.create') }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-2xl font-semibold shadow-lg transition">
 
-                    + Create Complaint
+                    + Buat Komplain Baru
 
                 </a>
             </button>
@@ -67,7 +67,7 @@
                     type="submit"
                     class="mt-2 w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-2xl font-semibold transition">
 
-                    Delete Complaint
+                    Hapus Komplain
 
                 </button>
 

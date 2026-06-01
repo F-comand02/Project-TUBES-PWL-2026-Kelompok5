@@ -6,12 +6,12 @@
 <div class="space-y-6">
 
     <div>
-        <h1 class="text-4xl font-medium text-slate-900">
-            Manage Complaints
+        <h1 class="text-3xl font-bold mb-6">
+            Manajemen Komplain
         </h1>
 
         <p class="text-gray-500 mt-2">
-            Handle citizen disaster reports
+            Kelola laporan bencana dari warga untuk memastikan bantuan yang cepat dan tepat sasaran.
         </p>
     </div>
 

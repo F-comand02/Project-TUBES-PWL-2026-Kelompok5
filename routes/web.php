@@ -111,4 +111,19 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
     Route::resource('logistics', LogisticController::class);
 
     Route::resource('shelters', ShelterController::class);
-});
+    });
+
+    Route::middleware(['auth', 'role:volunteer'])->group(function () {
+
+        Route::get(
+            '/volunteer/missions',
+            [ComplaintController::class, 'availableMissions']
+        )->name('missions.available');
+
+        Route::post(
+            '/volunteer/missions/{complaint}/accept',
+            [ComplaintController::class, 'acceptMission']
+        )->name('missions.accept');
+
+    });
+    

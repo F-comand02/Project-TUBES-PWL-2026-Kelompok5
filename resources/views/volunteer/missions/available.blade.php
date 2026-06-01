@@ -17,123 +17,112 @@
 
         <div class="bg-white rounded-2xl shadow p-8 mb-6">
 
-        <div class="flex justify-between gap-6">
-            
-            <!-- KIRI -->
-            <div class="flex-1">
+        <div class="flex justify-between gap-8">
 
-                <h2 class="text-3xl font-bold mb-6">
-                    {{ $complaint->title }}
-                </h2>
+    <!-- KIRI -->
+    <div class="flex-1">
 
-                <p class="mb-4">
-                    <strong>Kategori:</strong>
-                    {{ $complaint->category }}
-                </p>
+        <h2 class="text-3xl font-bold mb-6">
+            {{ $complaint->title }}
+        </h2>
 
-                <p class="mb-4">
-                    <strong>Tingkat Keparahan:</strong>
-                    {{ $complaint->urgency_level }}
-                </p>
+        <p class="mb-4">
+            <strong>Kategori:</strong>
+            {{ $complaint->category }}
+        </p>
 
-                        <strong>Posko:</strong>
+        <p class="mb-4">
+            <strong>Tingkat Keparahan:</strong>
+            {{ $complaint->urgency_level }}
+        </p>
 
-                        @if($complaint->shelter)
+        <p class="mb-4">
+            <strong>Posko:</strong>
+            {{ $complaint->shelter->shelter_name ?? 'Belum ditentukan' }}
+        </p>
 
-                            {{ $complaint->shelter->shelter_name }}
+        <p class="text-gray-600 mb-6">
+            {{ $complaint->description }}
+        </p>
 
-                        @else
+        <form
+            action="{{ route('missions.accept', $complaint) }}"
+            method="POST">
 
-                            Belum ditentukan
+            @csrf
 
-                        @endif
-                    </p>
+            <button
+                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl">
 
-                    @if($complaint->shelter)
+                Accept Mission
 
-                        <p class="mb-4 text-gray-600">
+            </button>
 
-                            {{ $complaint->shelter->address }}
+        </form>
 
-                        </p>
+    </div>
 
-                    @endif
+    <!-- KANAN -->
+    
+    <div class="flex gap-6 items-start">
 
-                <p class="text-gray-600 mb-6">
-                    {{ $complaint->description }}
-                </p>
+        <!-- Citizen Info -->
 
-                <form
-                    action="{{ route('missions.accept', $complaint) }}"
-                    method="POST">
+        <div class="bg-gray-100 rounded-2xl p-6 w-80 h-72 shadow-sm">
 
-                    @csrf
-
-                    <button
-                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl">
-
-                        Accept Mission
-
-                    </button>
-
-                </form>
-
+            <div class="bg-green-500 text-white rounded-xl p-3 mb-5">
+                <h3 class="font-bold text-lg">
+                    Citizen Information
+                </h3>
             </div>
 
-            <div class="bg-gray-50 rounded-xl p-4 mt-4 mb-4">
+            <div class="space-y-3">
 
-    <h3 class="font-bold text-lg mb-3">
+                <p>
+                    <strong>Nama Lengkap:</strong>
+                    {{ $complaint->user->name }}
+                </p>
 
-        Citizen Information
+                <p>
+                    <strong>Nomor HP:</strong>
+                    {{ $complaint->user->phone ?? '-' }}
+                </p>
 
-    </h3>
+                <p>
+                    <strong>Alamat:</strong>
+                    {{ $complaint->user->address ?? '-' }}
+                </p>
 
-    <p class="mb-2">
-        <strong>Nama Lengkap:</strong>
-        {{ $complaint->user->name }}
-    </p>
+                <p>
+                    <strong>Email:</strong>
+                    {{ $complaint->user->email }}
+                </p>
 
-    <p class="mb-2">
-        <strong>Nomor HP:</strong>
-        {{ $complaint->user->phone ?? '-' }}
-    </p>
-
-    <p class="mb-2">
-        <strong>Alamat:</strong>
-        {{ $complaint->user->address ?? '-' }}
-    </p>
-
-    <p class="mb-2">
-        <strong>Bio:</strong>
-        {{ $complaint->user->bio ?? '-' }}
-    </p>
-
-</div>
-
-            <!-- KANAN -->
-            <div class="w-72 flex-shrink-0">
-
-                @if($complaint->images->count())
-
-                    <img
-                        src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
-                        alt="Complaint Image"
-                        class="w-full h-56 object-cover rounded-xl shadow">
-
-                @else
-
-                    <div
-                        class="w-full h-56 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500">
-
-                        No Image
-
-                    </div>
-
-                @endif
+                <p>
+                    <strong>Bio:</strong>
+                    {{ $complaint->user->bio ?? '-' }}
+                </p>
 
             </div>
 
         </div>
+
+        <!-- Gambar -->
+        <div class="w-80 h-72">
+
+            @if($complaint->images->count())
+
+                <img
+                    src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
+                    class="w-full h-72 object-cover rounded-2xl shadow">
+
+            @endif
+
+        </div>
+
+    </div>
+
+</div>
 
     </div>
 

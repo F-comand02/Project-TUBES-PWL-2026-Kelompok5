@@ -49,6 +49,30 @@ class LogisticController extends Controller
         ));
     }
 
+    public function citizenInfo()
+    {
+    $logistics = Logistic::with([
+        'category',
+        'shelter'
+    ])->get();
+
+    $totalItems = Logistic::count();
+
+    $totalShelters = Shelter::count();
+
+    $totalCategories = LogisticsCategory::count();
+
+    return view(
+        'Citizen.logistics',
+        compact(
+            'logistics',
+            'totalItems',
+            'totalShelters',
+            'totalCategories'
+        )
+    );
+    }
+
     public function create(Request $request)
     {
     $categories = LogisticsCategory::all();

@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <!-- Informasi Bantuan  -->
             <a
             data-menu="informasi bantuan"
-            href="#"
+            href="{{ route('citizen.logistics') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
             {{ request()->is('relief')
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <!-- KONTAK DARURAT -->
             <a
             data-menu="kontak darurat"
-            href="#"
+            href="{{ route('citizen.emergency-contact') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
             {{ request()->is('emergency')

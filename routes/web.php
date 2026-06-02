@@ -6,6 +6,7 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ShelterController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\EmergencyContactController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,21 +51,30 @@ Route::middleware(['auth', 'role:citizen'])->group(function () {
 
     // ---- TAMBAHKAN ROUTE BARU DI BAWAH INI ----
 
+    
     // Informasi Posko (read shelter dari volunteer)
     Route::get('/citizen/shelter-info', [DonationController::class, 'shelterInfo'])
-        ->name('citizen.shelter-info');
-
+    ->name('citizen.shelter-info');
+    
     // Form donasi untuk posko tertentu
     Route::get('/citizen/shelters/{shelter}/donate', [DonationController::class, 'create'])
-        ->name('citizen.donations.create');
-
+    ->name('citizen.donations.create');
+    
     // Simpan donasi
     Route::post('/citizen/shelters/{shelter}/donate', [DonationController::class, 'store'])
-        ->name('citizen.donations.store');
-
+    ->name('citizen.donations.store');
+    
     // Riwayat donasi saya
     Route::get('/citizen/my-donations', [DonationController::class, 'myDonations'])
-        ->name('citizen.donations.index');
+    ->name('citizen.donations.index');
+
+    // Informasi Bantuan
+    Route::get('/citizen/logistics', [LogisticController::class, 'citizenInfo'])
+    ->name('citizen.logistics');
+
+    // Menampilkan daftar kontak darurat untuk citizen
+    Route::get('/citizen/emergency-contact', [EmergencyContactController::class, 'index'])
+    ->name('citizen.emergency-contact');
 
 });
 

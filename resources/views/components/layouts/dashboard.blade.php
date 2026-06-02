@@ -382,10 +382,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <!-- MISI SAYA -->
                     <a
                     data-menu="misi saya my missions"
-                    href="#"
+                    href="{{ route('missions.mine') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-                    {{ request()->is('volunteer/my-missions')
+                    {{ request()->routeIs('missions.mine')
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
                     }}">

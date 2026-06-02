@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Complaint extends Model
 {
         protected $fillable = [
-        'user_id',
-        'title',
-        'description',
-        'category',
-        'urgency_level',
-        'status',
-        'image',
+    'user_id',
+    'assigned_volunteer_id',
+    'shelter_id',
+    'handled_by',
+    'title',
+    'description',
+    'category',
+    'urgency_level',
+    'status',
+    'image',
     ];
 
     public function images()

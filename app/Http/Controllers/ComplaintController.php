@@ -77,6 +77,7 @@ class ComplaintController extends Controller
         'urgency_level' => 'required|string',
         'description' => 'required|string',
         'image' => 'nullable|mimes:jpg,jpeg,png,webp,jfif|max:10000',
+        'shelter_id' => 'required|exists:shelters,id',
     ]);
 
     $complaint = Complaint::create([
@@ -86,7 +87,7 @@ class ComplaintController extends Controller
         'urgency_level' => $request->urgency_level,
         'description' => $request->description,
         'status' => 'pending',
-        'shelter_id' => 'required|exists:shelters,id',
+        'shelter_id' => $request->shelter_id,
     ]);
 
     $volunteers = User::whereHas('role', function ($query) {
@@ -211,7 +212,7 @@ class ComplaintController extends Controller
 
             'assigned_volunteer_id' => Auth::id(),
 
-            'status' => 'in_progress'
+            'status' => 'processing'
 
         ]);
 
@@ -221,6 +222,46 @@ class ComplaintController extends Controller
                 'success',
                 'Mission accepted successfully.'
             );
+    }
+
+    public function myMissions()
+    {
+    $complaints = Complaint::with([
+        'user',
+        'images',
+        'shelter'
+    ])
+    ->where(
+        'assigned_volunteer_id',
+        Auth::id()
+    )
+    ->where(
+        'status',
+        'processing'
+    )
+    ->latest()
+    ->get();
+
+    return view(
+        'volunteer.missions.mine',
+        compact('complaints')
+    );
+    }
+
+    public function completeMission(
+    Complaint $complaint
+    )
+    {
+    $complaint->update([
+
+        'status' => 'completed'
+
+    ]);
+
+    return back()->with(
+        'success',
+        'Mission completed successfully.'
+    );
     }
 }
 

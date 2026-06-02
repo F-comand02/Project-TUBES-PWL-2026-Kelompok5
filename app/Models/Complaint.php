@@ -25,4 +25,17 @@ class Complaint extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function assignedVolunteer()
+    {
+        return $this->belongsTo(
+            User::class,
+            'assigned_volunteer_id'
+        );
+    }
+
+    public function shelter()
+    {
+        return $this->belongsTo(Shelter::class);
+    }
 }

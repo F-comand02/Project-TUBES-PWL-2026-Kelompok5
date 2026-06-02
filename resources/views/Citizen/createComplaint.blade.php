@@ -48,11 +48,11 @@
                 class="w-full max-w-3xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8">
 
                 <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">
-                    Create Complaint
+                    Buat Komplain Baru
                 </h1>
 
                 <p class="text-gray-500 mt-2">
-                    Submit disaster reports to help volunteers respond quickly.
+                    Laporkan kebutuhan atau masalah yang Anda hadapi selama bencana untuk mendapatkan bantuan secepatnya
                 </p>
 
                 <!-- FORM -->
@@ -165,6 +165,41 @@
                             name="image"
                             class="block w-full text-sm text-gray-500">
                     </div>
+
+                    <div class="mt-6">
+
+                    <label
+                        class="block text-gray-700 font-semibold mb-2">
+
+                        Shelter / Posko
+
+                    </label>
+
+                    <select
+                        name="shelter_id"
+                        class="w-full border rounded-xl p-3">
+
+                        <option disabled selected>
+
+                            Select Shelter
+
+                        </option>
+
+                        @foreach($shelters as $shelter)
+
+                            <option value="{{ $shelter->id }}">
+
+                                {{ $shelter->shelter_name }}
+                                -
+                                {{ $shelter->address }}
+
+                            </option>
+
+                        @endforeach
+
+                    </select>
+
+                </div>
 
                     <button
                         type="submit"

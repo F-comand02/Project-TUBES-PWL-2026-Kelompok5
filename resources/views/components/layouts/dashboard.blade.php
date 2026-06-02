@@ -410,10 +410,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <!-- MISI TERSEDIA -->
                     <a
                     data-menu="misi tersedia available missions"
-                    href="#"
+                    href="{{ route('missions.available') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-                    {{ request()->is('volunteer/available-missions')
+                    {{ request()->routeIs('missions.available')
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
                     }}">

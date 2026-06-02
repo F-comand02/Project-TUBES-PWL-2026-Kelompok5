@@ -34,14 +34,14 @@
                     <a href="{{ route('dashboard') }}"
                         class="text-gray-700 hover:text-blue-600 font-medium transition">
 
-                        Dashboard
+                        Dasbor
 
                     </a>
 
                     <a href="{{ route('profile.edit') }}"
                         class="text-gray-700 hover:text-blue-600 font-medium transition">
 
-                        Profile
+                        Profil
 
                     </a>
 
@@ -123,7 +123,7 @@
             <a href="{{ route('dashboard') }}"
                 class="block text-gray-700 font-medium">
 
-                Dashboard
+                Dashboard   
 
             </a>
 

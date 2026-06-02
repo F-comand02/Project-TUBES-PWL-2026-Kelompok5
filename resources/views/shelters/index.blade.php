@@ -5,16 +5,16 @@
 
 <div class="p-6">
 
-    <div class="flex justify-between items-center mb-6">
+    <div class="flex justify-between items-center mb-6 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl p-6 text-white shadow-lg">
 
         <h1 class="text-3xl font-bold">
 
             Shelter Management
 
         </h1>
-
+        
         <a href="{{ route('shelters.create') }}"
-           class="bg-green-600 text-white px-5 py-3 rounded-xl">
+           class="bg-green-500 text-white px-5 py-3 rounded-xl shadow hover:bg-green-600">
 
             Add Shelter
 

@@ -1,14 +1,14 @@
-<x-layouts.dashboard title="Informasi Bantuan" role="citizen">
+<x-layouts.dashboard title="Help Information" role="citizen">
 
 <div class="p-4 sm:p-6 space-y-6">
 
     <!-- Header -->
-    <div>
-        <h1 class="text-3xl font-bold text-gray-800">
-            Informasi Bantuan
+    <div class="from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
+        <h1 class="text-3xl font-bold text-white">
+            Help Information
         </h1>
 
-        <p class="text-gray-500 mt-1">
+        <p class="text-white mt-1">
             Informasi bantuan yang tersedia untuk korban bencana.
         </p>
     </div>

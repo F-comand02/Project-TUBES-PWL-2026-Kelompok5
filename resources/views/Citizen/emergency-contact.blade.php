@@ -1,14 +1,14 @@
-<x-layouts.dashboard title="Kontak Darurat" role="citizen">
+<x-layouts.dashboard title="Emergency Contact" role="citizen">
 
 <div class="p-6 space-y-8">
 
     <!-- Header -->
-    <div>
-        <h1 class="text-3xl font-bold text-gray-800">
-            Kontak Darurat
+    <div class="from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
+        <h1 class="text-3xl font-bold text-white">
+            Emergency Contact Information
         </h1>
 
-        <p class="text-gray-500 mt-2">
+        <p class="text-white mt-2">
             Informasi layanan darurat nasional dan kontak resmi WaterRelief untuk membantu korban bencana.
         </p>
     </div>

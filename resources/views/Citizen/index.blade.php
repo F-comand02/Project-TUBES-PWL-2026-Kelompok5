@@ -3,14 +3,14 @@
     <div class="p-4 sm:p-6 space-y-6">
 
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
 
             <div>
-                <h1 class="text-3xl font-bold text-gray-800">
-                    Komplain Saya
+                <h1 class="text-3xl font-bold text-white">
+                    My Complaints
                 </h1>
 
-                <p class="text-gray-500 mt-1">
+                <p class="text-white mt-1">
                     Lacak dan kelola komplain bencana yang telah Anda kirim.
                 </p>
             </div>

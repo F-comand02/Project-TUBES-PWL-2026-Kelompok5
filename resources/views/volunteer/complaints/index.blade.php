@@ -5,12 +5,12 @@
 
 <div class="space-y-6">
 
-    <div>
+    <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg">
         <h1 class="text-3xl font-bold mb-6">
-            Manajemen Komplain
+            Complaints Management
         </h1>
 
-        <p class="text-gray-500 mt-2">
+        <p class="text-white text-lg">
             Kelola laporan bencana dari warga untuk memastikan bantuan yang cepat dan tepat sasaran.
         </p>
     </div>

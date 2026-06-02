@@ -1,21 +1,21 @@
-<x-layouts.dashboard title="Informasi Posko" role="citizen">
+<x-layouts.dashboard title="Shelter Information" role="citizen">
 
 <div class="p-4 sm:p-6 space-y-6">
 
     {{-- HEADER --}}
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
 
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">
-                Informasi Posko
+            <h1 class="text-3xl font-bold text-white">
+                Shelter Information
             </h1>
-            <p class="text-gray-500 mt-1">
+            <p class="text-white mt-1">
                 Lihat daftar posko aktif dan bantu dengan donasi Anda.
             </p>
         </div>
 
         <a href="{{ route('citizen.donations.index') }}"
-           class="inline-flex items-center gap-2 bg-cyan-50 hover:bg-cyan-100 text-cyan-700 border border-cyan-200 px-5 py-3 rounded-2xl font-semibold transition">
+           class="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-800 text-white px-5 py-3 shadow-lg  rounded-2xl font-semibold transition">
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  stroke-width="1.8" stroke="currentColor" class="w-5 h-5">

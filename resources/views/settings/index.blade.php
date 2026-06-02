@@ -7,17 +7,32 @@
     <div class="space-y-8">
 
         <!-- HEADER -->
-        <div>
+        @if(strtolower((string)(Auth::user()?->role?->role_name)) === 'volunteer')
+            <div
+                class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg">
 
-            <h1 class="text-4xl font-medium text-slate-900 px-4">
-                Pengaturan Akun
-            </h1>
+                <h1 class="text-3xl md:text-4xl font-black">
+                    Account Settings
+                </h1>
 
-            <p class="text-gray-500 mt-2 px-4">
-                Silahkan kelola pengaturan akun dan preferensi notifikasi Anda di sini.
-            </p>
+                <p class="mt-3 text-green-100 text-lg">
+                    Silahkan kelola pengaturan akun dan preferensi notifikasi Anda di sini.
+                </p>
 
-        </div>
+            </div>
+
+        @else
+            <div
+                class="bg-gradient-to-r from-cyan-600 to-cyan-300 rounded-3xl p-8 text-white shadow-lg">
+                <h1 class="text-3xl md:text-4xl font-black">
+                    Account Settings
+                </h1>
+
+                <p class="mt-3 text-cyan-100 text-lg">
+                    Silahkan kelola pengaturan akun dan preferensi notifikasi Anda di sini.
+                </p>
+            </div>
+        @endif
 
         <!-- SECURITY -->
         <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">

@@ -1,6 +1,19 @@
 <x-layouts.dashboard title="Dashboard" role="citizen">
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div
+            class="bg-gradient-to-r from-cyan-600 to-cyan-300 rounded-3xl p-8 text-white shadow-lg">
+
+            <h1 class="text-3xl md:text-4xl font-black">
+                Dashboard
+            </h1>
+
+            <p class="mt-3 text-green-100 text-lg">
+                Welcome back, {{ Auth::user()->name }} 👋
+            </p>
+
+        </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-6">
 
         <!-- CARD 1 -->
         <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">

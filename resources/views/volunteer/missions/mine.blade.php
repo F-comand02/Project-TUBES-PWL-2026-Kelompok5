@@ -2,12 +2,17 @@
     title="My Missions"
     color="green"
     role="volunteer">
+    <div class="space-y-8 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl p-8 text-white shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-white px-4">
+        My Missions
+    </h1>
+
+    <p class="text-white mt-2 text-lg px-4">
+        Lihat status misi yang sedang Anda jalankan dan tandai sebagai selesai setelah membantu penanganan bencana.
+    </div>
 
 <div class="p-6">
 
-    <h1 class="text-3xl font-bold mb-6">
-        Misi Saya
-    </h1>
 
     @forelse($complaints as $complaint)
 

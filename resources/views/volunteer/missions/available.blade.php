@@ -3,13 +3,13 @@
     color="green"
     role="volunteer">
 
-<div class="p-6">
+<div class="p-8 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl text-white shadow-lg space-y-8">
 
     <h1 class="text-3xl font-bold mb-6">
-        Misi yang Tersedia
+        Available Missions
     </h1>
 
-    <p class="text-gray-500 mb-6">
+    <p class="text-white text-lg">
         Lihat dan terima misi untuk membantu penanganan bencana di sekitar Anda.
     </p>
 

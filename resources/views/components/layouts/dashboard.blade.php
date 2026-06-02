@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
             href="{{ route('citizen.logistics') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-            {{ request()->is('relief')
+            {{ request()->routeIs('citizen.logistics')
                 ? 'bg-cyan-400 text-white shadow-lg'
                 : 'text-gray-600 hover:bg-cyan-100 hover:text-cyan-700'
             }}">
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             href="{{ route('citizen.emergency-contact') }}"
             class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-            {{ request()->is('emergency')
+            {{ request()->routeIs('citizen.emergency-contact')
                 ? 'bg-cyan-400 text-white shadow-lg'
                 : 'text-gray-600 hover:bg-cyan-100 hover:text-cyan-700'
             }}">

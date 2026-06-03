@@ -15,7 +15,7 @@
         </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 p-8 xl:grid-cols-3 gap-6 shadow-xl rounded-3xl m-6 bg-white border border-gray-100">
 
     @foreach($complaints as $complaint)
 
@@ -164,8 +164,16 @@
                 </div>
 
             @endforeach
+            @if($complaints->isEmpty())
+                <div class="col-span-full text-center">
+                    <p class="text-gray-500 text-lg">
+                        No complaints found.
+                    </p>
+                </div>
+            @endif
 
         </div>
+
 
     <!-- PAGINATION -->
 

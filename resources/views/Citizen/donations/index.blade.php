@@ -50,9 +50,6 @@
     @if($donations->isEmpty())
 
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-16 text-center">
-            <div class="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-4xl mb-4">
-                🎁
-            </div>
             <h3 class="text-lg font-semibold text-gray-700">Belum ada donasi</h3>
             <p class="text-gray-400 mt-2 mb-6">Anda belum pernah melakukan donasi ke posko manapun.</p>
             <a href="{{ route('citizen.shelter-info') }}"

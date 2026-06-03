@@ -25,12 +25,8 @@
         </div>
     @endif
 
-    {{-- ============================================================ --}}
-    {{-- BAGIAN 1: MISI KOMPLAIN --}}
-    {{-- ============================================================ --}}
     <div>
         <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <span class="w-8 h-8 rounded-xl bg-green-100 flex items-center justify-center text-base">📋</span>
             Misi Penanganan Komplain
         </h2>
 
@@ -44,7 +40,7 @@
                             {{ $complaint->title }}
                         </h2>
                         <span class="inline-block mt-1 bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-xs font-semibold">
-                            🔄 Sedang diproses
+                            Sedang diproses
                         </span>
                     </div>
                 </div>
@@ -85,20 +81,19 @@
         @empty
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center text-gray-400">
-                <div class="text-4xl mb-3">📭</div>
-                Belum ada misi komplain yang diambil
+                Belum ada misi komplain yang diambil. 
+                <a href="{{ route('volunteer.complaints') }}"
+                           class="text-green-500 hover:text-green-700 font-semibold text-sm underline">
+                            Lihat Distribusi Bantuan
+                        </a>
             </div>
 
         @endforelse
     </div>
 
-    {{-- ============================================================ --}}
-    {{-- BAGIAN 2: MISI DISTRIBUSI BANTUAN --}}
-    {{-- ============================================================ --}}
     <div>
         <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <span class="w-8 h-8 rounded-xl bg-blue-100 flex items-center justify-center text-base">🚚</span>
-            Misi Distribusi Bantuan
+            Distribusi Bantuan
         </h2>
 
         @forelse($donationMissions as $donation)
@@ -112,11 +107,11 @@
                         </h2>
                         @if($donation->status === 'on_delivery')
                             <span class="inline-block mt-1 bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full text-xs font-semibold">
-                                🚚 Dalam Pengiriman
+                                Dalam Pengiriman
                             </span>
                         @elseif($donation->status === 'received')
                             <span class="inline-block mt-1 bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-xs font-semibold">
-                                ✅ Sudah Sampai
+                                Sudah Sampai
                             </span>
                         @endif
                     </div>
@@ -169,14 +164,11 @@
         @empty
 
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center text-gray-400">
-                <div class="text-4xl mb-3">📦</div>
                 Belum ada misi distribusi bantuan yang diambil.
-                <div class="mt-3">
-                    <a href="{{ route('volunteer.distribusi-bantuan') }}"
-                       class="text-green-500 hover:text-green-700 font-semibold text-sm underline">
-                        Lihat Distribusi Bantuan
-                    </a>
-                </div>
+                <a href="{{ route('volunteer.distribusi-bantuan') }}"
+                   class="text-green-500 hover:text-green-700 font-semibold text-sm underline">
+                    Lihat Distribusi Bantuan
+                </a>
             </div>
 
         @endforelse

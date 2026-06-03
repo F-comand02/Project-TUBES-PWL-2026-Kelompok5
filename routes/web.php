@@ -47,7 +47,29 @@ Route::middleware(['auth', 'role:volunteer'])->group(function () {
 Route::middleware(['auth', 'role:citizen'])->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('Citizen.dashboard');
+
+        $myComplaints = \App\Models\Complaint::where(
+            'user_id',
+            \Illuminate\Support\Facades\Auth::id()
+        )
+        ->latest()
+        ->take(5)
+        ->get();
+
+        $shelters = \App\Models\Shelter::latest()
+            ->take(5)
+            ->get();
+
+        $logistics = \App\Models\Logistic::latest()
+            ->take(5)
+            ->get();
+
+        return view('Citizen.dashboard', compact(
+            'myComplaints',
+            'shelters',
+            'logistics'
+        ));
+
     })->name('dashboard');
 
     // Informasi Posko (read shelter dari volunteer)

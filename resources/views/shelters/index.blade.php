@@ -185,10 +185,18 @@
             </form>
 
         </div>
-
+        
     </div>
-
+    
     @endforeach
+    
+    @if($shelters->isEmpty())
+
+        <div class="bg-white rounded-2xl shadow p-8 text-center text-bold text-gray-500 mt-6 mx-6">
+            <h3 class="text-lg">Belum ada shelter</h3>
+        </div>
+
+    @endif
 
 </div>
 

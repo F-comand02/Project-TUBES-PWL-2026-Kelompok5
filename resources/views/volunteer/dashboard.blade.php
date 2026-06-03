@@ -14,7 +14,7 @@
             </h1>
 
             <p class="mt-3 text-green-100 text-lg">
-                Welcome back, {{ Auth::user()->name }} 👋
+                Welcome back, {{ Auth::user()->name }}
             </p>
 
         </div>

@@ -7,9 +7,22 @@ use App\Http\Controllers\LogisticController;
 use App\Http\Controllers\ShelterController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\EmergencyContactController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    if (! Auth::check()) {
+        return view('welcome');
+    }
+
+    $role = Auth::user()->role?->role_name;
+
+    return match ($role) {
+        'admin' => redirect('/admin'),
+        'citizen' => redirect('/dashboard'),
+        'volunteer' => redirect('/volunteer/dashboard'),
+        default => view('welcome'),
+    };
 });
 
 require __DIR__.'/auth.php';
@@ -97,7 +110,7 @@ Route::resource('complaints', ComplaintController::class)
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/complaints', [ComplaintController::class, 'index'])
+Route::get('/complaints', [ComplaintController::class, 'index'])
         ->name('complaints.index');
 });
 

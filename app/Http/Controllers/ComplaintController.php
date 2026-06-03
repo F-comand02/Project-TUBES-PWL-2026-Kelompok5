@@ -211,7 +211,7 @@ class ComplaintController extends Controller
         $complaint->update([
 
             'assigned_volunteer_id' => Auth::id(),
-
+            'handled_by' => Auth::id(),
             'status' => 'processing'
 
         ]);
@@ -253,8 +253,8 @@ class ComplaintController extends Controller
     )
     {
     $complaint->update([
-
-        'status' => 'completed'
+    'handled_by' => Auth::id(),
+    'status' => 'completed',
 
     ]);
 

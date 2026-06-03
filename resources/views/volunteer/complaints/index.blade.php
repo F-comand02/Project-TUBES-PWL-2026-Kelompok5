@@ -26,10 +26,10 @@
 
                         <div class="w-full h-44 overflow-hidden bg-gray-100">
 
-                            <img
-                            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
-                            class="w-full h-full object-cover hover:scale-105 transition duration-500">
-
+                                                
+                       <img
+            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
+            class="w-full h-full object-cover hover:scale-105 transition duration-500">
                         </div>
 
                     @endif

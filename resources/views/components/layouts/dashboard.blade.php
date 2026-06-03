@@ -467,10 +467,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     <!-- DISTRIBUSI BANTUAN -->
                     <a
                     data-menu="distribusi bantuan relief distribution"
-                    href="#"
+                    href="{{ route('volunteer.distribusi-bantuan') }}"
                     class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300
 
-                    {{ request()->is('volunteer/relief-distribution')
+                    {{ request()->routeIs('volunteer.distribusi-bantuan')
                         ? 'bg-green-500 text-white shadow-lg'
                         : 'text-gray-600 hover:bg-green-100 hover:text-green-700'
                     }}">

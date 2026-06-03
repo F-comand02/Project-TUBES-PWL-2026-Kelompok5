@@ -1,79 +1,186 @@
 <x-layouts.dashboard
-    title="My Missions"
+    title="Misi Saya"
     color="green"
     role="volunteer">
-    <div class="space-y-8 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl p-8 text-white shadow-lg">
-    <h1 class="text-3xl font-bold mb-6 text-white px-4">
-        My Missions
-    </h1>
 
-    <p class="text-white mt-2 text-lg px-4">
-        Lihat status misi yang sedang Anda jalankan dan tandai sebagai selesai setelah membantu penanganan bencana.
+<div class="space-y-6">
+
+    {{-- HEADER --}}
+    <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg">
+        <h1 class="text-3xl font-bold mb-2 text-white">
+            Misi Saya
+        </h1>
+        <p class="text-green-100 text-lg">
+            Lihat status semua misi yang sedang Anda jalankan dan tandai sebagai selesai.
+        </p>
     </div>
 
-<div class="p-6">
-
-
-    @forelse($complaints as $complaint)
-
-        <div class="bg-white rounded-2xl shadow p-6 mb-6">
-
-            <h2 class="text-2xl font-bold mb-3">
-                {{ $complaint->title }}
-            </h2>
-
-            <p>
-                <strong>Citizen:</strong>
-                {{ $complaint->user->name }}
-            </p>
-
-            <p>
-                <strong>Kategori:</strong>
-                {{ $complaint->category }}
-            </p>
-
-            <p>
-                <strong>Urgency:</strong>
-                {{ $complaint->urgency_level }}
-            </p>
-
-            <p>
-                <strong>Posko:</strong>
-                {{ $complaint->shelter->shelter_name ?? '-' }}
-            </p>
-
-            <p>
-                <strong>Status:</strong>
-                {{ $complaint->status }}
-            </p>
-
-            <form
-            action="{{ route('missions.complete', $complaint) }}"
-            method="POST">
-
-            @csrf
-            @method('PATCH')
-
-            <button
-                class="bg-green-600 text-white px-5 py-2 rounded-lg">
-
-                Complete Mission
-
-            </button>
-
-        </form>
-
+    {{-- FLASH MESSAGE --}}
+    @if(session('success'))
+        <div class="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-2xl flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 text-green-500 shrink-0">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+            </svg>
+            {{ session('success') }}
         </div>
+    @endif
 
-    @empty
+    {{-- ============================================================ --}}
+    {{-- BAGIAN 1: MISI KOMPLAIN --}}
+    {{-- ============================================================ --}}
+    <div>
+        <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-green-100 flex items-center justify-center text-base">📋</span>
+            Misi Penanganan Komplain
+        </h2>
 
-        <div class="bg-white rounded-2xl shadow p-10 text-center">
+        @forelse($complaints as $complaint)
 
-            Belum ada misi yang diambil
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4 border border-gray-100">
 
-        </div>
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">
+                            {{ $complaint->title }}
+                        </h2>
+                        <span class="inline-block mt-1 bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-xs font-semibold">
+                            🔄 Sedang diproses
+                        </span>
+                    </div>
+                </div>
 
-    @endforelse
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-5">
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Citizen</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $complaint->user->name }}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Kategori</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $complaint->category }}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Urgensi</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $complaint->urgency_level }}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Posko</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $complaint->shelter->shelter_name ?? '-' }}</p>
+                    </div>
+                </div>
+
+                <form action="{{ route('missions.complete', $complaint) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit"
+                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        Selesaikan Misi
+                    </button>
+                </form>
+
+            </div>
+
+        @empty
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center text-gray-400">
+                <div class="text-4xl mb-3">📭</div>
+                Belum ada misi komplain yang diambil
+            </div>
+
+        @endforelse
+    </div>
+
+    {{-- ============================================================ --}}
+    {{-- BAGIAN 2: MISI DISTRIBUSI BANTUAN --}}
+    {{-- ============================================================ --}}
+    <div>
+        <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-blue-100 flex items-center justify-center text-base">🚚</span>
+            Misi Distribusi Bantuan
+        </h2>
+
+        @forelse($donationMissions as $donation)
+
+            <div class="bg-white rounded-2xl shadow-sm p-6 mb-4 border border-gray-100">
+
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">
+                            {{ $donation->item_name }}
+                        </h2>
+                        @if($donation->status === 'on_delivery')
+                            <span class="inline-block mt-1 bg-blue-100 text-blue-700 px-3 py-0.5 rounded-full text-xs font-semibold">
+                                🚚 Dalam Pengiriman
+                            </span>
+                        @elseif($donation->status === 'received')
+                            <span class="inline-block mt-1 bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-xs font-semibold">
+                                ✅ Sudah Sampai
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-5">
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Pendonor</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $donation->donor_name }}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Jumlah</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ number_format($donation->quantity) }} unit</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Posko Tujuan</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">{{ $donation->shelter->shelter_name ?? '-' }}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-3">
+                        <p class="text-gray-400 text-xs">Tanggal Donasi</p>
+                        <p class="font-semibold text-slate-700 mt-0.5">
+                            {{ \Carbon\Carbon::parse($donation->donation_date)->format('d M Y') }}
+                        </p>
+                    </div>
+                </div>
+
+                @if($donation->status === 'on_delivery')
+                    <form action="{{ route('volunteer.distribusi-bantuan.selesai', $donation) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold transition flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+                            Tandai Sudah Sampai ke Posko
+                        </button>
+                    </form>
+                @else
+                    <div class="text-sm text-green-600 font-semibold flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        Bantuan sudah berhasil sampai ke posko!
+                    </div>
+                @endif
+
+            </div>
+
+        @empty
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-10 text-center text-gray-400">
+                <div class="text-4xl mb-3">📦</div>
+                Belum ada misi distribusi bantuan yang diambil.
+                <div class="mt-3">
+                    <a href="{{ route('volunteer.distribusi-bantuan') }}"
+                       class="text-green-500 hover:text-green-700 font-semibold text-sm underline">
+                        Lihat Distribusi Bantuan
+                    </a>
+                </div>
+            </div>
+
+        @endforelse
+    </div>
 
 </div>
 

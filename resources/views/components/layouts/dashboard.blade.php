@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
             :class="sidebarOpen
                 ? 'translate-x-0'
                 : '-translate-x-full lg:translate-x-0 lg:w-0 overflow-hidden'"
-            class="w-72 max-w-[85%] bg-white border-r border-gray-200 fixed inset-y-0 left-0 lg:relative z-50 min-h-screen transition-all duration-300 flex flex-col shadow-2xl lg:shadow-none"
+            class="w-72 max-w-[85%] bg-white border-r border-gray-200 fixed inset-y-0 left-0 lg:relative z-50 min-h-screen transition-all duration-300 flex flex-col shadow-2xl lg:shadow-none">
 
             <!-- LOGO -->
             <div class="px-8 py-8 border-b border-gray-100">
@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             sidebarOpen = !sidebarOpen;
                             openNotif = false;
                         "
-                        class="text-gray-500 hover:text-slate-900 transition text-3xl px-4">
+                        class="text-gray-500 hover:text-slate-900 hover:rotate-360 transition text-3xl px-4">
 
                         ☰
 
@@ -765,7 +765,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                 <img
                                     src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
-                                    class="w-full h-full object-cover">
+                                    class="w-full h-full scale-140 object-cover rounded-full mr-2">
 
                             @else
 

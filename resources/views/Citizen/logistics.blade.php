@@ -80,22 +80,22 @@
             <div class="mt-4 space-y-2 text-gray-600">
 
                 <p>
-                    🏠 <strong>Posko:</strong>
+                    <strong>Posko:</strong>
                     {{ $item->shelter->shelter_name ?? '-' }}
                 </p>
 
                 <p>
-                    📦 <strong>Kategori:</strong>
+                    <strong>Kategori:</strong>
                     {{ $item->category->category_name ?? '-' }}
                 </p>
 
                 <p>
-                    📊 <strong>Stok:</strong>
+                    <strong>Stok:</strong>
                     {{ $item->stock }}
                 </p>
 
                 <p>
-                    📅 <strong>Kadaluarsa:</strong>
+                    <strong>Kadaluarsa:</strong>
                     {{ $item->expired_date }}
                 </p>
 

@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Actions\DeleteAction;
+use Filament\Tables\Filters\SelectFilter;
 
 class DonationsTable
 {
@@ -56,9 +57,17 @@ TextColumn::make('volunteer.name')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+                    ->filters([
+
+                    SelectFilter::make('status')
+                        ->options([
+                            'pending' => 'Pending',
+                            'on_delivery' => 'On Delivery',
+                            'received' => 'Received',
+                            'confirmed' => 'Confirmed',
+                        ]),
+
+                ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 use App\Models\User;
+use App\Models\LogisticsCategory;
 
 
 class DonationForm
@@ -39,6 +40,12 @@ Select::make('volunteer_id')
     )
     ->searchable()
     ->preload(),
+    Select::make('category_id')
+    ->label('Category')
+    ->relationship('category', 'category_name')
+    ->searchable()
+    ->preload()
+    ->required(),
                 TextInput::make('donor_name')
                     ->required(),
                 TextInput::make('item_name')
@@ -48,11 +55,12 @@ Select::make('volunteer_id')
                     ->numeric(),
                 Select::make('status')
                     ->options([
-            'pending' => 'Pending',
-            'on_delivery' => 'On delivery',
-            'confirmed' => 'Confirmed',
-            'received' => 'Received',
-        ])
+                        'pending' => 'Pending',
+                        'on_delivery' => 'On delivery',
+                        'confirmed' => 'Confirmed',
+                        'received' => 'Received',
+                        
+                    ])
                     ->default('pending')
                     ->required(),
                 Textarea::make('notes')

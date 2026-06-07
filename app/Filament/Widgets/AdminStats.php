@@ -8,6 +8,7 @@ use App\Models\Donation;
 use App\Models\Complaint;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use App\Models\Logistic;
 
 class AdminStats extends StatsOverviewWidget
 {
@@ -39,18 +40,58 @@ class AdminStats extends StatsOverviewWidget
             Stat::make(
                 'Completed Complaints',
                 Complaint::where('status', 'completed')->count()
+                
             )
                 ->color('success'),
             Stat::make(
                 'Pending Donations',
                 Donation::where('status', 'pending')->count()
             )
+            
             ->color('warning'),
             Stat::make(
                 'Completed Donations',
                 Donation::where('status', 'completed')->count()
             )
             ->color('success'),
+            Stat::make(
+                'Total Logistics',
+                Logistic::count()
+            )
+            ->description('Item logistik')
+            ->descriptionIcon('heroicon-m-cube')
+            ->color('info'),
+            Stat::make(
+                'Low Stock Items',
+                Logistic::whereColumn(
+                    'stock',
+                    '<=',
+                    'minimum_stock'
+                )->count()
+            )
+            ->description('Perlu restock')
+            ->descriptionIcon('heroicon-m-exclamation-triangle')
+            ->color('danger'),
+            Stat::make(
+                        'Expired Items',
+                        Logistic::whereDate(
+                            'expired_date',
+                            '<',
+                            now()
+                        )->count()
+                    )
+                    ->description('Barang kedaluwarsa')
+                    ->descriptionIcon('heroicon-m-clock')
+                    ->color('warning'),
+                    Stat::make(
+                'Volunteers',
+                User::whereHas('role',
+                    fn($q) => $q->where('role_name', 'volunteer')
+                )->count()
+            )
+            ->description('Relawan aktif')
+            ->descriptionIcon('heroicon-m-user-group')
+            ->color('success')
         ];
     }
 }

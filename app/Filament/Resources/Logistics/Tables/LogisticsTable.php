@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Shelters\Tables;
+namespace App\Filament\Resources\Logistics\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -10,34 +10,38 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Actions\DeleteAction;
 use Filament\Tables\Filters\Filter;
-use Filament\Tables\Filters\SelectFilter;
 
-class SheltersTable
+class LogisticsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('shelter_name')
-                    ->searchable(),
-                TextColumn::make('capacity')
-                    ->numeric()
+               TextColumn::make('category.category_name')
+                    ->label('Category')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('current_refugees')
+
+                TextColumn::make('shelter.shelter_name')
+                    ->label('Shelter')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('item_name')
+                    ->searchable(),
+                TextColumn::make('stock')
                     ->badge()
                     ->color(fn ($record) =>
-                        $record->current_refugees >= $record->capacity
+                        $record->stock <= $record->minimum_stock
                             ? 'danger'
                             : 'success'
-                    ),
-                TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (string $state) => match ($state) {
-                        'active' => 'success',
-                        'full' => 'warning',
-                        'closed' => 'danger',
-                        default => 'gray',
-                    }),
+                    )
+                    ->sortable(),
+                TextColumn::make('minimum_stock')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('expired_date')
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -48,26 +52,20 @@ class SheltersTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('status')
-                    ->options([
-                        'active' => 'Active',
-                        'full' => 'Full',
-                        'closed' => 'Closed',
-                    ]),
-                Filter::make('full_capacity')
-                    ->label('Full Capacity')
+                Filter::make('low_stock')
+                    ->label('Low Stock')
                     ->query(fn ($query) =>
                         $query->whereColumn(
-                            'current_refugees',
-                            '>=',
-                            'capacity'
+                            'stock',
+                            '<=',
+                            'minimum_stock'
                         )
                     ),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
-                 DeleteAction::make()
+                DeleteAction::make()
                 ->requiresConfirmation()
                 ->modalHeading('Delete Complaint')
                 ->modalDescription('Are you sure you want to delete this complaint?')

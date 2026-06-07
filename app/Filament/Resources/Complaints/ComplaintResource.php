@@ -11,6 +11,7 @@ use App\Filament\Resources\Complaints\Schemas\ComplaintInfolist;
 use App\Filament\Resources\Complaints\Tables\ComplaintsTable;
 use App\Models\Complaint;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,10 +20,9 @@ use Filament\Tables\Table;
 class ComplaintResource extends Resource
 {
     protected static ?string $model = Complaint::class;
-
-   protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
-
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMegaphone;
     protected static ?string $recordTitleAttribute = 'title';
+    protected static string|UnitEnum|null $navigationGroup = 'Management';
 
     public static function form(Schema $schema): Schema
     {

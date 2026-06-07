@@ -11,6 +11,7 @@ use App\Filament\Resources\Shelters\Schemas\ShelterInfolist;
 use App\Filament\Resources\Shelters\Tables\SheltersTable;
 use App\Models\Shelter;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,10 +21,9 @@ class ShelterResource extends Resource
 {
     
     protected static ?string $model = Shelter::class;
-
     protected static string|BackedEnum|null $navigationIcon =  Heroicon::OutlinedBuildingOffice2;
-
     protected static ?string $recordTitleAttribute = 'shelter_name';
+    protected static string|UnitEnum|null $navigationGroup = 'Management';
 
     public static function form(Schema $schema): Schema
     {

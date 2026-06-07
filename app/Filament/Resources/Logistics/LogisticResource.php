@@ -55,4 +55,11 @@ class LogisticResource extends Resource
             'edit' => EditLogistic::route('/{record}/edit'),
         ];
     }
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'item_name',
+            'description',
+        ];
+    }
 }

@@ -55,4 +55,20 @@ class DonationResource extends Resource
             'edit' => EditDonation::route('/{record}/edit'),
         ];
     }
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) Donation::where('status', 'pending')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'info';
+    }
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'donor_name',
+            'item_name',
+        ];
+    }
 }

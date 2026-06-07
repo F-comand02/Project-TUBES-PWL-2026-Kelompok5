@@ -55,4 +55,21 @@ class ComplaintResource extends Resource
             'edit' => EditComplaint::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) Complaint::where('status', 'pending')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'warning';
+    }
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'title',
+            'description',
+        ];
+    }
 }

@@ -56,4 +56,11 @@ class ShelterResource extends Resource
             'edit' => EditShelter::route('/{record}/edit'),
         ];
     }
+    public static function getGloballySearchableAttributes(): array
+    {
+        return [
+            'shelter_name',
+            'address',
+        ];
+    }
 }

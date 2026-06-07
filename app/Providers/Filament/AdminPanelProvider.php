@@ -26,6 +26,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->brandLogo(asset('images/LogoKhususAdmin.png'))
+            ->brandName('WaterRelief')
+            ->brandLogoHeight('5rem')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -37,7 +40,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
            ->widgets([
-                AdminStats::class,
+                \App\Filament\Widgets\AdminStats::class,
+                \App\Filament\Widgets\RecentActivities::class,
+                \App\Filament\Widgets\WelcomeAdmin::class,
+                \App\Filament\Widgets\SystemStatus::class,
+                \App\Filament\Widgets\WaterReliefInfo::class,
             ])
             ->middleware([
                 EncryptCookies::class,

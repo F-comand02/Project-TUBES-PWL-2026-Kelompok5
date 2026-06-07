@@ -93,9 +93,6 @@
     @if($donations->isEmpty())
 
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-16 text-center">
-            <div class="w-20 h-20 mx-auto bg-green-50 rounded-full flex items-center justify-center text-4xl mb-4">
-                📦
-            </div>
             <h3 class="text-lg font-semibold text-gray-700">Belum ada donasi</h3>
             <p class="text-gray-400 mt-2">Tidak ada data distribusi bantuan saat ini.</p>
         </div>
@@ -115,9 +112,6 @@
 
                         {{-- ITEM INFO --}}
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center text-2xl shrink-0">
-                                📦
-                            </div>
                             <div>
                                 <h2 class="text-lg font-bold text-slate-900 leading-tight">
                                     {{ $donation->item_name }}
@@ -132,15 +126,15 @@
                         <div class="shrink-0">
                             @if($donation->status === 'pending')
                                 <span class="bg-yellow-100 text-yellow-700 px-3 py-1.5 rounded-full text-xs font-bold">
-                                    ⏳ Menunggu
+                                    Menunggu
                                 </span>
                             @elseif($donation->status === 'on_delivery')
                                 <span class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-xs font-bold">
-                                    🚚 Dalam Pengiriman
+                                    Dalam Pengiriman
                                 </span>
                             @elseif($donation->status === 'received')
                                 <span class="bg-green-100 text-green-600 px-3 py-1.5 rounded-full text-xs font-bold">
-                                    ✅ Selesai
+                                    Selesai
                                 </span>
                             @elseif($donation->status === 'confirmed')
                                 <span class="bg-purple-100 text-purple-600 px-3 py-1.5 rounded-full text-xs font-bold">
@@ -196,7 +190,7 @@
                     {{-- CATATAN --}}
                     @if($donation->notes)
                     <div class="mt-3 bg-amber-50 border border-amber-100 rounded-2xl px-4 py-3">
-                        <p class="text-xs text-amber-600 font-semibold mb-0.5">📝 Catatan</p>
+                        <p class="text-xs text-amber-600 font-semibold mb-0.5">Catatan</p>
                         <p class="text-sm text-amber-800">{{ $donation->notes }}</p>
                     </div>
                     @endif

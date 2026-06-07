@@ -44,12 +44,9 @@
     {{-- SHELTER CARDS --}}
     @if($shelters->isEmpty())
 
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-16 text-center">
-            <div class="w-20 h-20 mx-auto bg-gray-100 rounded-full flex items-center justify-center text-4xl mb-4">
-                🏠
-            </div>
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 mx-8 text-center">
             <h3 class="text-lg font-semibold text-gray-700">Belum ada posko tersedia</h3>
-            <p class="text-gray-400 mt-2">Posko akan muncul saat volunteer menambahkan data.</p>
+            <p class="text-gray-400">Posko akan muncul saat volunteer menambahkan data.</p>
         </div>
 
     @else

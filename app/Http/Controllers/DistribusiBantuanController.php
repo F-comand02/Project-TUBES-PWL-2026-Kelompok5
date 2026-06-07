@@ -69,7 +69,7 @@ class DistribusiBantuanController extends Controller
 
         return back()->with(
             'success',
-            'Donasi berhasil diantarkan ke posko! Misi selesai. 🎉'
+            'Donasi berhasil diantarkan ke posko! Misi selesai. Terima kasih atas bantuan Anda.'
         );
     }
 

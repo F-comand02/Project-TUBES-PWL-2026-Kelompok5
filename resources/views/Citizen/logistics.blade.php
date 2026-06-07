@@ -107,10 +107,6 @@
 
         <div class="col-span-full bg-white rounded-3xl shadow-lg p-10 text-center">
 
-            <div class="text-6xl mb-4">
-                📦
-            </div>
-
             <h2 class="text-2xl font-bold text-gray-700">
                 Belum Ada Bantuan Tersedia
             </h2>

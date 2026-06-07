@@ -1,9 +1,9 @@
 <x-layouts.dashboard title="My Complaints" role="citizen">
 
-    <div class="p-4 sm:p-6 space-y-6">
+    <div class="p-4 sm:p-6 space-y-2">
 
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
+        <div class="flex justify-between items-center from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6 text-white shadow-lg">
 
             <div>
                 <h1 class="text-3xl font-bold text-white">
@@ -128,7 +128,15 @@
     @endforeach
 
 </div>
+@if($complaints->isEmpty())
 
-    </div>
+    <div class="bg-white rounded-2xl shadow-xl p-8 mx-8 text-center text-bold text-gray-500">
+        <h3 class="text-lg font-semibold text-gray-700">Belum ada komplain.</h3>
+        <p class="text-gray-400 ">Komplain yang Anda buat akan muncul di sini.</p>
+    </div>  
+
+@endif
+
+</div>
 
 </x-app-layout.dashboard>

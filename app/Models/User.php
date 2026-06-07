@@ -7,8 +7,11 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+use App\Models\Shelter;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -29,11 +32,18 @@ class User extends Authenticatable
     'two_factor_code',
     'two_factor_expires_at',
     'two_factor_enabled',
+    'gender',
     'skills',
     'organization',
     'experience',
     'availability',
+    'password' => 'hashed',
  ];
+
+ public function canAccessPanel(Panel $panel): bool
+{
+    return $this->role?->role_name === 'admin';
+}
 
     /**
      * The attributes that should be hidden for serialization.
@@ -84,5 +94,9 @@ class User extends Authenticatable
         $this->two_factor_code = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+    public function shelter()
+    {
+        return $this->belongsTo(Shelter::class);
     }
 }

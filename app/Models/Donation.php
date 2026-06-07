@@ -16,6 +16,7 @@ class Donation extends Model
         'status',         // pending | on_delivery | received | confirmed
         'notes',
         'donation_date',
+        'category_id',
     ];
 
     protected $casts = [
@@ -38,5 +39,12 @@ class Donation extends Model
     public function volunteer()
     {
         return $this->belongsTo(User::class, 'volunteer_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(
+            LogisticsCategory::class
+        );
     }
 }

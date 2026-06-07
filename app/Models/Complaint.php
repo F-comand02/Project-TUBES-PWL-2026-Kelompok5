@@ -16,12 +16,15 @@ class Complaint extends Model
     'category',
     'urgency_level',
     'status',
-    'image',
     ];
 
     public function images()
     {
         return $this->hasMany(ComplaintImage::class);
+    }
+    public function firstImage()
+    {
+        return $this->hasOne(ComplaintImage::class);
     }
 
     public function user()

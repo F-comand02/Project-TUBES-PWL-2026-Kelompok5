@@ -1,7 +1,4 @@
-<x-layouts.dashboard
-    title="Dashboard"
-    color="green"
-    role="volunteer">
+<x-layouts.dashboard title="Dashboard" color="green" role="volunteer">
 
     <div class="space-y-8">
 
@@ -23,188 +20,346 @@
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
             <!-- CARD -->
-            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 hover:scale-102 transition duration-250 hover:shadow-xl">
 
-                <p class="text-gray-500 text-sm">
-                    Missions Completed
+            <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3">
+                <h2 class="font-bold text-lg text-white">
+                    Completed Missions
+                </h2>
+            </div>
+            
+            <div class="overflow-y-auto h-36 m-2">
+            @forelse($completedMissionList as $mission)
+
+                <div class="m-3 p-3 rounded-xl bg-green-100">
+
+                    <p class="font-semibold text-green-900">
+                        {{ $mission->title }}
+                    </p>
+                </div>
+                
+                @empty
+                
+                <p class="text-gray-500">
+                    Belum ada misi yang selesai.
+                </p>
+                
+                @endforelse
+            </div>
+
+        </div>
+
+            <!-- CARD -->
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 hover:scale-102 transition duration-250 hover:shadow-xl">
+                <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3">
+                <p class="font-bold text-lg text-white">
+                    My Missions
                 </p>
 
-                <h1 class="text-4xl font-black text-slate-900 mt-4">
-                    12
-                </h1>
+                    <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-4 text-white font-bold rounded-3xl hover:scale-95 transition">
+                            <a href=" {{ route('missions.mine') }} ">
+                                    View detail
+                            </a>
+                    </button>
+                </div>
 
+                <div class="overflow-y-auto h-34 mx-4 my-2">
+                @forelse($upcomingMissions as $my)
+                
+                <div class="border border-gray-200  rounded-2xl p-3 m-5 bg-gray-200">
+
+                    <div class="flex justify-between items-start">
+
+                        <div>
+
+                            <h3 class="font-bold text-lg text-slate-900">
+                                {{ $my->title ?? 'Complaint #'.$my->id }}
+                            </h3>
+
+                            <p class="text-sm text-gray-500">
+                                {{ $my->location }}
+                            </p>
+
+                        </div>
+
+                        <span class="
+                            px-3 py-1 rounded-lg text-sm font-semibold
+                            @if($my->urgency_level === 'high')
+                                bg-red-100 text-red-700
+                            @elseif($my->urgency_level === 'medium')
+                                bg-yellow-100 text-yellow-700
+                            @else
+                                bg-green-100 text-green-700
+                            @endif
+                        ">
+                            {{ ucfirst($my->urgency_level) }}
+                        </span>
+
+                    </div>
+
+                    <div class="mt-2 flex justify-between items-center">
+
+                        <div class="text-sm text-gray-500">
+
+                            {{ $my->user->name ?? 'Citizen' }}
+
+                            <br>
+
+                            {{ $my->created_at->format('d M Y') }}
+
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                    @empty
+                    
+                    <div class="text-center py-10">
+                        
+                        <p class="text-gray-500">
+                            Belum ada complaint yang tersedia.
+                        </p>
+                        
+                    </div>
+                    
+                    @endforelse
+                </div>
+                
             </div>
 
             <!-- CARD -->
-            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 hover:scale-102 transition duration-250 hover:shadow-xl">
+                <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3">
+                    <h2 class="text-xl font-bold text-white">
+                        Distribution Assag...
+                    </h2>
 
-                <p class="text-gray-500 text-sm">
-                    Hours Volunteered
+                    <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-1 text-white font-bold rounded-3xl hover:scale-95 transition">
+                        <a href=" {{ route('volunteer.distribusi-bantuan') }} ">
+                                View detail
+                        </a>
+                    </button>
+                </div>
+
+            <div class="overflow-y-auto h-34 m-6">
+            @forelse($distributionAssignments as $donation)
+
+                <div class="mb-4 p-4 rounded-2xl bg-gray-200">
+
+                    <h3 class="font-semibold text-slate-900">
+                        {{ $donation->item_name }}
+                    </h3>
+
+                    <p class="text-sm text-gray-500 my-1">
+                        {{ $donation->shelter->shelter_name ?? '-' }}
+                    </p>
+
+                    <p class="text-sm text-gray-500">
+                        {{ $donation->donor_name }}
+                    </p>
+
+                    <span class="
+                        inline-block mt-2 px-3 py-1 rounded-lg text-xs font-semibold
+                        {{ $donation->status === 'received'
+                            ? 'bg-green-100 text-green-700'
+                            : 'bg-yellow-100 text-yellow-700' }}
+                    ">
+                        {{ ucfirst(str_replace('_', ' ', $donation->status)) }}
+                    </span>
+
+                </div>
+
+            @empty
+
+                <p class="text-gray-500">
+                    No distribution assignments.
                 </p>
 
-                <h1 class="text-4xl font-black text-slate-900 mt-4">
-                    48h
-                </h1>
-
+            @endforelse
             </div>
+
+        </div>
 
             <!-- CARD -->
-            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-
-                <p class="text-gray-500 text-sm">
-                    Upcoming Missions
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 hover:scale-102 transition duration-250 hover:shadow-xl">
+                <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3">
+                <p class="text-white text-xl font-bold">
+                    Managed Shelters
                 </p>
 
-                <h1 class="text-4xl font-black text-slate-900 mt-4">
-                    3
-                </h1>
-
+                <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-1 text-white font-bold rounded-3xl hover:scale-95 transition">
+                        <a href=" {{ route('shelters.index') }} ">
+                                View detail
+                        </a>
+                    </button>
             </div>
 
-            <!-- CARD -->
-            <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+    <div class="overflow-y-auto h-34 m-6">
+    @forelse($myShelters as $shelter)
 
-                <p class="text-gray-500 text-sm">
-                    People Helped
-                </p>
+        <div class="mb-4 p-4 rounded-2xl bg-gray-200">
 
-                <h1 class="text-4xl font-black text-slate-900 mt-4">
-                    152
-                </h1>
+            <h3 class="font-semibold text-slate-900">
+                {{ $shelter->shelter_name }}
+            </h3>
 
+            <p class="text-sm text-gray-500 mt-2">
+                Capacity:
+                {{ $shelter->capacity }}
+            </p>
+
+            <p class="text-sm text-gray-500">
+                Refugees:
+                {{ $shelter->current_refugees }}
+            </p>
+
+            <span class="
+                inline-block mt-2 px-3 py-1 rounded-lg text-xs font-semibold
+
+                @if($shelter->status === 'active')
+                    bg-green-100 text-green-700
+                @elseif($shelter->status === 'full')
+                    bg-yellow-100 text-yellow-700
+                @else
+                    bg-red-100 text-red-700
+                @endif
+            ">
+                {{ ucfirst($shelter->status) }}
+            </span>
+
+        </div>
+
+    @empty
+
+        <p class="text-gray-500">
+            No shelters available.
+        </p>
+
+    @endforelse
+
+                </div>
             </div>
-
         </div>
 
         <!-- CONTENT -->
         <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
             <!-- MISSIONS -->
-            <div
-                class="xl:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                    <div class=" xl:col-span-2 bg-white rounded-2xl shadow hover:scale-102 transition duration-250 hover:shadow-xl">
+                            <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl mb-3">
+                                <h2 class="text-xl font-bold p-3 rounded-lg text-white">
+                                    Available Missions
+                                </h2>
 
-                <div class="flex items-center justify-between mb-6">
+                                <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-4 text-white font-bold rounded-3xl hover:scale-95 transition">
+                                    <a href=" {{ route('missions.mine') }} ">
+                                        View detail
+                                    </a>
+                                </button>
+                            </div>
 
-                    <h2 class="text-2xl font-bold text-slate-900">
-                        Upcoming Missions
-                    </h2>
+                            <div class="overflow-y-auto h-57 py-1 mx-5">
+                                @forelse($recentComplaints as $complaint)
+                                    <div class="py-2 bg-gray-200 shadow rounded-lg mb-3 px-2">
+                                        <p class="font-semibold mb-2">
+                                            {{ $complaint->title }}
+                                        </p>
 
-                    <button
-                        class="text-green-600 font-semibold hover:text-green-700 transition">
+                                        <p class="text-sm text-gray-500">
+                                            Alamat : {{ $complaint->shelter->address }}
+                                        </p>
 
-                        View All
+                                        <span class="text-sm text-gray-500">
+                                            @if($complaint->status == 'pending')
+                                            <span class="bg-yellow-100 text-yellow-600 px-1 py-1 rounded text-xs">
+                                                {{ ucfirst(str_replace('_', ' ', $complaint->status)) }}
+                                            </span>
+                                        @elseif($complaint->status == 'processing')
+                                            <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-xs ">
+                                                {{ ucfirst(str_replace('_', ' ', $complaint->status)) }}
+                                            </span>
+                                        @elseif($complaint->status == 'resolved')
+                                            <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-xs">
+                                                {{ ucfirst(str_replace('_', ' ', $complaint->status)) }}
+                                            </span>
+                                        @endif
 
-                    </button>
+                                        <span class="text-red-700 px-1 py-1 rounded-full text-sm">
+                                            {{ ucfirst($complaint->urgency_level) }}
+                                        </span>
 
-                </div>
+                                        <a class="mx-3"> | </a>
 
-                <div class="space-y-5">
+                                        <span class="text-cyan-700 px-1 py-1 rounded-full text-sm">
+                                            {{ $complaint->category }}
+                                        </span>
 
-                    <!-- ITEM -->
-                    <div
-                        class="flex items-center justify-between border border-gray-100 rounded-2xl p-5">
+                                        <a class="mx-3"> | </a>
 
-                        <div>
-
-                            <h3 class="font-bold text-slate-900">
-                                Flood Relief Distribution
-                            </h3>
-
-                            <p class="text-gray-500 text-sm mt-1">
-                                Central City Shelter
-                            </p>
-
+                                        <span class="text-sm text-gray-500">
+                                            {{ $complaint->created_at->format('d M Y') }}
+                                        </span>
+                                    </span>
+                                    </div>
+                                    @empty
+                                    <div class="rounded-2xl p-8 mx-8 mt-10 text-center text-bold text-gray-500">
+                                        <h3 class="text-lg font-semibold text-gray-700">Belum ada komplain.</h3>
+                                        <p class="text-gray-400 ">Komplain yang Anda buat akan muncul di sini.</p>
+                                    </div>  
+                                @endforelse
+                            </div>
                         </div>
-
-                        <span
-                            class="px-4 py-2 rounded-xl bg-green-100 text-green-700 text-sm font-semibold">
-
-                            Confirmed
-
-                        </span>
-
-                    </div>
-
-                    <!-- ITEM -->
-                    <div
-                        class="flex items-center justify-between border border-gray-100 rounded-2xl p-5">
-
-                        <div>
-
-                            <h3 class="font-bold text-slate-900">
-                                Water Supply Delivery
-                            </h3>
-
-                            <p class="text-gray-500 text-sm mt-1">
-                                Riverside Area
-                            </p>
-
-                        </div>
-
-                        <span
-                            class="px-4 py-2 rounded-xl bg-yellow-100 text-yellow-700 text-sm font-semibold">
-
-                            Pending
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
 
             <!-- SIDE -->
-            <div
-                class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+            <div class="bg-white rounded-2xl shadow hover:scale-102 transition duration-250 hover:shadow-xl">
 
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">
-                    Recent Activities
-                </h2>
+        <div class="items-center rounded-lg text-white">
+                <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl mb-4">
+                    <div class="flex justify-between items-center">
+                    <img
+                        src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
+                        class="w-22 h-22 m-2 ml-3  rounded-full object-cover">
 
-                <div class="space-y-6">
-
-                    <div>
-
-                        <h3 class="font-semibold text-slate-900">
-                            Completed Mission
+                    <div class="ml-2 max-w-55">
+                        <h3 class="font-bold text-2xl">
+                            {{ auth()->user()->name }}
                         </h3>
 
-                        <p class="text-gray-500 text-sm mt-1">
-                            Distributed relief goods to 50 families.
+                        <p class="text-sm text-green-100">
+                            Citizen
                         </p>
-
                     </div>
-
-                    <div>
-
-                        <h3 class="font-semibold text-slate-900">
-                            Checked In
-                        </h3>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Arrived at Central Shelter.
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <h3 class="font-semibold text-slate-900">
-                            Mission Assigned
-                        </h3>
-
-                        <p class="text-gray-500 text-sm mt-1">
-                            Assigned to Water Distribution Team.
-                        </p>
-
-                    </div>
-
                 </div>
 
+                <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-4 text-white font-bold rounded-3xl hover:scale-95 transition">
+                    <a href=" {{ route('profile.edit') }} ">
+                        View detail
+                    </a>
+                </button>
             </div>
-
         </div>
+
+    <div class="space-y-3 bg-gray-200 shadow rounded-lg m-3 p-3">
+
+        <p>
+            Email       : {{ auth()->user()->email }}
+        </p>
+
+        <p>
+            Nomor Hp    : {{ auth()->user()->phone ?? '-' }}
+        </p>
+
+        <p>
+            Alamat      : {{ auth()->user()->address ?? '-' }}
+        </p>
+
+        <p>
+            Jenis Kelamin : {{ auth()->user()->gender ?? '-'}}
+
+    </div>
+
+</div> 
+
 
     </div>
 

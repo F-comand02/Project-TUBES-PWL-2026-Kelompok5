@@ -165,11 +165,12 @@
 
             @endforeach
             @if($complaints->isEmpty())
-                <div class="col-span-full text-center">
-                    <p class="text-gray-500 text-lg">
-                        No complaints found.
-                    </p>
-                </div>
+                
+
+                <div class="rounded-2xl p-8 mx-8 bg-white shadow-xl col-span-full text-center text-bold text-gray-500">
+                    <h3 class="text-lg font-semibold text-gray-700">Belum ada komplain.</h3>
+                    <p class="text-gray-400 ">Komplain yang Anda buat akan muncul di sini.</p>
+                </div>  
             @endif
 
         </div>

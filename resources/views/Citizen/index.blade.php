@@ -39,10 +39,10 @@
 
                 <div class="w-full h-56 overflow-hidden">
 
-        <img
-            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
-            class="w-full h-full object-cover">
-        </div>
+                    <img
+                        src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
+                        class="w-full h-full object-cover">
+                </div>
             @else
 
                 <div class="w-full h-56 bg-gray-200 flex items-center justify-center">

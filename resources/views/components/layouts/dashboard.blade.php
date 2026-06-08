@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             sidebarOpen = !sidebarOpen;
                             openNotif = false;
                         "
-                        class="text-gray-500 hover:text-slate-900 hover:rotate-360 transition text-3xl px-4">
+                        class="text-gray-500 hover:text-slate-900 hover:rotate-360 transition duration-400 text-3xl px-1">
 
                         ☰
 

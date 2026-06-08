@@ -84,7 +84,7 @@
                 Belum ada misi komplain yang diambil. 
                 <a href="{{ route('volunteer.complaints') }}"
                            class="text-green-500 hover:text-green-700 font-semibold text-sm underline">
-                            Lihat Distribusi Bantuan
+                            Lihat Mengatur Komplain
                         </a>
             </div>
 

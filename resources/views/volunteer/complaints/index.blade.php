@@ -6,7 +6,7 @@
 <div class="space-y-6">
 
     <div class="bg-gradient-to-r from-emerald-500 to-green-600 rounded-3xl p-8 text-white shadow-lg">
-        <h1 class="text-3xl font-bold mb-6">
+        <h1 class="text-3xl font-bold mb-4">
             Complaints Management
         </h1>
 
@@ -15,11 +15,11 @@
         </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 p-8 xl:grid-cols-3 gap-6 shadow-xl rounded-3xl m-6 bg-white border border-gray-100">
+    <div class="grid grid-cols-1 md:grid-cols-2 px-8 xl:grid-cols-3 gap-6">
 
     @foreach($complaints as $complaint)
 
-        <div class="bg-white rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
+        <div class="bg-white rounded-4xl overflow-hidden shadow-lg border border-gray-100">
 
                     <!-- IMAGE -->
                     @if($complaint->images->first())
@@ -165,11 +165,12 @@
 
             @endforeach
             @if($complaints->isEmpty())
-                <div class="col-span-full text-center">
-                    <p class="text-gray-500 text-lg">
-                        No complaints found.
-                    </p>
-                </div>
+                
+
+                <div class="rounded-2xl p-8 mx-8 bg-white shadow-xl col-span-full text-center text-bold text-gray-500">
+                    <h3 class="text-lg font-semibold text-gray-700">Belum ada komplain.</h3>
+                    <p class="text-gray-400 ">Komplain yang Anda buat akan muncul di sini.</p>
+                </div>  
             @endif
 
         </div>

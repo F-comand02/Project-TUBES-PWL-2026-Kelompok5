@@ -17,11 +17,10 @@
 
             
 
-            <button>
-                <a href="{{ route('complaints.create') }}"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-2xl font-semibold shadow-lg transition">
+            <button class="bg-blue-600 hover:bg-blue-700 sm: text-white p-3 scale-90 rounded-2xl font-semibold shadow-lg transition">
+                <a href="{{ route('complaints.create') }}">
 
-                    + Buat Komplain Baru
+                    + Buat Komplain
 
                 </a>
             </button>
@@ -40,10 +39,10 @@
 
                 <div class="w-full h-56 overflow-hidden">
 
-        <img
-            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
-            class="w-full h-full object-cover">
-        </div>
+                    <img
+                        src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
+                        class="w-full h-full object-cover">
+                </div>
             @else
 
                 <div class="w-full h-56 bg-gray-200 flex items-center justify-center">
@@ -65,7 +64,7 @@
 
                 <button
                     type="submit"
-                    class="mt-2 w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-2xl font-semibold transition">
+                    class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-b-2xl font-semibold transition">
 
                     Hapus Komplain
 

@@ -149,7 +149,7 @@
                 
                 </div>
                 
-            <div class="overflow-y-auto h-54 py-1 px-3 mx-5">
+            <div class="overflow-y-auto h-52 py-1 px-3 mx-5">
             @forelse($shelters as $shelter)
 
                 <div class="py-3 bg-gray-200 shadow rounded-lg mb-3 px-2">

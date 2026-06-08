@@ -46,7 +46,75 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:volunteer'])->group(function () {
 
     Route::get('/volunteer/dashboard', function () {
-        return view('volunteer.dashboard');
+
+        $availableMissions = \App\Models\Complaint::where('status', 'pending')
+            ->count();
+
+        $completedMissions = \App\Models\Complaint::where(
+            'assigned_volunteer_id',
+            \Illuminate\Support\Facades\Auth::id()
+        )
+        ->where('status', 'completed')
+        ->count();
+
+        $completedMissionList = \App\Models\Complaint::where(
+            'assigned_volunteer_id',
+            \Illuminate\Support\Facades\Auth::id()
+        )
+        ->where('status', 'completed')
+        ->latest()
+        ->take(5)
+        ->get();
+
+        $upcomingMissions = \App\Models\Complaint::with('user')
+        ->where('assigned_volunteer_id', \Illuminate\Support\Facades\Auth::id())
+        ->where('status', 'processing')
+        ->latest()
+        ->get();
+
+        $distributionAssignments = \App\Models\Donation::with([
+            'shelter',
+            'user'
+        ])
+        ->where('volunteer_id', \Illuminate\Support\Facades\Auth::id())
+        ->whereIn('status', [
+            'on_delivery',
+            'received'
+        ])
+        ->latest()
+        ->take(5)
+        ->get();
+
+        $myShelters = \App\Models\Shelter::latest()
+        ->take(5)
+        ->get();
+
+        $recentComplaints = \App\Models\Complaint::latest()
+            ->take(5)
+            ->get();
+
+        $myDonations = \App\Models\Donation::where(
+            'volunteer_id',
+            \Illuminate\Support\Facades\Auth::id()
+        )
+        ->latest()
+        ->take(5)
+        ->get();
+
+        return view(
+            'volunteer.dashboard',
+            compact(
+                'availableMissions',
+                'completedMissions',
+                'distributionAssignments',
+                'myShelters',
+                'recentComplaints',
+                'myDonations',
+                'completedMissionList',
+                'upcomingMissions'
+            )
+        );
+
     })->name('volunteer.dashboard');
 
     Route::delete(

@@ -22,13 +22,7 @@ class DatabaseSeeder extends Seeder
             LogisticsCategorySeeder::class,
         ]);
 
-       User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
-            [
-                'name' => 'Admin',
-                'password' => bcrypt('password')
-            ]
-        );
+       //
         
     }
 

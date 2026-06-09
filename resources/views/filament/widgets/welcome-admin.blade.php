@@ -1,12 +1,12 @@
 <x-filament::section>
 
  <x-slot name="heading">
-        Greetings, Admin!
+        Hi There, Admin!
 </x-slot>
     <div class="bg-gradient-to-r from-amber-500 to-orange-600 p-6 rounded-xl text-white shadow-lg">
 
         <h2 class="text-3xl font-bold">
-            Welcome Back, {{ auth()->user()->name }}
+            {{ auth()->user()->name }}
         </h2>
 
         <p class="mt-2 text-orange-100">
@@ -18,11 +18,6 @@
         </span>
 
         <div class="mt-4 h-px bg-orange-300/30"></div>
-
-        <p class="mt-4 text-sm text-orange-100">
-            Monitor complaints, donations, shelters,
-            logistics, and volunteer activities in real-time.
-        </p>
 
     </div>
 

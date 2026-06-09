@@ -702,13 +702,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                         <div class="flex items-start gap-3 sm:gap-4">
 
-                                            <div
-                                                class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-lg sm:text-xl shrink-0">
-
-                                                🔔
-
-                                            </div>
-
                                             <div class="min-w-0">
 
                                                 <h2 class="font-semibold text-slate-900 text-sm sm:text-base">

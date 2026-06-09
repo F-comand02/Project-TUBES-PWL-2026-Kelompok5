@@ -171,7 +171,8 @@
                             file:rounded-2xl
                             file:border-0
                             file:text-white
-                            hover:file:scale-105
+                            hover:file:scale-95
+                            file:duration-100
                             transition-all
                             {{ $isvolunteer
                                 ? 'file:bg-green-600 hover:file:bg-green-700'
@@ -443,7 +444,7 @@
 
                         <button
                             type="submit"
-                            class="px-8 py-4 rounded-2xl text-white font-bold transition-all duration-300 hover:scale-[1.02] shadow-lg
+                            class="px-8 py-4 rounded-2xl text-white font-bold hover:scale-95 duration-200 transition shadow-lg
                             {{ $isvolunteer
                                 ? 'bg-green-600 hover:bg-green-700'
                                 : 'bg-blue-600 hover:bg-blue-700'

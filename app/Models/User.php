@@ -41,19 +41,19 @@ class User extends Authenticatable implements FilamentUser
  ];
 
  public function canAccessPanel(Panel $panel): bool
-{
-    return $this->role?->role_name === 'admin';
-}
+    {
+        return $this->role?->role_name === 'admin';
+    }
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+        /**
+         * The attributes that should be hidden for serialization.
+         *
+         * @var list<string>
+         */
+        protected $hidden = [
+            'password',
+            'remember_token',
+        ];
 
     /**
      * The attributes that should be cast.

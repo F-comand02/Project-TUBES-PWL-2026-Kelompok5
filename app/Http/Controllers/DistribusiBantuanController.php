@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\DonationDeliveryAssignedNotification;
+use App\Notifications\DonationDeliveredNotification;
 use App\Models\Logistic;
 
 class DistribusiBantuanController extends Controller
@@ -44,6 +46,13 @@ class DistribusiBantuanController extends Controller
             'status'       => 'on_delivery',
         ]);
 
+        $donation->user->notify(
+            new DonationDeliveryAssignedNotification(
+                Auth::user()->name,
+                $donation
+            )
+        );
+
         return back()->with(
             'success',
             'Misi pengiriman berhasil diambil! Silakan cek di menu Misi Saya.'
@@ -65,7 +74,15 @@ class DistribusiBantuanController extends Controller
 
     $donation->update([
         'status' => 'received',
+        
     ]);
+
+     $donation->user->notify(
+        new DonationDeliveredNotification(
+            Auth::user()->name,
+            $donation
+        )
+    );
 
     $logistic = Logistic::where(
         'shelter_id',

@@ -22,13 +22,13 @@
             <!-- CARD -->
         <div class="bg-white rounded-3xl shadow-sm border border-gray-100 hover:scale-102 transition duration-250 hover:shadow-xl">
 
-            <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3">
+            <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl p-3 mb-3">
                 <h2 class="font-bold text-lg text-white">
                     Completed Missions
                 </h2>
             </div>
             
-            <div class="overflow-y-auto h-36 m-2">
+            <div class="overflow-y-auto h-40 m-2">
             @forelse($completedMissionList as $mission)
 
                 <div class="m-3 p-3 rounded-xl bg-green-100">
@@ -40,9 +40,11 @@
                 
                 @empty
                 
-                <p class="text-gray-500">
-                    Belum ada misi yang selesai.
-                </p>
+                <div class=" bg-gray-200 text-center py-17 rounded-xl mx-1">
+                    <p class="text-gray-500">
+                        Belum ada misi yang selesai.
+                    </p>
+                </div>
                 
                 @endforelse
             </div>
@@ -63,7 +65,7 @@
                     </button>
                 </div>
 
-                <div class="overflow-y-auto h-34 mx-4 my-2">
+                <div class="overflow-y-auto h-40 mx-2 my-2">
                 @forelse($upcomingMissions as $my)
                 
                 <div class="border border-gray-200  rounded-2xl p-3 m-5 bg-gray-200">
@@ -114,7 +116,7 @@
                     
                     @empty
                     
-                    <div class="text-center py-10">
+                    <div class="text-center bg-gray-200 text-center py-17 rounded-xl mx-1">
                         
                         <p class="text-gray-500">
                             Belum ada complaint yang tersedia.
@@ -141,7 +143,7 @@
                     </button>
                 </div>
 
-            <div class="overflow-y-auto h-34 m-6">
+            <div class="overflow-y-auto h-40 mt-2 mx-1">
             @forelse($distributionAssignments as $donation)
 
                 <div class="mb-4 p-4 rounded-2xl bg-gray-200">
@@ -171,9 +173,11 @@
 
             @empty
 
+            <div class="bg-gray-200 text-center py-17 rounded-xl mx-1">
                 <p class="text-gray-500">
                     No distribution assignments.
                 </p>
+            </div>
 
             @endforelse
             </div>
@@ -194,7 +198,7 @@
                     </button>
             </div>
 
-    <div class="overflow-y-auto h-34 m-6">
+    <div class="overflow-y-auto h-40 mt-2 mx-1">
     @forelse($myShelters as $shelter)
 
         <div class="mb-4 p-4 rounded-2xl bg-gray-200">
@@ -231,9 +235,11 @@
 
     @empty
 
+    <div class="bg-gray-200 text-center py-17 rounded-xl mx-1">
         <p class="text-gray-500">
             No shelters available.
         </p>
+    </div>
 
     @endforelse
 
@@ -302,7 +308,7 @@
                                     </span>
                                     </div>
                                     @empty
-                                    <div class="rounded-2xl p-8 mx-8 mt-10 text-center text-bold text-gray-500">
+                                    <div class="rounded-2xl p-18 mx-1 mt-1 text-center text-bold text-gray-500 bg-gray-200 text-center rounded-xl">
                                         <h3 class="text-lg font-semibold text-gray-700">Belum ada komplain.</h3>
                                         <p class="text-gray-400 ">Komplain yang Anda buat akan muncul di sini.</p>
                                     </div>  
@@ -316,9 +322,23 @@
         <div class="items-center rounded-lg text-white">
                 <div class="flex justify-between items-center bg-gradient-to-r from-emerald-500 to-green-600 rounded-t-2xl mb-4">
                     <div class="flex justify-between items-center">
-                    <img
-                        src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
-                        class="w-22 h-22 m-2 ml-3  rounded-full object-cover">
+                        
+                    @if(Auth::user()->profile_photo)
+                        
+                        <img
+                            src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
+                            class="w-22 h-22 m-2 ml-3  rounded-full object-cover">
+                        
+                    @else
+
+                        <div
+                            class="w-20 h-20 w-22 h-22 m-2 ml-3 rounded-full text-white flex items-center justify-center text-6xl font-black shadow-lg">
+
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+
+                        </div>
+
+                    @endif
 
                     <div class="ml-2 max-w-55">
                         <h3 class="font-bold text-2xl">

@@ -19,7 +19,7 @@
 
     @foreach($complaints as $complaint)
 
-        <div class="bg-white rounded-4xl overflow-hidden shadow-lg border border-gray-100">
+        <div class="bg-white rounded-4xl overflow-hidden shadow-lg border-gray-100 hover:scale-102 transition duration-250 hover:shadow-2xl">
 
                     <!-- IMAGE -->
                     @if($complaint->images->first())
@@ -28,8 +28,8 @@
 
                                                 
                        <img
-            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
-            class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            src="{{ asset('storage/complaints/' . $complaint->images->first()->image_path) }}"
+                            class="w-full h-full object-cover hover:scale-105 transition duration-500">
                         </div>
 
                     @endif
@@ -38,7 +38,7 @@
                     <div class="p-5">
 
                         <!-- TOP -->
-                        <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-center p-3 rounded-xl justify-between gap-4 bg-gray-100">
 
                             <div>
 
@@ -57,10 +57,10 @@
 
                             <!-- STATUS -->
                             <span
-                                class="px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap
+                                class="px-2 py-2 rounded-full text-sm font-semibold whitespace-nowrap
 
                                 @if($complaint->status == 'pending')
-                                    bg-yellow-100 text-yellow-700
+                                    bg-yellow-100 text-yellow-600
                                 @elseif($complaint->status == 'processing')
                                     bg-blue-100 text-blue-700
                                 @else
@@ -74,12 +74,12 @@
                         </div>
 
                         <!-- DESCRIPTION -->
-                        <p class="mt-5 text-gray-600 leading-relaxed">
+                        <p class="mt-2 text-gray-600 leading-relaxed bg-gray-100 p-3 rounded-xl" >
                             {{ $complaint->description }}
                         </p>
-
+                        
                         <!-- TAG -->
-                        <div class="flex flex-wrap gap-3 mt-6">
+                        <div class="flex flex-wrap gap-3 mt-3">
 
                             <span class="bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-semibold">
                                 {{ $complaint->category }}
@@ -95,14 +95,14 @@
                         <form
                             action="{{ route('volunteer.complaints.update', $complaint->id) }}"
                             method="POST"
-                            class="mt-7">
+                            class="mt-3">
 
                             @csrf
                             @method('PATCH')
 
                             <select
                                 name="status"
-                                class="w-full rounded-2xl border-gray-200 focus:border-green-500 focus:ring-green-500 py-3">
+                                class="w-full rounded-2xl px-3 bg-gray-100 focus:border-green-500 focus:ring-green-500 py-3 hover:bg-gray-200 transition duration-200">
 
                                 <option
                                     value="pending"
@@ -132,7 +132,7 @@
 
                             <button
                                 type="submit"
-                                class="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-[1.02] hover:shadow-lg transition text-white py-3 rounded-2xl font-bold">
+                                class="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:shadow-lg hover:scale-95 duration-200 transition text-white py-3 rounded-2xl font-bold">
 
                                 Update Complaint Status
 
@@ -151,7 +151,7 @@
 
                             <button
                                 type="submit"
-                                class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl font-bold transition">
+                                class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl hover:scale-95 duration-200 font-bold transition">
 
                                 Delete Complaint
 

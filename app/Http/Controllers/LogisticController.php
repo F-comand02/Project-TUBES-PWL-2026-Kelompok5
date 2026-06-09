@@ -8,6 +8,8 @@ use App\Models\LogisticsCategory;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\LowStockNotif;
+use App\Notifications\LogisticExpiringSoonNotification;
+use Carbon\Carbon;
 
 class LogisticController extends Controller
 {
@@ -113,6 +115,26 @@ class LogisticController extends Controller
 
             })->get();
 
+            if (
+                    $logistic->expired_date &&
+                    Carbon::parse($logistic->expired_date)->diffInDays(now()) <= 7
+                ) {
+
+                    $volunteers = User::whereHas('role', function ($query) {
+
+                        $query->where('role_name', 'volunteer');
+
+                    })->get();
+
+                    foreach ($volunteers as $volunteer) {
+
+                        $volunteer->notify(
+                            new LogisticExpiringSoonNotification($logistic)
+                        );
+
+                    }
+                }
+
             foreach ($volunteers as $volunteer) {
 
                 $volunteer->notify(
@@ -179,6 +201,26 @@ class LogisticController extends Controller
 
         }
     }
+
+    if (
+            $logistic->expired_date &&
+            Carbon::parse($logistic->expired_date)->diffInDays(now()) <= 7
+        ) {
+
+            $volunteers = User::whereHas('role', function ($query) {
+
+                $query->where('role_name', 'volunteer');
+
+            })->get();
+
+            foreach ($volunteers as $volunteer) {
+
+                $volunteer->notify(
+                    new LogisticExpiringSoonNotification($logistic)
+                );
+
+            }
+        }
 
     return redirect()
         ->route('logistics.index')

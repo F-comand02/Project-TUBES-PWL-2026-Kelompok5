@@ -18,7 +18,7 @@
 
     @forelse($complaints as $complaint)
 
-    <div class="bg-white rounded-2xl shadow-xl p-6 mt-6 mx-6">
+    <div class="bg-white rounded-2xl shadow-xl p-6 mt-6 mx-6 hover:scale-102 transition duration-250 hover:shadow-2xl">
 
         <div class="flex justify-between gap-8">
 

@@ -206,9 +206,23 @@
         <div class="items-center rounded-lg text-white">
                 <div class="flex justify-between items-center bg-gradient-to-r from-cyan-600 to-cyan-300 rounded-t-2xl mb-4">
                     <div class="flex justify-between items-center">
-                    <img
-                        src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
-                        class="w-22 h-22 m-2 ml-3  rounded-full object-cover">
+                        
+                    @if(Auth::user()->profile_photo)
+                        
+                        <img
+                            src="{{ asset('storage/profile-photos/' . Auth::user()->profile_photo) }}"
+                            class="w-22 h-22 m-2 ml-3  rounded-full object-cover">
+                        
+                    @else
+
+                        <div
+                            class="w-20 h-20 w-22 h-22 m-2 ml-3 rounded-full text-white flex items-center justify-center text-6xl font-black shadow-lg">
+
+                            {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+
+                        </div>
+
+                    @endif
 
                     <div class="ml-2 max-w-55">
                         <h3 class="font-bold text-2xl">

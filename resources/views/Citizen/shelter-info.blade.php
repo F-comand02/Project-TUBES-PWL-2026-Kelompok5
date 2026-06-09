@@ -3,7 +3,7 @@
 <div class="p-4 sm:p-6 space-y-6">
 
     {{-- HEADER --}}
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-8">
 
         <div>
             <h1 class="text-3xl font-bold text-white">
@@ -15,7 +15,7 @@
         </div>
 
         <a href="{{ route('citizen.donations.index') }}"
-           class="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-800 text-white px-5 py-3 shadow-lg  rounded-2xl font-semibold transition">
+           class="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white px-5 py-3 shadow-lg  rounded-2xl font-semibold hover:scale-90 duration-200 transition">
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
@@ -55,10 +55,10 @@
 
             @foreach($shelters as $shelter)
 
-            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300">
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:scale-105 transition duration-200">
 
                 {{-- TOP BANNER --}}
-                <div class="bg-gradient-to-r from-cyan-400 to-cyan-500 px-6 py-5">
+                <div class="bg-cyan-500 px-6 py-5">
 
                     <div class="flex items-start justify-between">
 
@@ -146,7 +146,7 @@
                     <div class="pt-2">
 
                         <a href="{{ route('citizen.donations.create', $shelter->id) }}"
-                           class="flex items-center justify-center gap-2 w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 rounded-2xl transition-colors duration-200 shadow-sm">
+                           class="flex items-center justify-center gap-2 w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-3 rounded-2xl hover:scale-95 duration-200 transition shadow-sm">
 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke-width="2" stroke="currentColor" class="w-5 h-5">

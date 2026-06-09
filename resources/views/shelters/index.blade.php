@@ -5,7 +5,7 @@
 
 <div class="p-6">
 
-    <div class="flex justify-between items-center mb-6 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl p-6 text-white shadow-lg">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 from-emerald-500 to-green-600 bg-gradient-to-r rounded-3xl p-6 text-white shadow-lg">
 
         <h1 class="text-3xl font-bold">
 
@@ -26,7 +26,7 @@
 
     <div class="bg-white rounded-2xl p-6 shadow mb-6">
 
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 
             <div>
 

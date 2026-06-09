@@ -143,7 +143,7 @@
                     </button>
                 </div>
 
-            <div class="overflow-y-auto h-40 mt-2 mx-1">
+            <div class="overflow-y-auto h-43 mt-2 mx-1">
             @forelse($distributionAssignments as $donation)
 
                 <div class="mb-4 p-4 rounded-2xl bg-gray-200">

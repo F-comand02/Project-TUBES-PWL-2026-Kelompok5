@@ -3,7 +3,7 @@
     <div class="p-4 sm:p-6 space-y-2 ">
 
         <!-- Header -->
-        <div class="flex justify-between items-center from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-8 text-white shadow-lg mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-8 text-white shadow-lg mb-6">
 
             <div>
                 <h1 class="text-3xl font-bold text-white">

@@ -14,7 +14,7 @@
         </h1>
         
         <a href="{{ route('shelters.create') }}"
-           class="bg-green-500 text-white px-5 py-3 rounded-xl shadow hover:bg-green-600">
+           class="bg-green-500 text-white px-5 py-3 rounded-xl shadow hover:bg-green-600 hover:scale-90 duration-200 transition">
 
             Add Shelter
 
@@ -84,9 +84,9 @@
 
         </div>
 
-        <div class="mt-6">
+        <div class="mt-6 bg-gray-100 p-3 rounded-xl">
 
-            <h3 class="font-bold text-lg mb-4">
+            <h3 class="font-bold text-lg mb-2">
 
                 Logistics
 
@@ -98,7 +98,7 @@
 
         <a href="{{ route('logistics.index') }}">
 
-        <div class="border rounded-xl p-4 mb-3 hover:bg-gray-50 cursor-pointer">
+        <div class="rounded-xl p-4 mb-3 bg-gray-200 hover:bg-gray-300 cursor-pointer">
 
             <div class="flex justify-between items-center">
 
@@ -160,14 +160,14 @@
 
             <a
             href="{{ route('logistics.create', ['shelter' => $shelter->id]) }}"
-            class="bg-blue-600 text-white px-4 py-2 rounded-xl">
+            class="bg-blue-600 text-white px-4 py-2 rounded-xl hover:scale-90 duration-200 transition">
 
             Add Logistics
 
             </a>
 
             <a href="{{ route('shelters.edit', $shelter->id) }}"
-               class="bg-yellow-400 text-white px-4 py-2 rounded-xl">
+               class="bg-yellow-400 text-white px-4 py-2 rounded-xl hover:scale-90 duration-200 transition">
 
                 Edit
 
@@ -179,7 +179,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button class="bg-red-500 text-white px-4 py-2 rounded-xl">
+                <button class="bg-red-500 text-white px-4 py-2 rounded-xl hover:scale-90 duration-200 transition">
 
                     Delete
 

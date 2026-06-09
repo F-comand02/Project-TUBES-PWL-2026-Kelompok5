@@ -3,7 +3,7 @@
 <div class="p-4 sm:p-6 space-y-6">
 
     <!-- Header -->
-    <div class="from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-6">
+    <div class="from-cyan-600 to-cyan-300 bg-gradient-to-r rounded-3xl p-8">
         <h1 class="text-3xl font-bold text-white">
             Help Information
         </h1>
@@ -55,9 +55,9 @@
 
         <div class="bg-white rounded-3xl shadow-lg p-6">
 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center bg-cyan-400 p-3 px-6 rounded-full">
 
-                <h2 class="text-xl font-bold text-gray-800">
+                <h2 class="text-xl font-bold text-white">
                     {{ $item->item_name }}
                 </h2>
 

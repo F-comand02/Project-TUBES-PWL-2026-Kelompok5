@@ -11,7 +11,7 @@
         </div>
 
         <a href="{{ route('citizen.shelter-info') }}"
-           class="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-3 rounded-2xl font-semibold transition shadow-sm">
+           class="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-3 rounded-2xl font-semibold hover:scale-90 duration-200 transition shadow-sm">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  stroke-width="2" stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -66,13 +66,13 @@
 
                 <table class="w-full">
 
-                    <thead class="bg-gray-50 border-b border-gray-100">
+                    <thead class="bg-cyan-500 border-b border-gray-100 ">
                         <tr>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Posko</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Item</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Jumlah</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Tanggal</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">Posko</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">Item</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">Jumlah</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">Tanggal</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-gray-100 uppercase tracking-wider">Status</th>
                         </tr>
                     </thead>
 

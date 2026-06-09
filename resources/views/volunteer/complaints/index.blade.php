@@ -38,7 +38,7 @@
                     <div class="p-5">
 
                         <!-- TOP -->
-                        <div class="flex items-center p-3 rounded-xl justify-between gap-4 bg-gray-200">
+                        <div class="flex items-center p-3 rounded-xl justify-between gap-4 bg-gray-100">
 
                             <div>
 
@@ -74,7 +74,7 @@
                         </div>
 
                         <!-- DESCRIPTION -->
-                        <p class="mt-2 text-gray-600 leading-relaxed bg-gray-200 p-3 rounded-xl" >
+                        <p class="mt-2 text-gray-600 leading-relaxed bg-gray-100 p-3 rounded-xl" >
                             {{ $complaint->description }}
                         </p>
                         
@@ -132,7 +132,7 @@
 
                             <button
                                 type="submit"
-                                class="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:scale-[1.02] hover:shadow-lg transition text-white py-3 rounded-2xl font-bold">
+                                class="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:shadow-lg hover:scale-95 duration-200 transition text-white py-3 rounded-2xl font-bold">
 
                                 Update Complaint Status
 
@@ -151,7 +151,7 @@
 
                             <button
                                 type="submit"
-                                class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl font-bold transition">
+                                class="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl hover:scale-95 duration-200 font-bold transition">
 
                                 Delete Complaint
 

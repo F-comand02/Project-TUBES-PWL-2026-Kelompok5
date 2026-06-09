@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\NewDonationSubmittedNotification;
 use Illuminate\Support\Facades\Auth;
+use App\Models\LogisticsCategory;
 
 class DonationController extends Controller
 {
@@ -27,17 +28,25 @@ class DonationController extends Controller
     /**
      * Halaman donasi untuk posko tertentu
      */
-    public function create(Shelter $shelter)
-    {
-        return view('Citizen.donations.create', compact('shelter'));
-    }
+   public function create(Shelter $shelter)
+{
+    $categories = LogisticsCategory::all();
 
+    return view(
+        'Citizen.donations.create',
+        compact(
+            'shelter',
+            'categories'
+        )
+    );
+}
     /**
      * Simpan donasi baru
      */
     public function store(Request $request, Shelter $shelter)
     {
         $request->validate([
+            'category_id'   => 'required|exists:logistics_categories,id',
             'item_name'     => 'required|string|max:150',
             'quantity'      => 'required|integer|min:1',
             'notes'         => 'nullable|string',
@@ -53,6 +62,7 @@ class DonationController extends Controller
             'status'        => 'pending',
             'notes'         => $request->notes,
             'donation_date' => $request->donation_date,
+            'category_id' => $request->category_id,
             
         ]);
 

@@ -43,7 +43,26 @@
                       class="space-y-5">
 
                     @csrf
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            Donation Category
+                            <span class="text-red-500">*</span>
+                        </label>
 
+                        <select
+                            name="category_id"
+                            class="w-full border border-gray-200 rounded-2xl px-4 py-3">
+
+                            <option value="">Select Category</option>
+
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->category_name }}
+                                </option>
+                            @endforeach
+
+                        </select>
+                    </div>
                     {{-- NAMA BARANG --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">

@@ -96,7 +96,6 @@ class LogisticController extends Controller
     public function store(Request $request)
     {
         $logistic = Logistic::create([
-
             'category_id' => $request->category_id,
             'shelter_id' => $request->shelter_id,
             'item_name' => $request->item_name,

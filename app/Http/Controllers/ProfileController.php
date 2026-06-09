@@ -9,6 +9,7 @@ class ProfileController extends Controller
 {
     public function edit()
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         // role_name is the canonical string used across the app (middleware, redirects)
@@ -36,6 +37,7 @@ class ProfileController extends Controller
             'availability' => 'nullable|string|max:255',
         ]);
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $user->name = $request->name;

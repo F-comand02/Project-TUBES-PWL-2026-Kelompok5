@@ -5,7 +5,27 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@keyframes fade {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.animate-fade {
+    animation: fade 10s infinite;
+}
+
+.animation-delay-5000 {
+    animation-delay: 5s;
 }

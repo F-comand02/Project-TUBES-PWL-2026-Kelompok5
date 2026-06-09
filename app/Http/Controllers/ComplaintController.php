@@ -1,0 +1,279 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\Complaint;
+use App\Models\ComplaintImage;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\ComplaintStatusUpdated;
+use App\Notifications\NewComplaintSubmitted;
+use App\Notifications\ComplaintTakenNotification;
+use App\Notifications\ComplaintCompletedNotification;
+use App\Models\Shelter;
+
+class ComplaintController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $complaints = Complaint::latest()->get();
+
+        return view('Citizen.index', compact('complaints'));
+    }
+
+    public function volunteerIndex()
+    {
+        $complaints = Complaint::latest()->get();
+
+        return view(
+            'volunteer.complaints.index',
+            compact('complaints')
+        );
+    }
+
+    public function updateStatus(Request $request, Complaint $complaint)
+    {
+        $request->validate([
+            'status' => 'required'
+        ]);
+
+        $complaint->status = $request->status;
+
+        $complaint->user->notify(
+            new ComplaintStatusUpdated($complaint)
+        );
+
+        $complaint->save();
+
+        return back()->with(
+            'success',
+            'Complaint status updated successfully'
+        );
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $shelters = Shelter::all();
+
+        return view(
+            'Citizen.createComplaint',
+            compact('shelters')
+        );
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'category' => 'required|string',
+        'urgency_level' => 'required|string',
+        'description' => 'required|string',
+        'image' => 'nullable|mimes:jpg,jpeg,png,webp,jfif|max:10000',
+        'shelter_id' => 'required|exists:shelters,id',
+    ]);
+
+    $complaint = Complaint::create([
+        'user_id' => Auth::id(),
+        'title' => $request->title,
+        'category' => $request->category,
+        'urgency_level' => $request->urgency_level,
+        'description' => $request->description,
+        'status' => 'pending',
+        'shelter_id' => $request->shelter_id,
+    ]);
+
+    $volunteers = User::whereHas('role', function ($query) {
+
+    $query->where('role_name', 'Volunteer');
+
+    })->get();
+
+    foreach ($volunteers as $volunteer) {
+
+        $volunteer->notify(
+            new NewComplaintSubmitted($complaint)
+        );
+
+    }
+
+    if ($request->hasFile('image')) {
+
+        $image = $request->file('image');
+
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+        $image->storeAs('complaints', $imageName, 'public');
+
+        ComplaintImage::create([
+            'complaint_id' => $complaint->id,
+            'image_path' => $imageName,
+        ]);
+    }
+
+    return redirect()
+        ->route('complaints.index')
+        ->with('success', 'Complaint submitted successfully!');
+}
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Complaint $complaint)
+    {
+        foreach ($complaint->images as $image) {
+
+            $imagePath = public_path('storage/complaints/' . $image->image_path);
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $image->delete();
+        }
+
+        // delete complaint
+        $complaint->delete();
+
+        return redirect()
+            ->route('complaints.index')
+            ->with('success', 'Complaint deleted successfully');
+    }
+
+    public function destroyVolunteer(Complaint $complaint)
+    {
+        // delete images
+        foreach ($complaint->images as $image) {
+
+            $imagePath = public_path(
+                'storage/complaints/' . $image->image_path
+            );
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $image->delete();
+        }
+
+        // delete complaint
+        $complaint->delete();
+
+        return back()->with(
+            'success',
+            'Complaint deleted successfully'
+        );
+    }
+
+    public function availableMissions()
+    {
+        $complaints = Complaint::with([
+    'user',
+    'images',
+    'shelter'
+    ])
+    ->where('status', 'pending')
+    ->whereNull('assigned_volunteer_id')
+    ->latest()
+    ->get();
+
+            return view(
+                'volunteer.missions.available',
+                compact('complaints')
+            );
+    }
+
+    public function acceptMission(Complaint $complaint)
+    {
+        $complaint->update([
+
+            'assigned_volunteer_id' => Auth::id(),
+            'handled_by' => Auth::id(),
+            'status' => 'processing'
+
+        ]);
+
+        $complaint->user->notify(
+            new ComplaintTakenNotification(
+                Auth::user()->name,
+                $complaint
+            )
+        );
+
+        return redirect()
+            ->back()
+            ->with(
+                'success',
+                'Mission accepted successfully.'
+            );
+    }
+
+    public function myMissions()
+    {
+    $complaints = Complaint::with([
+        'user',
+        'images',
+        'shelter'
+    ])
+    ->where(
+        'assigned_volunteer_id',
+        Auth::id()
+    )
+    ->where(
+        'status',
+        'processing'
+    )
+    ->latest()
+    ->get();
+
+    return view(
+        'volunteer.missions.mine',
+        compact('complaints')
+    );
+    }
+
+    public function completeMission(Complaint $complaint)
+        {
+            $complaint->update([
+                'status' => 'completed',
+            ]);
+
+            $complaint->user->notify(
+                new ComplaintCompletedNotification(
+                    Auth::user()->name,
+                    $complaint
+                )
+            );
+
+            return back()->with(
+                'success',
+                'Mission completed successfully.'
+            );
+        }
+}
+

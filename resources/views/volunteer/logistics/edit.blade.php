@@ -81,6 +81,8 @@
 
             <input type="number"
                    name="stock"
+                    min="0"
+                    max="1000000"
                    value="{{ $logistic->stock }}"
                    class="w-full border rounded-xl p-3">
 
@@ -92,6 +94,8 @@
 
             <input type="number"
                    name="minimum_stock"
+                    min="0"
+                    max="1000000"
                    value="{{ $logistic->minimum_stock }}"
                    class="w-full border rounded-xl p-3">
 

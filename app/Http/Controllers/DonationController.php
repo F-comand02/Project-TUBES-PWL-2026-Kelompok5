@@ -48,7 +48,7 @@ class DonationController extends Controller
         $request->validate([
             'category_id'   => 'required|exists:logistics_categories,id',
             'item_name'     => 'required|string|max:150',
-            'quantity'      => 'required|integer|min:1',
+            'quantity'      => 'required|integer|min:1|max:10000',
             'notes'         => 'nullable|string',
             'donation_date' => 'required|date',
         ]);

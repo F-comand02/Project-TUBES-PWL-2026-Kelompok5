@@ -259,18 +259,18 @@
 
                 <div class="flex flex-wrap items-center gap-5 mt-12">
 
-                    <button
+                    <a href="#programs"
                         class="border-2 border-blue-200 hover:bg-blue-200/70 backdrop-blur-md text-blue-600 px-10 py-5 rounded-3xl font-bold text-lg transition-all duration-300 hover:scale-105">
                         Jelajahi Program
 
-                    </button>
+                    </a>
 
-                    <button
+                    <a href="{{ route('login') }}"
                         class="border-2 border-blue-200 hover:bg-blue-200/70 backdrop-blur-md text-blue-600 px-10 py-5 rounded-3xl font-bold text-lg transition-all duration-300 hover:scale-105">
 
                         Donasi Sekarang
 
-                    </button>
+                    </a>
 
                 </div>
 

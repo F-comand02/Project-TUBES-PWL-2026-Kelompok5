@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Models\Shelter;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Notifications\NewDonationSubmittedNotification;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
@@ -42,7 +44,7 @@ class DonationController extends Controller
             'donation_date' => 'required|date',
         ]);
 
-        Donation::create([
+        $donation = Donation::create([
             'shelter_id'    => $shelter->id,
             'user_id'       => Auth::id(),
             'donor_name'    => Auth::user()->name,
@@ -51,7 +53,18 @@ class DonationController extends Controller
             'status'        => 'pending',
             'notes'         => $request->notes,
             'donation_date' => $request->donation_date,
+            
         ]);
+
+        $volunteers = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'volunteer');
+        })->get();
+
+        foreach ($volunteers as $volunteer) {
+            $volunteer->notify(
+                new NewDonationSubmittedNotification($donation)
+            );
+        }
 
         return redirect()
             ->route('citizen.shelter-info')

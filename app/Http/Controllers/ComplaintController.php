@@ -9,6 +9,8 @@ use App\Models\ComplaintImage;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ComplaintStatusUpdated;
 use App\Notifications\NewComplaintSubmitted;
+use App\Notifications\ComplaintTakenNotification;
+use App\Notifications\ComplaintCompletedNotification;
 use App\Models\Shelter;
 
 class ComplaintController extends Controller
@@ -216,6 +218,13 @@ class ComplaintController extends Controller
 
         ]);
 
+        $complaint->user->notify(
+            new ComplaintTakenNotification(
+                Auth::user()->name,
+                $complaint
+            )
+        );
+
         return redirect()
             ->back()
             ->with(
@@ -248,20 +257,23 @@ class ComplaintController extends Controller
     );
     }
 
-    public function completeMission(
-    Complaint $complaint
-    )
-    {
-    $complaint->update([
-    'handled_by' => Auth::id(),
-    'status' => 'completed',
+    public function completeMission(Complaint $complaint)
+        {
+            $complaint->update([
+                'status' => 'completed',
+            ]);
 
-    ]);
+            $complaint->user->notify(
+                new ComplaintCompletedNotification(
+                    Auth::user()->name,
+                    $complaint
+                )
+            );
 
-    return back()->with(
-        'success',
-        'Mission completed successfully.'
-    );
-    }
+            return back()->with(
+                'success',
+                'Mission completed successfully.'
+            );
+        }
 }
 

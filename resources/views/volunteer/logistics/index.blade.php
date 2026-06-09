@@ -125,11 +125,14 @@
 
                         {{ $logistic->expired_date }}
 
-                        @if(
-                            $logistic->expired_date &&
-                            \Carbon\Carbon::parse($logistic->expired_date)
-                                ->diffInDays(now()) <= 7
-                        )
+                        @php
+                            $daysLeft = now()->diffInDays(
+                                \Carbon\Carbon::parse($logistic->expired_date),
+                                false
+                            );
+                        @endphp
+
+                        @if($daysLeft >= 0 && $daysLeft <= 7)
 
                             <div class="mt-2">
 
@@ -150,17 +153,13 @@
                         @if($logistic->stock <= $logistic->minimum_stock)
 
                             <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-semibold">
-
                                 Low Stock
-
                             </span>
 
                         @else
 
                             <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">
-
                                 Safe
-
                             </span>
 
                         @endif

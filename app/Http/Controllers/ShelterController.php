@@ -108,7 +108,7 @@ if ($shelter->current_refugees >= $shelter->capacity) {
     }
 
 }
-elseif ($shelter->current_refugees >= 35) {
+elseif (($shelter->current_refugees / $shelter->capacity) >= 0.8) {
 
     foreach ($volunteers as $volunteer) {
 

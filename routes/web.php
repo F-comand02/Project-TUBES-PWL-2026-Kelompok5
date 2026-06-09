@@ -11,11 +11,11 @@ use App\Http\Controllers\DistribusiBantuanController; // ← TAMBAHAN BARU
 
 Route::get('/', function () {
 
-    if (! Auth::check()) {
+    if (! \Illuminate\Support\Facades\Auth::check()) {
         return view('welcome');
     }
 
-    $role = Auth::user()->role?->role_name;
+    $role = \Illuminate\Support\Facades\Auth::user()->role?->role_name;
 
     return match ($role) {
         'admin' => redirect('/admin'),

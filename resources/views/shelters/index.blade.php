@@ -46,11 +46,7 @@
 
             <div>
 
-                @if(
-                    $shelter->current_refugees
-                    >=
-                    $shelter->capacity
-                )
+                @if( $shelter->current_refugees >= $shelter->capacity)
 
                     <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full text-sm">
 
@@ -58,7 +54,14 @@
 
                     </span>
 
-                @else
+                @elseif(($shelter->current_refugees / $shelter->capacity) >= 0.8)
+                    <span class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full text-sm">
+
+                        Nearly Full
+
+                    </span>
+
+                    @else
 
                     <span class="bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm">
 

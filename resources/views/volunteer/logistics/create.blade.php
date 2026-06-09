@@ -124,6 +124,8 @@
             <input
                 type="number"
                 name="stock"
+                 min="0"
+                max="1000000"
                 class="w-full border rounded-xl p-3">
 
         </div>
@@ -140,6 +142,8 @@
             <input
                 type="number"
                 name="minimum_stock"
+                 min="0"
+                max="1000000"
                 class="w-full border rounded-xl p-3">
 
         </div>

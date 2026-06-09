@@ -95,6 +95,15 @@ class LogisticController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'category_id' => 'required|exists:logistics_categories,id',
+            'shelter_id' => 'required|exists:shelters,id',
+            'item_name' => 'required|string|max:150',
+            'stock' => 'required|integer|min:0|max:1000000',
+            'minimum_stock' => 'required|integer|min:0|max:1000000',
+            'expired_date' => 'nullable|date',
+            'description' => 'nullable|string'
+        ]);
         $logistic = Logistic::create([
             'category_id' => $request->category_id,
             'shelter_id' => $request->shelter_id,

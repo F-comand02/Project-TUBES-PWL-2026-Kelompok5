@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
        User::firstOrCreate(
             ['email' => 'admin@gmail.com'],
             [
+                'role_id' => 1,
                 'name' => 'Admin',
                 'password' => bcrypt('password')
             ]

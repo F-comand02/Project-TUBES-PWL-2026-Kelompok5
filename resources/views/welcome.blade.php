@@ -146,11 +146,11 @@
                     Programs
                 </a>
 
-                <a href="#impact" class="block text-lg font-semibold text-gray-700 px-4 py-4 rounded-2xl transition-all duration-300
+                <a href="#volunteer" class="block text-lg font-semibold text-gray-700 px-4 py-4 rounded-2xl transition-all duration-300
                         hover:bg-blue-50 hover:text-blue-600
                         active:bg-blue-100 active:text-blue-700 active:scale-95
                         focus:bg-blue-50 focus:text-blue-600">
-                    Impact
+                    Volunteer
                 </a>
 
                 <a href="#contact" class="block text-lg font-semibold text-gray-700 px-4 py-4 rounded-2xl transition-all duration-300
@@ -257,7 +257,7 @@
 
                 </p>
 
-                <div class="flex flex-wrap items-center gap-5 mt-12">
+                <div class="flex flex-wrap items-center gap-5 my-6">
 
                     <a href="#programs"
                         class="border-2 border-blue-200 hover:bg-blue-200/70 backdrop-blur-md text-blue-600 px-10 py-5 rounded-3xl font-bold text-lg transition-all duration-300 hover:scale-105">

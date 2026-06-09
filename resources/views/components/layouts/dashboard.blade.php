@@ -97,10 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <!-- MENU TUTUP -->
             <button
-           @click="
-                sidebarOpen = !sidebarOpen;
-                openNotif = false;
-            "
+           @click= "sidebarOpen = !sidebarOpen; openNotif = false; "
             class="absolute top-1 right-1 lg:hidden z-50 w-10 h-10 rounded-xl bg-transparent hover:bg-red-100 flex items-center justify-center transition">
 
             <svg
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </button>
 
             <!-- MENU -->
-            <nav class="flex-1 px-5 py-8 space-y-3">
+            <nav class="flex-1 px-5 py-8 space-y-3 overflow-y-auto">
                  
                 @if(strtolower($role) === 'citizen')
                 

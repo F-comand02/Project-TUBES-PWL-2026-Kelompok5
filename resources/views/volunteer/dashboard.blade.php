@@ -258,7 +258,7 @@
                                 </h2>
 
                                 <button class="bg-green-500 hover:bg-green-800 shadow px-2 py-1 mr-4 text-white font-bold rounded-3xl hover:scale-95 transition">
-                                    <a href=" {{ route('missions.mine') }} ">
+                                    <a href=" {{ route('missions.available') }} ">
                                         View detail
                                     </a>
                                 </button>

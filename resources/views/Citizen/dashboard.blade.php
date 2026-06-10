@@ -28,7 +28,7 @@
                     </button>
                 </div>
                 
-                <div class="overflow-y-auto h-34 py-4 mx-5">
+                <div class="overflow-y-auto h-40 py-4 mx-5">
                 @forelse($myComplaints as $complaint)
                     <div class="py-2 bg-gray-200 shadow rounded-lg mb-3 px-2 mx-6">
                         <p class="font-bold mb-2">
@@ -70,7 +70,9 @@
                         </span>
                     </div>
                 @empty
+                <div class="bg-gray-200 text-center py-12 rounded-xl mx-1">
                 <p>Belum ada komplain.</p>
+                </div>
                 @endforelse
             </div>
         </div>
@@ -88,7 +90,7 @@
                 </button>
             </div>
             
-            <div class="overflow-y-auto h-36 py-1 mx-5">
+            <div class="overflow-y-auto h-40 py-1 mx-5">
                 @foreach($logistics as $item)
                 <div class=" py-2 bg-gray-200 shadow rounded-lg mb-3 mx-6 px-2">
                     <p class="font-semibold">
@@ -101,11 +103,12 @@
                 </div>
                 
                 @endforeach
+                @if($logistics->isEmpty())
+                <div class="bg-gray-200 text-center py-14 rounded-xl mx-1">
+                    <p>Belum ada bantuan tersedia.</p>
+                </div>
+                @endif
             </div>
-
-            @if($logistics->isEmpty())
-                <p>Belum ada bantuan tersedia.</p>
-            @endif
 
         </div>
         
@@ -131,7 +134,14 @@
                             Alamat : {{ $shelter->address }}
                         </p>
                     </div>
+
+                    
                 @endforeach
+                @if($shelters->isEmpty())
+                <div class="bg-gray-200 text-center py-22 rounded-xl mx-1">
+                    <p>Belum ada posko terdekat.</p>
+                </div>
+                @endif
             </div>
         </div>
 
@@ -192,9 +202,11 @@
 
             @empty
 
-                <p class="text-gray-500">
+            <div class="bg-gray-200 text-center py-22 rounded-xl mx-1">
+                <p>
                     Belum ada data posko.
                 </p>
+            </div>
 
             @endforelse
             </div>

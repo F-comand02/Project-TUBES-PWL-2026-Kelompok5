@@ -1,5 +1,5 @@
 <x-layouts.dashboard
-    title="Distribusi Bantuan"
+    title="Relief Distribution"
     color="green"
     role="volunteer">
 

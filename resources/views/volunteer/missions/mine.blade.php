@@ -1,5 +1,5 @@
 <x-layouts.dashboard
-    title="Misi Saya"
+    title="My Missions"
     color="green"
     role="volunteer">
 

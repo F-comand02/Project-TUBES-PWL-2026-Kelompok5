@@ -11,14 +11,15 @@ class NewComplaintSubmitted extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
+     protected $complaint;
+
     public function __construct($complaint)
     {
         $this->complaint = $complaint;
     }
-
+    /**
+     * Create a new notification instance.
+     */
     /**
      * Get the notification's delivery channels.
      *

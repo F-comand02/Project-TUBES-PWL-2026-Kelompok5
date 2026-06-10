@@ -5,20 +5,23 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RoleMiddleware
 {
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (! auth()->check()) {
+            if (! Auth::check()) {
             return redirect('/login');
         }
 
-        $user = auth()->user();
+        /** @var User $user */
+        $user = Auth::user();
 
         if ($user->role->role_name !== $role) {
             if ($user->role->role_name === 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('/admin');
             }
 
             if ($user->role->role_name === 'volunteer') {

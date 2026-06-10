@@ -4,19 +4,20 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class RoleSelectionController extends Controller
 {
     public function create()
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
-        if ($user->role?->role_name) {
+        if ($user instanceof User && $user->role?->role_name) {
             return match ($user->role->role_name) {
-                'admin' => redirect()->route('admin.dashboard'),
+               'admin' => redirect('/admin'),
                 'volunteer' => redirect()->route('volunteer.dashboard'),
                 'citizen' => redirect()->route('dashboard'),
                 default => redirect()->route('role.select'),
@@ -40,7 +41,11 @@ class RoleSelectionController extends Controller
             abort(403);
         }
 
-        $user = auth()->user();
+        $user = Auth::user();
+        if (! $user instanceof User) {
+            abort(403);
+        }
+
         $user->role_id = $role->id;
         $user->save();
 

@@ -35,14 +35,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('role.update');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-
-});
-
 Route::middleware(['auth', 'role:volunteer'])->group(function () {
 
     Route::get('/volunteer/dashboard', function () {

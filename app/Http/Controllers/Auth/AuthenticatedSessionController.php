@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,7 +29,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = auth()->user();
+        /** @var User|null $user */
+        $user = Auth::user();
         $user->refresh();
 
         if ($user->two_factor_enabled) {
@@ -46,9 +48,13 @@ class AuthenticatedSessionController extends Controller
         }
 
         $roleName = $user->role?->role_name;
-
         if ($roleName === 'admin') {
-            return redirect()->route('admin.dashboard');
+
+            Auth::logout();
+
+            return back()->withErrors([
+                'email' => 'Please login through the admin panel.'
+            ]);
         }
 
         if ($roleName === 'volunteer') {

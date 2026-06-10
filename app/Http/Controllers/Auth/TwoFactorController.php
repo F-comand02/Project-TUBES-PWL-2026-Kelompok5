@@ -42,7 +42,7 @@ class TwoFactorController extends Controller
         $roleName = $user->role?->role_name;
 
         if ($roleName === 'admin') {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('/admin');
         }
 
         if ($roleName === 'volunteer') {

@@ -138,3 +138,242 @@ Repositori ini berisi implementasi sistem informasi berbasis web yang dikembangk
 
 ## 📄 Lisensi
 Distribusi di bawah Lisensi MIT. Lihat `LICENSE` untuk informasi lebih lanjut.
+
+# 🌊 WaterRelief
+
+**Flood Disaster Complaint, Donation, and Logistics Management System**
+**Sistem Manajemen Pengaduan, Donasi, dan Logistik Bencana Banjir**
+
+Built with Laravel 12, Filament, and MariaDB
+
+---
+
+# 🌐 Live Demo
+
+**Production URL:**
+https://www.waterrelief.my.id
+
+---
+
+# About the Project | Tentang Proyek
+
+## [EN]
+
+WaterRelief is a web-based disaster management platform designed to facilitate communication and coordination between citizens, volunteers, and administrators during flood emergencies.
+
+The platform enables citizens to report disaster incidents, submit donations, access shelter information, and monitor logistics availability. Volunteers can manage complaints, distribute aid, monitor inventory, and coordinate emergency responses. Administrators oversee the entire system through a centralized dashboard.
+
+The primary objective of WaterRelief is to improve disaster response efficiency, increase transparency in aid distribution, and provide a digital platform that supports community-driven disaster management.
+
+## [ID]
+
+WaterRelief adalah platform manajemen bencana berbasis web yang dirancang untuk memfasilitasi komunikasi dan koordinasi antara masyarakat, relawan, dan administrator selama kondisi darurat banjir.
+
+Platform ini memungkinkan masyarakat untuk melaporkan kejadian bencana, mengirim donasi, mengakses informasi posko, serta memantau ketersediaan logistik. Relawan dapat mengelola laporan, mendistribusikan bantuan, memantau inventaris, dan mengoordinasikan respons darurat. Administrator mengawasi keseluruhan sistem melalui dashboard terpusat.
+
+Tujuan utama WaterRelief adalah meningkatkan efektivitas penanganan bencana, memperkuat transparansi distribusi bantuan, serta menyediakan platform digital yang mendukung pengelolaan bencana berbasis masyarakat.
+
+---
+
+# Architecture | Arsitektur
+
+## [EN]
+
+WaterRelief follows a role-based web application architecture built with Laravel. The system separates functionalities into three user roles:
+
+* Citizen
+* Volunteer
+* Administrator
+
+Authentication is handled through Laravel Breeze with Email Verification and Two-Factor Authentication (2FA). The administrative dashboard is powered by Filament, while user-facing features are rendered using Blade and Tailwind CSS.
+
+## [ID]
+
+WaterRelief menggunakan arsitektur aplikasi web berbasis peran yang dibangun dengan Laravel. Sistem membagi fungsionalitas ke dalam tiga jenis pengguna:
+
+* Citizen (Masyarakat)
+* Volunteer (Relawan)
+* Administrator
+
+Autentikasi ditangani menggunakan Laravel Breeze dengan Email Verification dan Two-Factor Authentication (2FA). Dashboard administrator dibangun menggunakan Filament, sedangkan antarmuka pengguna menggunakan Blade dan Tailwind CSS.
+
+---
+
+# Key Features | Fitur Utama
+
+## [EN]
+
+* Multi-Role Authentication (Citizen, Volunteer, Administrator)
+* Email Verification
+* Two-Factor Authentication (2FA)
+* Complaint Reporting with Image Upload
+* Complaint Assignment and Tracking
+* Shelter Management
+* Logistics Inventory Monitoring
+* Low Stock Notifications
+* Expiring Logistics Notifications
+* Donation Submission and Tracking
+* Volunteer Delivery Missions
+* User Profile Management
+* Notification System
+* Administrative Dashboard
+
+## [ID]
+
+* Autentikasi Multi-Role (Citizen, Volunteer, Administrator)
+* Verifikasi Email
+* Two-Factor Authentication (2FA)
+* Pelaporan Bencana dengan Upload Gambar
+* Penugasan dan Pelacakan Laporan
+* Manajemen Posko Pengungsian
+* Monitoring Inventaris Logistik
+* Notifikasi Stok Menipis
+* Notifikasi Barang Mendekati Kedaluwarsa
+* Pengajuan dan Pelacakan Donasi
+* Misi Distribusi Bantuan Relawan
+* Manajemen Profil Pengguna
+* Sistem Notifikasi
+* Dashboard Administrasi
+
+---
+
+# Tech Stack | Teknologi yang Digunakan
+
+| Layer                | Technology            |
+| -------------------- | --------------------- |
+| Backend Framework    | Laravel 12            |
+| Programming Language | PHP 8.3+              |
+| Frontend             | Blade                 |
+| Styling              | Tailwind CSS          |
+| Build Tool           | Vite                  |
+| Database             | MariaDB               |
+| Authentication       | Laravel Breeze        |
+| Admin Panel          | Filament              |
+| Notification System  | Laravel Notifications |
+| Storage              | Laravel Storage       |
+| Version Control      | Git & GitHub          |
+
+---
+
+# Database Schema | Skema Basis Data
+
+### Main Tables
+
+* users
+* roles
+* shelters
+* complaints
+* complaint_images
+* logistics
+* logistics_categories
+* donations
+* notifications
+
+### Supporting Tables
+
+* migrations
+* sessions
+* cache
+* cache_locks
+* password_reset_tokens
+
+---
+
+# Security Features | Fitur Keamanan
+
+* Password Hashing (Bcrypt)
+* Email Verification
+* Two-Factor Authentication (2FA)
+* CSRF Protection
+* Role-Based Access Control (RBAC)
+* Secure Session Management
+* Request Validation
+
+---
+
+# Installation & Configuration | Instalasi dan Konfigurasi
+
+## Clone Repository
+
+```bash
+git clone https://github.com/your-organization/WaterRelief.git
+
+cd WaterRelief
+```
+
+## Install Dependencies
+
+```bash
+composer install
+
+npm install
+```
+
+## Environment Setup
+
+```bash
+cp .env.example .env
+
+php artisan key:generate
+```
+
+## Database Migration
+
+```bash
+php artisan migrate
+
+php artisan db:seed
+```
+
+## Storage Link
+
+```bash
+php artisan storage:link
+```
+
+## Build Assets
+
+```bash
+npm run build
+```
+
+---
+
+# Running the Application | Menjalankan Aplikasi
+
+### Terminal 1
+
+```bash
+php artisan serve
+```
+
+### Terminal 2
+
+```bash
+npm run dev
+```
+
+### Terminal 3 (Optional Queue Worker)
+
+```bash
+php artisan queue:work
+```
+
+---
+
+# User Roles | Peran Pengguna
+
+| Role          | Description                               |
+| ------------- | ----------------------------------------- |
+| Administrator | System Management & Monitoring            |
+| Volunteer     | Complaint Handling & Aid Distribution     |
+| Citizen       | Complaint Reporting & Donation Submission |
+
+---
+
+
+# License | Lisensi
+
+This project was developed for academic purposes as part of a Software Engineering course project.
+
+Proyek ini dikembangkan untuk keperluan akademik sebagai bagian dari tugas mata kuliah Rekayasa Perangkat Lunak.
